@@ -206,12 +206,13 @@ function draw() {
    g.drawImage(PURPLE_DOCK, w - 87, h/2 - 152, 87, 304);
    g.drawImage(ORANGE_DOCK, w/2 - 152, h - 87, 304, 87);
    
+   hint.draw(g);   
+   tree.draw(g);
+   
+   // Draw extra visuals
    for (var i=0; i<visuals.length; i++) {
       visuals[i].draw(g);
    }
-   
-   hint.draw(g);   
-   tree.draw(g);
 }
 
 function addVisual(visual) {
