@@ -207,7 +207,7 @@ function showSolution() {
    var d = document.getElementById("dialog-solution");
    if (d) {
       w = canvas.width;
-      d.style.left = w/2 - 420 + "px";
+      d.style.left = w/2 - 400 + "px";
       d.style.visibility = "visible";
    }
 }
