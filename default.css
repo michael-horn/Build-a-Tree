@@ -31,6 +31,8 @@ a.big-link {
    font-weight: bold;
 }
 
+td, tr, img { margin: 0px; padding: 0px; }
+
 footer {
    position: absolute;
    bottom: 8px;
@@ -140,23 +142,12 @@ a.button:active { color: red; }
    border-radius: 10px;
 }
 
-.hint-left-col {
-   float: left;
-}
-
-.hint-right-col {
-   float: right;
-}
-
 #hint-cname   { font-weight: bold; }
 #hint-name    { font-style: italic; padding-left: 5px; }
-#hint-image   { margin: 3px 0px 0px 0px; }
 .photo-credit { font-size: 11px; }
 #hint-author  { font-weight: bold; }
 #hint-cright  { font-size: 11px; }
-.dialog img {
-   margin: 25px 10px 15px 10px;
-}
+.hint-list    { font-size: 14px; }
 
 .dialog .clade {
    font-weight: bold;
