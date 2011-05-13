@@ -1,0 +1,178 @@
+* { -webkit-user-select: none; }
+
+body {
+   background-color: #3399cc;
+   background-image: url('images/texture.png'); 
+   overflow: hidden;
+   font-family: Tahoma, futura, helvetica, sans-serif;
+   margin: 0px;
+   padding: 0px;
+}
+
+
+a {
+   font-size: 20px;
+   color: white;
+   text-decoration: none;
+   text-shadow: 1px 1px 2px #333;
+}
+
+a:hover { color: #fc3; }
+a:active { color: red; }
+
+a.big-link {
+   font-size: 30px;
+   font-weight: bold;
+}
+
+footer {
+   position: absolute;
+   bottom: 8px;
+   display: block;
+   text-align: center;
+   color: white;
+   font-family: arial, helvetical, sans-serif;
+   font-size: 12px;
+   margin-left: 50px;
+   margin-right: 50px;
+}
+
+
+.dialog {
+   padding: 10px 40px 20px 40px;
+   border: 3px solid #333;
+   width: 440px;
+   margin-top: 120px;
+   margin-left: auto;
+   margin-right: auto;
+   background-color: #FFAA33;
+   font-family: verdana, helvetica, sans-serif;
+   font-size: 18px;
+   text-align: center;
+   color: #333;
+   -moz-box-shadow: 5px 5px 5px #333;
+   -webkit-box-shadow: 5px 5px 5px #333;
+   box-shadow: 5px 5px 5px #333;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+}
+
+.dialog-content {
+   background-color: #ffee66;
+   padding: 10px;
+   border: 1px solid #aa7700;
+   -moz-box-shadow: inset 0px 0px 5px #666;
+   -webkit-box-shadow: inset 0px 0px 5px #666;
+   box-shadow: inset 0px 0px 5px #666;
+}
+
+.dialog h1 {
+   font-size: 22px;
+   color: #333;
+   text-shadow: 0px 1px 0px #999;
+}
+
+.button {
+   background-color: #39c;
+   border: 2px solid #333;
+   text-align: center;
+   padding: 5px 15px 5px 15px;
+   font-size: 18px;
+   font-weight: bold;
+   color: white;
+   border-radius: 10px;
+   text-decoration: none;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+}
+
+a.button:hover { color: #fc3; }
+a.button:active { color: red; }
+
+#level-name {
+   background-color: white;
+   border: 2px solid #333;
+   color: #333;
+   font-size: 16px;
+   text-align: center;
+   font-weight: bold;
+   position: relative;
+   top: -25px;
+   left: 15px;
+   width: 75px;
+   padding: 5px;
+   -moz-border-radius: 15px;
+   border-radius: 15px;
+}
+
+#dialog-solution {
+   visibility: hidden;
+   position: absolute;
+   top: 25px;
+   left: 25px;
+   width: 750px;
+   margin-top: 0px;
+}
+
+#dialog-hint {
+   visibility: hidden;
+   padding: 20px 30px 20px 30px;
+   border: 2px solid #333;
+   width: 650px;
+   margin-top: 120px;
+   position: absolute;
+   background-color: #fe7;
+   font-family: arial, helvetica, sans-serif;
+   font-size: 16px;
+   text-align: left;
+   color: #333;
+   -moz-box-shadow: 5px 5px 5px #333;
+   -webkit-box-shadow: 5px 5px 5px #333;
+   box-shadow: 5px 5px 5px #333;
+   -moz-border-radius: 10px;
+   border-radius: 10px;
+}
+
+.hint-left-col {
+   float: left;
+}
+
+.hint-right-col {
+   float: right;
+}
+
+#hint-cname   { font-weight: bold; }
+#hint-name    { font-style: italic; padding-left: 5px; }
+#hint-image   { margin: 3px 0px 0px 0px; }
+.photo-credit { font-size: 11px; }
+#hint-author  { font-weight: bold; }
+#hint-cright  { font-size: 11px; }
+.dialog img {
+   margin: 25px 10px 15px 10px;
+}
+
+.dialog .clade {
+   font-weight: bold;
+}
+
+.dialog button {
+   padding: 10px;
+   font-family: verdana, helvetica, sans-serif;
+   font-size: 20px;
+   text-align: center;
+   margin-top: 10px;
+}
+
+#science-tree {
+   background-color: white;
+   border: 1px #333 solid;
+   margin: 20px 10px 0px 20px;
+   padding: 20px;
+}
+
+#your-tree {
+   background-color: white;
+   border: 1px #333 solid;
+   margin: 20px 20px 0px 10px;
+   padding: 20px;
+}

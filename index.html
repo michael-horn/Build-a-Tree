@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html> <!-- manifest="cache.manifest" -->
+<head>
+   <title>Build-a-Tree</title>
+   <meta name="apple-mobile-web-app-capable" content="yes" />
+   <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+      
+   <link rel="stylesheet" href="default.css" />
+   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+   <script type="text/javascript">
+      function startGame() {
+         window.location = "instructions.html?level=1";
+         return false;
+      }
+   </script>
+</head>
+<body>
+<div style="text-align: center; margin-top: 160px;">
+   <a href="index.html" onclick="return startGame();"><img src="images/title.png" style="margin-bottom: 50px; border: 0px;"/></a><br>
+   <a href="index.html" onclick="return startGame();" class="big-link">Play!</a><br>
+   <div style="margin-top: 90px;">
+   <img src="images/spider.png">
+   <img src="images/giraffe.png">
+   <img src="images/shark.png">
+   <img src="images/human.png">
+   <img src="images/plants.png">
+   <img src="images/bat.png">
+   </div>
+</div>
+
+<footer>
+   This work is supported by the National Science Foundation (grant #1010889).
+   Any opinions, findings and conclusions or recommendations expressed in this material
+   are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
+</footer>
+</body>
+</html>

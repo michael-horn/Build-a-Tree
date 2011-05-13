@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html> <!-- manifest="cache.manifest" -->
+<head>
+   <title>Build-a-Tree</title>
+   <meta name="apple-mobile-web-app-capable" content="yes" />
+   <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+      
+   <link rel="stylesheet" href="default.css" />
+   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+   
+   <script src="levels.js"></script>
+   <script src="button.js"></script>
+   <script src="atext.js"></script>
+   <script src="tween.js"></script>
+   <script src="snap.js"></script>
+   <script src="node.js"></script>
+   <script src="tip.js"></script>
+   <script src="clade.js"></script>
+   <script src="tree.js"></script>
+   <script src="touch.js"></script>
+   <script src="hint.js"></script>
+   <script src="main.js"></script>
+</head>
+<body onload="startup();">
+   <img src="images/title-small.png" style="position: absolute" />
+   <img src="images/restart.png" style="position: absolute; right: 14px; top: 38px;" onclick="restart();"/>
+   
+   <!-- HINT -->
+   <div id="dialog-hint">
+      <div class="hint-left-col">
+         <span id="hint-cname">Green Anole</span>
+         <span id="hint-name">Anolis carolineas</span> &#151;
+         <span class="hint-location">Miami, Florida</span> <br>
+         <img src="images/hints/lizard.jpg" id="hint-image" style="border: 1px solid #333;" /> <br>
+         <span class="photo-credit">Photo by: <span id="hint-author">Steven McGee (flickr: batty5)</span></span>.
+         <span id="hint-cright">Some rights reserved</span>
+      </div>
+<!--
+      <div style="float: left; width: 200px; padding: 20px 30px 20px 45px;">
+         <span id="hint-text">
+         Here are some traits associated with Anolis carolineas.
+         Here are some traits associated with Anolis carolineas.
+         Here are some traits associated with Anolis carolineas.
+         Here are some traits associated with Anolis carolineas.
+         Here's a hint. What do you think?
+         </span>
+      </div>
+-->      
+   </div>   
+   
+   <!-- LEVEL CLEARED -->
+   <div class="dialog" id="dialog-solution">
+      <div id="level-name">Level 1</div>
+      <div class="dialog-content">
+         Here's what scientists think.
+         How does your tree compare? <br>
+         Do the two trees show the same <b>relationships</b>? <br>
+         <table>
+            <tr>
+               <td><canvas id="science-tree" width="270" height="250"></canvas></td>
+               <td><canvas id="your-tree" width="270" height="250"></canvas></td>
+            </tr>
+            <tr style="font-size: 14px;">
+               <td>Scientist Tree</td>
+               <td>Your Tree</td>
+            </tr>
+         </table>
+      </div>
+      <br>
+      <a class="button" id="back-button" href="#" onclick="hideSolution(); return false;">Back</a>
+      <a class="button" id="next-button" href="#" onclick="return nextLevel();">Next Level</a>
+   </div>      
+   
+   <canvas id="world"></canvas>
+   <audio src="sounds/swish.ogg" id="sound-chime"></audio>
+   <audio src="sounds/thip.ogg" id="sound-thip"></audio>
+   
+</body>
+</html>

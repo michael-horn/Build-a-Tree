@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html> <!-- manifest="cache.manifest" -->
+<head>
+   <title>Build-a-Tree</title>
+   <meta name="apple-mobile-web-app-capable" content="yes" />
+   <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+      
+   <link rel="stylesheet" href="default.css" />
+   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+   
+   <script src="levels.js"></script>
+</head>
+<body onload="showInstructions();">
+   <img src="images/title-small.png" style="position: absolute" /> <br>
+
+   <div class="dialog" id="dialog-instructions">
+      <div id="level-name">Level 1</div>
+      <div class="dialog-content">
+         <h1>All life on earth is related.</h1>
+         Can you build a tree that shows how
+         <span class="clade" id="instr-clade1">c1</span>,
+         <span class="clade" id="instr-clade2">c2</span>, and
+         <span class="clade" id="instr-clade3">c3</span>
+         are related? <br>
+         <img id="img-clade1" src="images/giraffe.png" />
+         <img id="img-clade2" src="images/giraffe.png" />
+         <img id="img-clade3" src="images/giraffe.png" />
+         <br>
+      </div>
+      <br>
+      <a class="button" id="back-button" onclick="return prevLevel();" href="" style="display: none;">Back</a>
+      <a class="button" id="start-button" onclick="return startLevel();" href="">Start!</a>
+   </div>
+</body>
+</html>
