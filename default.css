@@ -9,6 +9,12 @@ body {
    padding: 0px;
 }
 
+h2 {
+   color: white;
+   font-size: 18px;
+   font-weight: normal;
+   letter-spacing: 1px;
+}
 
 a {
    font-size: 20px;
@@ -37,14 +43,14 @@ footer {
    margin-right: 50px;
 }
 
-
 .dialog {
-   padding: 10px 40px 20px 40px;
-   border: 3px solid #333;
+   padding: 0px 20px 20px 20px;
+   border: 2px solid #333;
    width: 440px;
    margin-top: 120px;
    margin-left: auto;
    margin-right: auto;
+   /* background-color: #fe6; */
    background-color: #FFAA33;
    font-family: verdana, helvetica, sans-serif;
    font-size: 18px;
@@ -53,14 +59,15 @@ footer {
    -moz-box-shadow: 5px 5px 5px #333;
    -webkit-box-shadow: 5px 5px 5px #333;
    box-shadow: 5px 5px 5px #333;
-   -moz-border-radius: 20px;
-   border-radius: 20px;
+   -moz-border-radius: 10px;
+   border-radius: 10px;
 }
 
 .dialog-content {
    background-color: #ffee66;
-   padding: 10px;
-   border: 1px solid #aa7700;
+   /* background-color: white; */
+   padding: 15px;
+   border: 1px solid #333;
    -moz-box-shadow: inset 0px 0px 5px #666;
    -webkit-box-shadow: inset 0px 0px 5px #666;
    box-shadow: inset 0px 0px 5px #666;
@@ -97,7 +104,7 @@ a.button:active { color: red; }
    text-align: center;
    font-weight: bold;
    position: relative;
-   top: -25px;
+   top: -18px;
    left: 15px;
    width: 75px;
    padding: 5px;
@@ -108,7 +115,7 @@ a.button:active { color: red; }
 #dialog-solution {
    visibility: hidden;
    position: absolute;
-   top: 25px;
+   top: 80px;
    left: 25px;
    width: 750px;
    margin-top: 0px;
