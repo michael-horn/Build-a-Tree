@@ -284,7 +284,7 @@ function Hint() {
          var d = document.getElementById("dialog-hint");
          if (d) {
             var w = canvas.width;
-            d.style.left = w/2 - 355 + "px";
+            d.style.left = w/2 - 330 + "px";
             //d.style.marginLeft = Math.round(w/2);
             d.style.visibility = "visible";
          }

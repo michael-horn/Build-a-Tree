@@ -127,7 +127,7 @@ a.button:active { color: red; }
    visibility: hidden;
    padding: 20px 30px 20px 30px;
    border: 2px solid #333;
-   width: 650px;
+   width: 600px;
    margin-top: 120px;
    position: absolute;
    background-color: #fe7;
