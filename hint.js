@@ -123,8 +123,8 @@ var HINTS = {
    // http://www.flickr.com/photos/e_monk/4815901200/
    lizard :
    {
-      name : "Green Anole",
-      cname : " ",
+      name : "Anolis carolinus",
+      cname : "Green Anole",
       location : "San Francisco, California",
       image : "images/hints/lizard.jpg",
       author : "Steven McGee (flickr: batty5)",
@@ -135,8 +135,8 @@ var HINTS = {
    // http://www.flickr.com/photos/52421717@N00/4719233894/
    plant :
    {
-      name : "Butterfly Milkweed",
-      cname : " ",
+      name : "Lepodoptera",
+      cname : "Butterfly Milkweed",
       location : "San Francisco, California",
       image : "images/hints/plant.jpg",
       author : "Steven McGee (flickr: batty5)",
@@ -147,8 +147,8 @@ var HINTS = {
    // http://www.flickr.com/photos/furryscalyman/356870862
    scorpion :
    {
-      name : "Deathstalker Scorpion",
-      cname : " ",
+      name : "scorpioni",
+      cname : "Deathstalker Scorpion",
       location : "San Francisco, California",
       image : "images/hints/scorpion.jpg",
       author : "Steven McGee (flickr: batty5)",
@@ -158,8 +158,8 @@ var HINTS = {
    
    shark :
    {
-      name : "Hammerhead Shark",
-      cname : " ",
+      name : "Sharkus lineaus",
+      cname : "Hammerhead Shark",
       location : "San Francisco, California",
       image : "images/hints/shark.jpg",
       author : "Steven McGee (flickr: batty5)",
@@ -170,8 +170,8 @@ var HINTS = {
    // http://www.flickr.com/photos/opoterser/5108328833/
    spider :
    {
-      name : "Jumping Spider",
-      cname : "Phidippus mystaceus",
+      name : "Phidippus mystaceus",
+      cname : "Jumping Spider",
       location : "San Francisco, California",
       image : "images/hints/spider.jpg",
       author : "Steven McGee (flickr: batty5)",
@@ -181,7 +181,7 @@ var HINTS = {
    
    trex :
    {
-      name : "Tyranosaurus rex",
+      name : "",
       cname : "Tyranosaurus Rex",
       location : "Field Museum of Natural History, Chicago, Illinois",
       image : "images/hints/trex.jpg",
@@ -264,14 +264,23 @@ function Hint() {
    this.showHint = function(taxon) {
       if (taxon && taxon.getTag()) {
          var h = HINTS[taxon.getTag()];
+
+         var name = document.getElementById("hint-name");
+         var cname = document.getElementById("hint-cname");
+         var location = document.getElementById("hint-location");
+         var author = document.getElementById("hint-author");
          var img = document.getElementById("hint-image");
-         if (img) {
-            img.src = h.image;
-         }
          var text = document.getElementById("hint-text");
-         if (text) {
-            text.innerHTML = "<b>Hint:</b> " + h.text;
-         }
+         var cright = document.getElementById("hint-cright");
+         
+         if (name) name.innerHTML = h.name;
+         if (cname) cname.innerHTML = h.cname;
+         if (location) location.innerHTML = h.location;
+         if (author) location.innerHTML = h.author;
+         if (text) text.innerHTML = h.text;
+         if (cright) cright.innerHTML = h.cright;
+         if (img) img.src = h.image;
+
          var d = document.getElementById("dialog-hint");
          if (d) {
             var w = canvas.width;
