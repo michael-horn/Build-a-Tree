@@ -85,6 +85,15 @@ function isIPhone() {
 }
 
 function keyPress(evt) {
+   
+//    var evt = document.createEvent("MouseEvents");
+//    evt.initEvent("mousedown", true, true ); // event type,bubbling,cancelable
+//    evt.initEvent("mousemove", true, true ); // event type,bubbling,cancelable
+//    evt.initEvent("mouseup", true, true );
+//    object.initMouseEvent (eventName, bubbles, cancelable, view, detail, screenX, screenY, clientX, clientY, ctrlKey, altKey, shiftKey, metaKey, button, relatedTarget);
+//    ("mousedown", true, true, window, 0, 100, 100, 150, 150, false, false, false, false, 0, null);
+//    return !element.dispatchEvent(evt);
+
    switch (evt.which) {
       case 61:  // +/= key
       break;
