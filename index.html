@@ -7,6 +7,8 @@
       
    <link rel="stylesheet" href="default.css" />
    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+   <script src="touch.js"></script>
+   
    <script type="text/javascript">
       function startGame() {
          window.location = "instructions.html?level=1";
@@ -14,7 +16,7 @@
       }
    </script>
 </head>
-<body>
+<body onload="defineEventHandlers(null);">
 <div style="text-align: center; margin-top: 160px;">
    <a href="index.html" onclick="return startGame();"><img src="images/title.png" style="margin-bottom: 50px; border: 0px;"/></a><br>
    <a href="index.html" onclick="return startGame();" class="big-link">Play!</a><br>
