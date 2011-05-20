@@ -276,7 +276,7 @@ function Hint() {
          if (name) name.innerHTML = h.name;
          if (cname) cname.innerHTML = h.cname;
          if (location) location.innerHTML = h.location;
-         if (author) location.innerHTML = h.author;
+         if (author) author.innerHTML = h.author;
          if (text) text.innerHTML = h.text;
          if (cright) cright.innerHTML = h.cright;
          if (img) img.src = h.image;
