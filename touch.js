@@ -67,7 +67,7 @@ function defineEventHandlers(canvas) {
 		evt.preventDefault();
 	}
    
-   if (WebSocket) {
+   if ("WebSocket" in window) {
       var socket = new WebSocket("ws://localhost:405");
       socket.onopen    = function(evt) { console.log("connected to surface."); }
       socket.onmessage = function(evt) { processTouches(evt.data); }
