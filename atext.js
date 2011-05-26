@@ -79,6 +79,10 @@ function AnimatedText() {
       return this.text;
    }
    
+   this.isAnimating = function() {
+      return this.tween.isTweening();
+   }
+   
    this.startFadeIn = function() {
       this.tween.clearControlPoints();
       this.tween.addControlPoint(0, 0);
