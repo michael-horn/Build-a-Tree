@@ -36,7 +36,7 @@ function Clade(id) {
    }
    
    this.hasTrait = function() {
-      return (this.trait && this.trait.length);
+      return (this.trait && this.trait.length > 0);
    }
    
    this.isTip = function() {
@@ -284,7 +284,7 @@ function Clade(id) {
       g.stroke();
       
       // Trait markers
-      if (this.isCorrect() && this.hasTrait()) {
+      if (this.isCorrect() && this.hasTrait() && this.snap && !this.snap.isAnimating()) {
          var ty = this.getCenterY() + 22;
          if (this.hasParent()) {
             ty = (this.getCenterY() + this.parent.getCenterY()) / 2;
