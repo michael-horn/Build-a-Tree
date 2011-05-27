@@ -165,6 +165,33 @@ function Clade(id) {
          }
       }
    }
+   
+//--------------------------------------------------------------
+// find the shallowest parent intersecting the given x-coord
+//--------------------------------------------------------------
+   this.findCladeByX = function(x) {
+      var tips = [];
+      this.getTips(tips);
+      if (tips.length == 0) return null;
+      
+      var minX = tips[0].getCenterX();
+      var maxX = tips[0].getCenterX();
+      
+      for (var i=1; i<tips.length; i++) {
+         minX = Math.min(tips[i].getCenterX(), minX);
+         maxX = Math.max(tips[i].getCenterX(), maxX);
+      }
+      
+      if (x < minX || x > maxX) return null;
+
+      for (var i=0; i<this.children.length; i++) {
+         var c = this.children[i].findCladeByX(x);
+         if (c != null) {
+            return c;
+         }
+      }
+      return this;
+   }
 
 
    this.startSnap = function() {
