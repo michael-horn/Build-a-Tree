@@ -162,6 +162,8 @@ function Node(id) {
    this.validate = function(solution) {
       this.setCorrect(true);
    }
+   
+   this.findCladeByX = function(x) { return null; }
 
    
 //----------------------------------------------------------------------
@@ -189,19 +191,14 @@ function Node(id) {
       this.delta = { x : tp.x - this.cx, y : tp.y - this.cy };
    }
    
-   this.touchDrag = function(tp) {
-      this.docked = false;
-      var dx = tp.x - this.cx - this.delta.x;
-      var dy = tp.y - this.cy - this.delta.y;
-      this.move(dx, dy);
-      if (this.isTip()) {
-         tree.sort();
-      }
-   }
-   
    this.touchUp = function() {
       this.dragging = false;
       this.delta = { x : 0, y : 0 };
-      tree.buildTree(this);
+   }
+   
+   this.touchDrag = function(tp) {
+      var dx = tp.x - this.cx - this.delta.x;
+      var dy = tp.y - this.cy - this.delta.y;
+      this.move(dx, dy);
    }
 }
