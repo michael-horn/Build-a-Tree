@@ -92,6 +92,26 @@ function Tip(id) {
    }
 
    
+   this.touchDown = function(tp) {
+      this.dragging = true;
+      this.delta = { x : tp.x - this.cx, y : tp.y - this.cy };
+   }
+   
+   this.touchUp = function() {
+      this.dragging = false;
+      this.delta = { x : 0, y : 0 };
+      tree.buildTree(this);
+   }
+   
+   
+   this.touchDrag = function(tp) {
+      this.docked = false;
+      var dx = tp.x - this.cx - this.delta.x;
+      var dy = tp.y - this.cy - this.delta.y;
+      this.move(dx, dy);
+   }
+
+   
    this.animate = function() {
       this.velocity.vx += this.force.fx;
       this.velocity.vy += this.force.fy;
