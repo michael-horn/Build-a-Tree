@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# revision 227
+# revision 230
 
 CACHE:
 apple-touch-icon.png
@@ -7,35 +7,62 @@ default.css
 game.html
 index.html
 instructions.html
+atext.js
 button.js
+clade.js
+hint.js
 levels.js
 main.js
-snap.js
-taxon.js
+node.js
+tip.js
 touch.js
 tree.js
 tween.js
 images/bat.png
 images/bird.png
-images/check.png
 images/butterfly.png
+images/cc-blank.png
+images/cc-by-nc-sa.png
+images/cc-by-nc.png
+images/cc-by-sa.png
+images/cc-by.png
 images/check.png
 images/crab.png
 images/frog.png
 images/fungus.png
 images/giraffe.png
+images/green-dock.png
 images/hint.png
 images/human.png
 images/lizard.png
-images/plants.png
+images/orange-dock.png
+images/plant.png
+images/purple-dock.png
 images/restart.png
 images/scorpion.png
 images/shark.png
+images/snail.png
 images/spider.png
 images/texture.png
 images/title-small.png
 images/title.png
 images/trex.png
+images/hints/bat.jpg
+images/hints/bird.jpg
+images/hints/butterfly.jpg
+images/hints/crab.jpg
+images/hints/frog.jpg
+images/hints/fungus.jpg
+images/hints/giraffe.jpg
+images/hints/human.jpg
+images/hints/lizard.jpg
+images/hints/owl.jpg
+images/hints/plant.jpg
+images/hints/scorpion.jpg
+images/hints/shark.jpg
+images/hints/snail.jpg
+images/hints/spider.jpg
+images/hints/trex.jpg
 sounds/thip.ogg
 sounds/swish.ogg
 
