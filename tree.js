@@ -23,15 +23,45 @@ const SPRING_LENGTH = 65;
 //==============================================================
 function Tree() {
    
-   this.taxa = [];   // list of taxa
+   this.taxa = [];       // list of taxa
+   this.tips = [];       // list of tips
    this.button = null;   // level done button
 
+
+//--------------------------------------------------------------
+// clone -- deep copy of the tree structure
+//--------------------------------------------------------------
+   this.clone = function() {
+      var copy = new Tree();
+      for (var i=0; i<this.taxa.length; i++) {
+         copy.add(this.taxa[i].clone());
+      }
+      
+      for (var i=0; i<this.taxa.length; i++) {
+         
+         // source taxon
+         var source = this.taxa[i];
+         
+         // Copy child links to new tree
+         if (source.hasChildren()) {
+            var dest = copy.findTaxonByID(source.getID());
+            
+            for (var j=0; j<source.getChildCount(); j++) {
+               var child = source.getChild(j);
+               dest.addChild(copy.findTaxonByID(child.getID()));
+            }
+         }
+      }
+      return copy;
+   }
+   
    
 //--------------------------------------------------------------
 // clear -- remove all taxa from the tree
 //--------------------------------------------------------------
    this.clear = function() {
       this.taxa = [];
+      this.tips = [];
    }
    
    
@@ -40,6 +70,7 @@ function Tree() {
 //--------------------------------------------------------------
    this.add = function(taxon) {
       this.taxa.push(taxon);
+      if (taxon.isTip()) this.tips.push(taxon);
    }
    
    
@@ -68,9 +99,9 @@ function Tree() {
    
    
 //--------------------------------------------------------------
-// findTaxon -- searches for taxon by id number
+// findTaxonByID -- searches for taxon by id number
 //--------------------------------------------------------------
-   this.findTaxon = function(id) {
+   this.findTaxonByID = function(id) {
       for (var i=0; i<this.taxa.length; i++) {
          if (this.taxa[i].getID() == id) return this.taxa[i];
       }
@@ -119,22 +150,28 @@ function Tree() {
 // draw
 //--------------------------------------------------------------
    this.draw = function(g) {
+      
+      // layout the internal nodes
+      for (var i=0; i<this.taxa.length; i++) {
+         var clade = this.taxa[i];
+         if (clade.isRoot() && clade.hasChildren()) {
+            clade.computePosition();
+         }
+      }
+      
+      // draw all nodes
       for (var i=0; i<this.taxa.length; i++) {
          this.taxa[i].draw(g);
       }
-
+      
       // Draw next level button      
-      var root = this.getSingleRoot();
-      if (root) {
-         if (!this.button) this.createButton();
-
+      if (this.button) {
+         var root = this.getSingleRoot();
          this.button.setCenter(
                root.getCenterX(),
                root.getCenterY() + 60);
          
          this.button.draw(g);
-      } else {
-         if (this.button) this.removeButton();
       }
    }
 
@@ -158,6 +195,9 @@ function Tree() {
    this.findCommonAncestor = function(a, b) {
       if (!a || !b) return null;
       if (a.getRoot() != b.getRoot()) return null;
+      if (b.isDescendantOf(a)) return a;
+      if (a.isDescendantOf(b)) return b;
+      
       var c = a;
       while (c != null) {
          if (b.isDescendantOf(c)) {
@@ -169,6 +209,20 @@ function Tree() {
       return null;
    }
 
+   
+//--------------------------------------------------------------
+// finds the common ancestor of a list of taxa
+//--------------------------------------------------------------
+   this.findCommonAncestorList = function(list) {
+      if (list.length < 2) return null;
+      var ancestor = list[0];
+      for (var i=1; i<list.length; i++) {
+         ancestor = this.findCommonAncestor(ancestor, list[i]);
+         if (ancestor == null) return null;
+      }
+      return ancestor;
+   }
+   
    
 //--------------------------------------------------------------
 // animate
@@ -186,7 +240,7 @@ function Tree() {
          if (t.isTip() && hint.intersects(t)) {
             hint.setHighlight(true);
             
-            if (!t.isDragging()) {
+            if (!t.isAncestorDragging()) {
                hint.showHint(t);
                var dx = hint.getCenterX() - t.getCenterX();
                var dy = hint.getCenterY() - t.getCenterY();
@@ -197,10 +251,12 @@ function Tree() {
       }
       
       // start by computing forces for the tips
+      var count = 0;
       for (var i=0; i<this.taxa.length; i++) {
          var clade = this.taxa[i];
          
          if (clade.isRoot() && clade.hasChildren()) {
+            count++;
             var a, b, force;
             var tips = [];
             clade.getTips(tips);
@@ -242,23 +298,39 @@ function Tree() {
       for (var i=0; i<this.taxa.length; i++) {
          this.taxa[i].animate();
       }
+      
+      // do we need a next level button?
+      var root = this.getSingleRoot();
+      if (root) {
+         if (!this.button) this.createButton();
+      } else {
+         if (this.button) this.removeButton();
+      }
    }
    
    
 //--------------------------------------------------------------
-// Find all overlapping taxa
+// Find all overlapping tips
 //--------------------------------------------------------------
-   this.findOverlaps = function(taxon) {
+   this.findAllOverlaps = function() {
       var list = [];
-      var a = taxon;
-      for (var i=0; i<this.taxa.length; i++) {
-         var b = this.taxa[i];
-         if (b.isTip() && b != a) {
-            var dx = Math.abs(a.cx - b.cx);
-            var dy = Math.abs(a.cy - b.cy);
-            var r = a.w;
-            if ((dx * dx + dy * dy) < (r * r)) {
-               list.push(b);
+      
+      //-------------------------------------------------
+      // Do tips first
+      //-------------------------------------------------
+      for (var i=0; i<this.tips.length; i++) {
+         var a = this.tips[i];
+         if (a.isAncestorDragging()) {       
+            for (var j=0; j<this.tips.length; j++) {
+               var b = this.tips[j];
+               if (a.overlaps(b)) {
+                  
+                  // this prevents reverse-order duplicates
+                  if (!b.isAncestorDragging() || j > i) {
+                     list.push( { a : a, b : b } );
+                     break; // only allow one overlap per tip
+                  }
+               }
             }
          }
       }
@@ -271,22 +343,24 @@ function Tree() {
 //  subtrees.
 //--------------------------------------------------------------
    this.validateTree = function(solution) {
-      var count = 0;
-      var t, root;
       
-      for (var i=0; i<this.taxa.length; i++) {
-         t = this.taxa[i];
-         if (t.isRoot()) {
-            root = t;
-            count++;
-            if (t.hasChildren()) {
+      var depth = 0;
+      var count = 0;
+      
+      do {
+         count = 0;
+         for (var i=0; i<this.taxa.length; i++) {
+            var t = this.taxa[i];
+            if (t.getDepth() == depth) {
+               count++;
                t.validate(solution);
-               if (t.isCorrect() && !t.snap) {
-                  t.startSnap();
+               if (t.isCorrect() && t.hasChildren()) {
+                  if (!t.snap) t.startSnap();
                }
             }
          }
-      }
+         depth++;
+      } while (count > 0);
    }
    
    
@@ -305,6 +379,7 @@ function Tree() {
 // Builds a tree by combining overlapping taxa.
 // Returns newly added clade (or null if none is created)
 //--------------------------------------------------------------
+/*
    this.buildTree = function(taxon) {
       var list = this.findOverlaps(taxon);
       if (list.length == 0) return null;
@@ -325,7 +400,7 @@ function Tree() {
       // other overlapping subtrees
       if (roots.length > 1) {
          playSound("thip");
-         var clade = new Clade(0);
+         var clade = new Clade(CLADE_ID++);
          for (var id in roots) {
             clade.addChild(roots[id]);
          }
@@ -339,6 +414,75 @@ function Tree() {
       }
       return null;
    }
+*/
+
+
+   this.constructTree = function(overlap) {
+      
+      // TODO Make this work with more than one dragging node!
+      // TODO preview tree should only affect partial tree being drawn
+      
+      var t0 = this.findTaxonByID(overlap.a.getID());
+      var t1 = this.findTaxonByID(overlap.b.getID());
+      
+      // this prevents double joining trees
+      if (t0.getRoot() == t1.getRoot()) return null;
+      var clade = null;
+
+      //------------------------------------------------------
+      // case 1: simple join of at least one unconnected tip
+      //------------------------------------------------------
+      if (!t0.hasParent() || !t1.hasParent()) {
+         var a, b;
+         if (t0.hasParent()) {
+            b = t0;
+            a = t1;
+         } else {
+            a = t0;
+            b = t1;
+         }
+         var root = b.getRoot();
+         var parent = root.findParentByX(a.getCenterX());
+         var sibling = b;
+         while (sibling.getParent() != parent) {
+            sibling = sibling.getParent();
+         }
+         clade = new Clade(CLADE_ID++);
+         clade.addChild(a);
+         clade.addChild(sibling);
+         if (parent != null) {
+            parent.replaceChild(sibling, clade);
+         }
+         root.invalidate();  // recursively invalidate tree
+      }
+      
+      //------------------------------------------------------
+      // case 2: join two trees
+      //------------------------------------------------------
+      else {
+         var a = t0.getRoot();
+         var b = t1.getRoot();
+         clade = new Clade(CLADE_ID++);
+         clade.addChild(a);
+         clade.addChild(b);
+         clade.invalidate();  // recursively invalidate tree
+      }
+      
+      this.taxa.unshift(clade);
+      this.sort();
+      return clade;
+         /*
+         else if (overlaps.length > 1) {
+            var ancestor = this.findCommonAncestorList(overlaps);
+            if (ancestor != null) {
+               ancestor.addChild(a);
+            }
+            
+            // TODO joining null ancestors
+         }
+         */
+   }
+
 
 //--------------------------------------------------------------
 // drawSmallTree
