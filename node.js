@@ -19,6 +19,7 @@
 function Node(id) {
    this.id        = id;        // unique ID for this level
    this.name      = "";        // name of the node
+   this.tag       = "";        // short name for node
    this.depth     = 0;         // depth in the tree
    this.cx        = 0;         // center x
    this.cy        = 0;         // center y
@@ -28,6 +29,19 @@ function Node(id) {
    this.dragging  = false;     // is being dragged on screen
    this.delta     = { x : 0, y : 0 };
 
+   this.copyNode = function(node) {
+      node.id        = this.id;
+      node.name      = this.name;
+      node.tag       = this.tag;
+      node.depth     = this.depth;
+      node.cx        = this.cx;
+      node.cy        = this.cy;
+      node.w         = this.w;
+      node.correct   = this.correct;
+      node.parent    = null;
+      node.dragging  = this.dragging;
+      node.delta     = { x : this.delta.x, y : this.delta.y };
+   }
 
    this.setID = function(id) {
       this.id = id;
@@ -43,6 +57,18 @@ function Node(id) {
    
    this.getName = function() {
       return this.name;
+   }
+   
+   this.setTag = function(tag) {
+      this.tag = tag;
+   }
+   
+   this.getTag = function() {
+      return this.tag;
+   }
+   
+   this.hasTag = function() {
+      return (this.tag != null && this.tag.length > 0);
    }
    
    this.getDepth = function() {
@@ -129,9 +155,13 @@ function Node(id) {
    }
    
    this.isDragging = function() {
+      return this.dragging;
+   }
+   
+   this.isAncestorDragging = function() {
       var p = this;
       while (p) {
-         if (p.dragging) return true;
+         if (p.isDragging()) return true;
          p = p.getParent();
       }
       return false;
@@ -163,7 +193,11 @@ function Node(id) {
       this.setCorrect(true);
    }
    
-   this.findCladeByX = function(x) { return null; }
+   this.findParentByX = function(x) { return null; }
+   
+   this.clone = function() { return null; }
+
+   this.invalidate = function() { return; }
 
    
 //----------------------------------------------------------------------
@@ -192,13 +226,19 @@ function Node(id) {
    }
    
    this.touchUp = function() {
-      this.dragging = false;
       this.delta = { x : 0, y : 0 };
+      buildTree();
+      this.dragging = false;
    }
    
    this.touchDrag = function(tp) {
+      this.docked = false;
       var dx = tp.x - this.cx - this.delta.x;
       var dy = tp.y - this.cy - this.delta.y;
-      this.move(dx, dy);
+      if (Math.abs(dx) >= 1 || Math.abs(dy) >= 1) {
+         this.move(dx, dy);
+         tree.sort();
+         buildPreviewTree();
+      }
    }
 }
