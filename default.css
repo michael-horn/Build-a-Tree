@@ -144,10 +144,10 @@ a.button:active { color: red; }
 
 #hint-cname   { font-weight: bold; }
 #hint-name    { font-style: italic; padding-left: 5px; }
-.photo-credit { font-size: 11px; }
-#hint-author  { font-weight: bold; }
-#hint-cright  { font-size: 11px; }
-.hint-list    { font-size: 14px; }
+#hint-author  { font-size: 11px; font-weight: bold; }
+.copyright    { font-size: 11px; }
+.hint-list    { font-size: 18px; }
+#hint-text    { font-weight: bold; }
 
 .dialog .clade {
    font-weight: bold;
