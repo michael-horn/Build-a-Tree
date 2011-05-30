@@ -23,22 +23,32 @@ function Tip(id) {
    this.scnstrctr = Node; 
    this.scnstrctr(id);
    
-   this.image     = document.createElement("img");
-   this.color     = null;
-   this.force     = { fx : 0, fy : 0, stress : 0 };
-   this.velocity  = { vx : 0, vy : 0 };
-   this.docked    = true;
-   this.tag       = "";
-   this.hint      = "";
+   this.image       = document.createElement("img");
+   this.color       = null;
+   this.force       = { fx : 0, fy : 0, stress : 0 };
+   this.velocity    = { vx : 0, vy : 0 };
+   this.docked      = true;
+   this.hint        = "";
+
    
-   
-   this.setTag = function(tag) {
-      this.tag = tag;
-      this.image.src = "images/" + tag + ".png";
+   this.clone = function() {
+      var copy = new Tip(this.getID());
+      this.copyNode(copy);
+      copy.image     = this.image;
+      copy.color     = this.color;
+      copy.force     = { fx : this.force.fx, fy : this.force.fy, stress : this.force.stress };
+      copy.velocity  = { vx : this.velocity.vx, vy : this.velocity.vy };
+      copy.docked    = this.docked;
+      copy.hint      = this.hint;
+      return copy;
    }
    
-   this.getTag = function() {
-      return this.tag;
+   this.isTip = function() {
+      return true;
+   }
+   
+   this.setImageSrc = function(src) {
+      this.image.src = "images/" + src + ".png";
    }
    
    this.getImage = function() {
@@ -69,12 +79,24 @@ function Tip(id) {
       return this.hint;
    }
    
-   this.isTip = function() {
-      return true;
+   this.overlaps = function(taxon) {
+      var a = this;
+      var b = taxon;
+      if (a != b &&
+          a.isTip() && b.isTip() &&
+          !a.isDocked() && !b.isDocked() &&
+          a.getRoot() != b.getRoot()) {
+         var dx = Math.abs(a.cx - b.cx);
+         var dy = Math.abs(a.cy - b.cy);
+         var r = a.w;
+         if (b.hasParent()) r *= 0.7;
+         return ((dx * dx + dy * dy) < (r * r));
+      }
+      return false;
    }
    
    this.draw = function(g) {
-      if (this.isDragging()) {
+      if (this.isAncestorDragging()) {
          g.fillStyle = "white";
          g.textAlign = "center";
          g.textBaseline = "bottom";
@@ -92,32 +114,12 @@ function Tip(id) {
    }
 
    
-   this.touchDown = function(tp) {
-      this.dragging = true;
-      this.delta = { x : tp.x - this.cx, y : tp.y - this.cy };
-   }
-   
-   this.touchUp = function() {
-      this.dragging = false;
-      this.delta = { x : 0, y : 0 };
-      tree.buildTree(this);
-   }
-   
-   
-   this.touchDrag = function(tp) {
-      this.docked = false;
-      var dx = tp.x - this.cx - this.delta.x;
-      var dy = tp.y - this.cy - this.delta.y;
-      this.move(dx, dy);
-   }
-
-   
    this.animate = function() {
       this.velocity.vx += this.force.fx;
       this.velocity.vy += this.force.fy;
       this.velocity.vx *= 0.6;
       this.velocity.vy *= 0.6;
-      if (!this.isDragging()) {
+      if (!this.isAncestorDragging()) {
          this.cx += this.velocity.vx;
          this.cy += this.velocity.vy;
       }
