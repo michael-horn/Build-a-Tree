@@ -13,6 +13,10 @@
  * of the National Science Foundation (NSF).
  */
 
+var CLADE_ID  =  1000;  // unique ID generator
+
+
+
 //===================================================================
 // Internal node (clade)
 //===================================================================
@@ -27,6 +31,15 @@ function Clade(id) {
    this.snap      = null;
 
 
+
+   this.clone = function() {
+      var copy = new Clade(this.getID());
+      this.copyNode(copy);
+      copy.trait = this.trait;
+      return copy;
+   }
+
+
    this.setTrait = function(trait) {
       this.trait = trait;
    }
@@ -39,10 +52,6 @@ function Clade(id) {
       return (this.trait && this.trait.length > 0);
    }
    
-   this.isTip = function() {
-      return false;
-   }
-   
    this.move = function(dx, dy) {
       this.cx += dx;
       this.cy += dy;
@@ -51,10 +60,29 @@ function Clade(id) {
       }
    }
    
+   this.computeDepth = function() {
+      this.depth = 0;
+      for (var i=0; i<this.children.length; i++) {
+         this.depth = Math.max(this.depth, this.children[i].getDepth() + 1);
+      }
+   }
+   
    this.addChild = function(child) {
       if (child) {
          this.children.push(child);
          child.parent = this;
+         this.computeDepth();
+      }
+   }
+   
+   this.replaceChild = function(oldChild, newChild) {
+      for (var i=0; i<this.children.length; i++) {
+         if (this.children[i] == oldChild) {
+            this.children[i] = newChild;
+            newChild.parent = this;
+            this.computeDepth();
+            break;
+         }
       }
    }
    
@@ -81,9 +109,10 @@ function Clade(id) {
          tree.remove(this);
          removeTouchable(this);
       }
+      
+      this.computeDepth();
    }
 
-   
    this.getChildCount = function() {
       return this.children.length;
    }
@@ -122,6 +151,16 @@ function Clade(id) {
       for (var i=0; i<this.children.length; i++) {
          var child = this.children[i];
          if (child.getID() == id) {
+            return child;
+         }
+      }
+      return null;
+   }
+   
+   this.getChildByTag = function(tag) {
+      for (var i=0; i<this.children.length; i++) {
+         var child = this.children[i];
+         if (child.hasTag() && child.getTag() == tag) {
             return child;
          }
       }
@@ -169,7 +208,7 @@ function Clade(id) {
 //--------------------------------------------------------------
 // find the shallowest parent intersecting the given x-coord
 //--------------------------------------------------------------
-   this.findCladeByX = function(x) {
+   this.findParentByX = function(x) {
       var tips = [];
       this.getTips(tips);
       if (tips.length == 0) return null;
@@ -185,7 +224,7 @@ function Clade(id) {
       if (x < minX || x > maxX) return null;
 
       for (var i=0; i<this.children.length; i++) {
-         var c = this.children[i].findCladeByX(x);
+         var c = this.children[i].findParentByX(x);
          if (c != null) {
             return c;
          }
@@ -222,6 +261,14 @@ function Clade(id) {
       }
       this.treeX /= this.children.length;
    }
+
+
+   this.invalidate = function() {   
+      this.setCorrect(false);
+      for (var i=0; i<this.children.length; i++) {
+         this.children[i].invalidate();
+      }
+   }
    
    
 //----------------------------------------------------------------------
@@ -233,16 +280,16 @@ function Clade(id) {
       if (!this.hasChildren()) return;
       
       
-      // try to find corresponding node in parent tree      
+      // try to find corresponding node in parent tree
       var s;
-      if (this.getID() == 0) {
+      if (!this.hasTag()) {
          var c = this.getFirstChild();
-         var sc = solution.findTaxon(c.getID());
+         var sc = solution.findTaxonByID(c.getID());
          if (sc) {
             s = sc.getParent();
          }
       } else {
-         s = solution.findTaxon(this.getID());
+         s = solution.findTaxonByID(this.getID());
       }
       
       // Make sure corresponding node exists in solution tree
@@ -254,22 +301,13 @@ function Clade(id) {
             // Make sure child subtress are valid      
             for (var i=0; i<this.children.length; i++) {
                var child = this.children[i];
-               
-               // recursively validate child trees
-               if (s.getChildByID(child.getID())) {
-                  child.validate(solution);
-               } else {
-                  return;
-               }
-         
-               // if any child is not valid, the parent is also not valid
-               if (!child.isCorrect()) {
-                  return;
-               }
+               if (!child.isCorrect()) return;
+               if (s.getChildByID(child.getID()) == null) return;
             }
-            
+               
             // Correct!
             this.setID(s.getID());
+            this.setTag(s.getTag());
             this.setName(s.getName());
             this.setTrait(s.getTrait());
             this.setCorrect(true);
@@ -280,7 +318,6 @@ function Clade(id) {
    
    this.draw = function(g) {
       if (!this.hasChildren()) return;
-      this.computePosition();
       
       var x0 = this.getFirstChild().getCenterX();
       var x1 = x0;
@@ -311,22 +348,24 @@ function Clade(id) {
       g.stroke();
       
       // Trait markers
-      if (this.isCorrect() && this.hasTrait() && this.snap && !this.snap.isAnimating()) {
-         var ty = this.getCenterY() + 22;
-         if (this.hasParent()) {
-            ty = (this.getCenterY() + this.parent.getCenterY()) / 2;
+      if (this.isCorrect() && this.hasTrait()) {
+         if (!this.snap || !this.snap.isAnimating()) {
+            var ty = this.getCenterY() + 22;
+            if (this.hasParent()) {
+               ty = (this.getCenterY() + this.parent.getCenterY()) / 2;
+            }
+            g.lineWidth = 4;
+            g.beginPath();
+            g.moveTo(this.cx - 10, ty);
+            g.lineTo(this.cx + 10, ty);
+            g.stroke();
+            g.fillStyle = "rgba(255, 255, 255, 0.7)";
+            g.textAlign = "left";
+            g.textBaseline = "middle";
+            g.font = "11pt Arial, sans-serif";
+            g.beginPath();
+            g.fillText(this.trait, this.cx + 15, ty);
          }
-         g.lineWidth = 4;
-         g.beginPath();
-         g.moveTo(this.cx - 10, ty);
-         g.lineTo(this.cx + 10, ty);
-         g.stroke();
-         g.fillStyle = "rgba(255, 255, 255, 0.7)";
-         g.textAlign = "left";
-         g.textBaseline = "middle";
-         g.font = "11pt Arial, sans-serif";
-         g.beginPath();
-         g.fillText(this.trait, this.cx + 15, ty);
       }       
       
       // Draw snap text
@@ -338,20 +377,26 @@ function Clade(id) {
    this.computePosition = function() {
       var x = 0;
       var y = 0;
+      
+      // recursively compute position of children and depth
+      this.depth = 0;
+      for (var i=0; i<this.children.length; i++) {
+         var child = this.children[i];
+         if (child.hasChildren()) {
+            child.computePosition();
+         }
+         this.depth = Math.max(this.depth, child.getDepth() + 1);
+      }
+
+      // compute x-coordinate and y-coordinate
       var tips = [];
       this.getTips(tips);
       for (var i=0; i<tips.length; i++) {
          x += tips[i].getCenterX();
          y = Math.max(tips[i].getCenterY(), y);
       }
-      this.depth = 0;
-      for (var i=0; i<this.children.length; i++) {
-         this.depth = Math.max(this.depth, this.children[i].getDepth() + 1);
-      }
       
       this.cx = x / tips.length;
       this.cy = y + 65 * this.depth;
    }   
-
-   
 }
