@@ -16,6 +16,7 @@ var canvas;
 var context;
 var tree;
 var solution;
+var preview;
 var hint;
 
 var visuals = [];  // array of non-touchable visible objects to draw
@@ -39,6 +40,7 @@ function startup() {
    
    tree = new Tree();
    solution = new Tree();
+   preview = null;
    hint = new Hint();
    
    GREEN_DOCK.src  = "images/green-dock.png";
@@ -62,6 +64,7 @@ function restart() {
    
    tree.clear();
    solution.clear();
+   preview = null;
    
    touchables = [];
    addTouchable(hint);
@@ -73,9 +76,10 @@ function restart() {
       var t = level.taxa[i];
 
       // only add tips to the list of taxa
-      if (t.image) {
+      if (t.depth == 0) {
          clade = new Tip(t.id);
-         clade.setTag(t.image);
+         clade.setTag(t.tag);
+         clade.setImageSrc(t.tag);
          clade.setName(t.name);
          clade.setHintText(t.hint);
          moveToDock(clade, count++);
@@ -84,31 +88,32 @@ function restart() {
       }
       
       // add everything to the solution tree
-      if (t.image) {
+      if (t.depth == 0) {
          clade = new Tip(t.id);
-         clade.setTag(t.image);
+         clade.setImageSrc(t.tag);
       } else {
          clade = new Clade(t.id);
          clade.setTrait(t.trait);
       }
+      clade.setTag(t.tag);
       clade.setName(t.name);
       clade.setDepth(t.depth);
       solution.add(clade);
-      var parent = solution.findTaxon(t.parent_id);
+      var parent = solution.findTaxonByID(t.parent_id);
       if (parent) {
          parent.addChild(clade);
       }
    }
-   if (l == 0) {
-      var howto = new AnimatedText();
-      howto.setText("Drag circles together to form a tree...");
-      howto.setDelay(1000);
-      howto.setDuration(3000);
-      howto.setCenter(w/2, 300);
-      howto.setFontSize(20);
-      howto.setTextColor(255, 255, 255);
-      howto.startFadeIn();
-   }
+
+   var howto = new AnimatedText();
+   howto.setText("Drag circles together to form a tree...");
+   howto.setDelay(1000);
+   howto.setDuration(3000);
+   howto.setCenter(w/2, 300);
+   howto.setFontSize(20);
+   howto.setTextColor(255, 255, 255);
+   howto.startFadeIn();
+
 }
 
 function playSound(name) {
@@ -166,19 +171,51 @@ function resize(evt) {
    }
 }
 
+
 function tick() {
    animate();
    draw();
 }
 
+
 function animate() {
    var h = hint.getHighlight();
    hint.setHighlight(false);
    tree.animate();
+   
    if (h && !hint.getHighlight()) {
       hint.hideHint();
    }
 }
+
+
+function buildPreviewTree() {
+   preview = null;
+   var overlaps = tree.findAllOverlaps();
+   if (overlaps.length > 0) {
+      
+      // TODO only clone on change of overlap
+      preview = tree.clone();
+   
+      for (var i=0; i<overlaps.length; i++) {
+         preview.constructTree(overlaps[i]);
+      }
+   }
+}
+
+
+function buildTree() {
+   preview = null;
+   var overlaps = tree.findAllOverlaps();
+   if (overlaps.length > 0) {
+      for (var i=0; i<overlaps.length; i++) {
+         var clade = tree.constructTree(overlaps[i]);
+         if (clade) addTouchable(clade);
+      }
+      tree.validateTree(solution);
+   }
+}
+
 
 function draw() {
    var g = context;
@@ -206,8 +243,12 @@ function draw() {
    g.drawImage(PURPLE_DOCK, w - 87, h/2 - 152, 87, 304);
    g.drawImage(ORANGE_DOCK, w/2 - 152, h - 87, 304, 87);
    
-   hint.draw(g);   
-   tree.draw(g);
+   hint.draw(g);
+   if (preview != null) {
+      preview.draw(g);
+   } else {
+      tree.draw(g);
+   }
    
    // Draw extra visuals
    for (var i=0; i<visuals.length; i++) {
