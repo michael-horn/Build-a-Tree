@@ -27,12 +27,12 @@ var HINTS = {
    // http://www.flickr.com/photos/wildsingapore/5093331528/sizes/o/in/photostream/
    bat :
    {
-      name : "Grumpus arrapus",
+      name : "Cynopterus brachyotis",
       cname : "Short Nosed Fruit Bat",
       location : "Singapore",
       image : "images/hints/bat.jpg",
-      author : "Steven McGee (flickr: batty5)",
-      cright : "Creative Commons: Some rights reserved",
+      author : "Ria Tan",
+      cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
    },
    
@@ -40,24 +40,24 @@ var HINTS = {
    // http://www.flickr.com/photos/giuss95/5635428035/
    bird :
    {
-      name : "commonus ternus",
+      name : "Sterna hirundo", 
       cname : "Common Tern",
-      location : "San Francisco, California",
+      location : "",
       image : "images/hints/bird.jpg",
-      author : "Steven McGee (flickr: batty5)",
-      cright : "Creative Commons: Some rights reserved",
+      author : "Luciano Giussani (flickr: giuss95)",
+      cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
    },
    
    // http://www.flickr.com/photos/markop/267659159/
    butterfly :
    {
-      name : "Abecd d",
+      name : "Papillio machaon",
       cname : "Common Yellow Swallowtail (butterfly)",
-      location : "San Francisco, California",
+      location : "Kriti, Greece",
       image : "images/hints/butterfly.jpg",
-      author : "Steven McGee (flickr: batty5)",
-      cright : "Creative Commons: Some rights reserved",
+      author : "Stavros Markopoulos (flickr: macropoulos)",
+      cright : "cc-by-nc",
       text : "Bats are a type of mammal."
    },
    
@@ -65,23 +65,23 @@ var HINTS = {
    crab : 
    {
       name : "Callinectes bocourti",
-      cname : "Crab",
-      location : "San Francisco, California",
+      cname : "Blunt-tooth swimming crab",
+      location : "Guatemala",
       image : "images/hints/crab.jpg",
-      author : "Steven McGee (flickr: batty5)",
-      cright : "Creative Commons: Some rights reserved",
+      author : "Thomas (Guatemala) (flickr)",
+      cright : "cc-by-nc",
       text : "Bats are a type of mammal."
    },
    
    // http://www.flickr.com/photos/davidbygott/2784898252/
    frog : 
    {
-      name : " ",
+      name : "Agalychnis callidryas",
       cname : "Red Eyed Tree Frog",
-      location : "San Francisco, California",
+      location : "Costa Rica",
       image : "images/hints/frog.jpg",
-      author : "Steven McGee (flickr: batty5)",
-      cright : "Creative Commons: Some rights reserved",
+      author : "kibuyu (flickr)",
+      cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
    },
    
@@ -90,45 +90,45 @@ var HINTS = {
    {
       name : "Cortinarius hemitrichus",
       cname : "Mushroom",
-      location : "San Francisco, California",
+      location : "Russia",
       image : "images/hints/fungus.jpg",
-      author : "Steven McGee (flickr: batty5)",
-      cright : "Creative Commons: Some rights reserved",
+      author : "Tatiana Bulyonkova (flickr: ressaure)",
+      cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
    },
    
    // http://www.flickr.com/photos/davidbygott/4036635643/
    giraffe :
    {
-      name : " ",
+      name : "Giraffa camelopardalis",
       cname : "Giraffe",
-      location : "San Francisco, California",
+      location : "Kenya",
       image : "images/hints/giraffe.jpg",
-      author : "Steven McGee (flickr: batty5)",
-      cright : "Creative Commons: Some rights reserved",
+      author : "kibuyu (flickr)",
+      cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
    },
    
    human :
    {
-      name : "Homo sapien",
+      name : "Homo sapiens",
       cname : "Human (Jonathan Losos)",
-      location : "San Francisco, California",
+      location : "",
       image : "images/hints/human.jpg",
-      author : "Steven McGee (flickr: batty5)",
-      cright : "Creative Commons: Some rights reserved",
+      author : "",
+      cright : "cc-blank",
       text : "Bats are a type of mammal."
    },
    
    // http://www.flickr.com/photos/e_monk/4815901200/
    lizard :
    {
-      name : "Anolis carolinus",
+      name : "Anolis carolinensis",
       cname : "Green Anole",
-      location : "San Francisco, California",
+      location : "North Carolina, USA",
       image : "images/hints/lizard.jpg",
-      author : "Steven McGee (flickr: batty5)",
-      cright : "Creative Commons: Some rights reserved",
+      author : "e_monk (flickr)",
+      cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
    },
    
@@ -137,33 +137,33 @@ var HINTS = {
    {
       name : "Lepodoptera",
       cname : "Butterfly Milkweed",
-      location : "San Francisco, California",
+      location : "Wisconsin, USA",
       image : "images/hints/plant.jpg",
-      author : "Steven McGee (flickr: batty5)",
-      cright : "Creative Commons: Some rights reserved",
+      author : "Peter Gorman (flickr: pchgorman)",
+      cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
    },
    
    // http://www.flickr.com/photos/furryscalyman/356870862
    scorpion :
    {
-      name : "scorpioni",
+      name : "Leiurus quinquestriatus",
       cname : "Deathstalker Scorpion",
-      location : "San Francisco, California",
+      location : "Maryland, USA",
       image : "images/hints/scorpion.jpg",
-      author : "Steven McGee (flickr: batty5)",
-      cright : "Creative Commons: Some rights reserved",
+      author : "Matt Reinbold (flickr: Furryscaly)",
+      cright : "cc-by-sa",
       text : "Bats are a type of mammal."
    },
    
    shark :
    {
-      name : "Sharkus lineaus",
-      cname : "Hammerhead Shark",
-      location : "San Francisco, California",
+      name : "Carcharhinus amblyrhynchos",
+      cname : "Grey reef shark",
+      location : "",
       image : "images/hints/shark.jpg",
-      author : "Steven McGee (flickr: batty5)",
-      cright : "Creative Commons: Some rights reserved",
+      author : "Fbattail (Wikimedia Commons)",
+      cright : "cc-by-sa",
       text : "Bats are a type of mammal."
    },
    
@@ -172,10 +172,10 @@ var HINTS = {
    {
       name : "Phidippus mystaceus",
       cname : "Jumping Spider",
-      location : "San Francisco, California",
+      location : "Oklahoma, USA",
       image : "images/hints/spider.jpg",
-      author : "Steven McGee (flickr: batty5)",
-      cright : "Creative Commons: Some rights reserved",
+      author : "Thomas Shahan",
+      cright : "cc-by",
       text : "Bats are a type of mammal."
    },
    
@@ -185,8 +185,8 @@ var HINTS = {
       cname : "Tyranosaurus Rex",
       location : "Field Museum of Natural History, Chicago, Illinois",
       image : "images/hints/trex.jpg",
-      author : "Steven McGee (flickr: batty5)",
-      cright : "Creative Commons: Some rights reserved",
+      author : "",
+      cright : "cc-blank", 
       text : "Bats are a type of mammal."
    }
 }
@@ -271,24 +271,69 @@ function Hint() {
          var author = document.getElementById("hint-author");
          var img = document.getElementById("hint-image");
          var text = document.getElementById("hint-text");
-         var cright = document.getElementById("hint-cright");
+         var cright = document.getElementById("cc-image");
+         var tlist = document.getElementById("trait-list");
          
          if (name) name.innerHTML = h.name;
          if (cname) cname.innerHTML = h.cname;
-         if (location) location.innerHTML = h.location;
-         if (author) author.innerHTML = h.author;
-         if (text) text.innerHTML = h.text;
-         if (cright) cright.innerHTML = h.cright;
+         //if (text) text.innerHTML = h.text;
          if (img) img.src = h.image;
+         
+         if (cright) cright.src = "images/" + h.cright + ".png";
 
+         if (location) {
+            if (h.location.length > 0) {
+               location.innerHTML = " &#151; " + h.location;
+            } else {
+               location.innerHTML = "";
+            }
+         }
+         if (author) {
+            if (h.author.length > 0) {
+               author.innerHTML = "Photo by " + h.author;
+            } else {
+               author.innerHTML = "";
+            }
+         }
+         
+         // List of traits
+         var traits = this.getTraits(taxon);
+         var html = "";
+         for (var i=0; i<traits.length; i++) {
+            html += "<li>" + traits[i] + "</li>";
+         }
+         if (tlist) tlist.innerHTML = html;
+         
          var d = document.getElementById("dialog-hint");
          if (d) {
             var w = canvas.width;
             d.style.left = w/2 - 330 + "px";
             //d.style.marginLeft = Math.round(w/2);
-            d.style.visibility = "visible";
+            
+            // open the hint when the image has loaded
+            if (img.complete) {
+               d.style.visibility = "visible";
+            } else {
+               img.onload = function() {
+                  d.style.visibility = "visible";
+               }
+            }
          }
+         
       }
+   }
+   
+   this.getTraits = function(taxon) {
+      var t = solution.findTaxonByID(taxon.getID());
+      var list = [];
+      t = t.getParent();
+      while (t != null) {
+         if (t.hasTrait()) {
+            list.push(t.getTrait());
+         }
+         t = t.getParent();
+      }
+      return list;
    }
    
    
