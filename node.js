@@ -27,6 +27,7 @@ function Node(id) {
    this.correct   = false;     // is this tree correct (according to solution)?
    this.parent    = null;      // parent node
    this.dragging  = false;     // is being dragged on screen
+   this.visible   = true;
    this.delta     = { x : 0, y : 0 };
 
    this.copyNode = function(node) {
@@ -173,6 +174,14 @@ function Node(id) {
       } else {
          return false;
       }
+   }
+   
+   this.isVisible = function() {
+      return this.visible;
+   }
+   
+   this.setVisible = function(v) {
+      this.visible = v;
    }
    
 
