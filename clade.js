@@ -319,8 +319,9 @@ function Clade(id) {
    this.draw = function(g) {
       if (!this.hasChildren()) return;
       
-      var x0 = this.getFirstChild().getCenterX();
-      var x1 = x0;
+      var x0 = -1;
+      var x1 = -1;
+      
       g.strokeStyle = this.isCorrect()? "white" : "rgba(255, 255, 255, 0.3)";
       g.lineCap = "round";
       g.lineWidth = 8;
@@ -330,10 +331,16 @@ function Clade(id) {
       // Vertical lines to children
       for (var i=0; i<this.children.length; i++) {
          var c = this.children[i];
-         g.moveTo(c.getCenterX(), c.getCenterY());
-         g.lineTo(c.getCenterX(), this.getCenterY());
-         x0 = Math.min(x0, c.getCenterX());
-         x1 = Math.max(x1, c.getCenterX());
+         if (c.isVisible()) {
+            if (x0 < 0) {
+               x0 = c.getCenterX();
+               x1 = c.getCenterX();
+            }
+            g.moveTo(c.getCenterX(), c.getCenterY());
+            g.lineTo(c.getCenterX(), this.getCenterY());
+            x0 = Math.min(x0, c.getCenterX());
+            x1 = Math.max(x1, c.getCenterX());
+         }
       }
 
       // Horizontal joining line
@@ -373,7 +380,7 @@ function Clade(id) {
          this.snap.setCenter(this.cx, this.cy + 60);
       }
    }
-
+   
    this.computePosition = function() {
       var x = 0;
       var y = 0;
@@ -387,16 +394,25 @@ function Clade(id) {
          }
          this.depth = Math.max(this.depth, child.getDepth() + 1);
       }
-
+      
       // compute x-coordinate and y-coordinate
+      var count = 0;
       var tips = [];
+
       this.getTips(tips);
       for (var i=0; i<tips.length; i++) {
-         x += tips[i].getCenterX();
-         y = Math.max(tips[i].getCenterY(), y);
+         var tip = tips[i];
+         if (tip.isVisible()) {
+            x += tip.getCenterX();
+            y = Math.max(tip.getCenterY(), y);
+            count++;
+         }
       }
-      
-      this.cx = x / tips.length;
-      this.cy = y + 65 * this.depth;
-   }   
+      this.setVisible(count > 0);
+
+      if (count > 0) {
+         this.cx = x / count;
+         this.cy = y + 65 * this.depth;
+      }
+   }
 }
