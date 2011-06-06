@@ -161,7 +161,9 @@ function Tree() {
       
       // draw all nodes
       for (var i=0; i<this.taxa.length; i++) {
-         this.taxa[i].draw(g);
+         if (this.taxa[i].isVisible()) {
+            this.taxa[i].draw(g);
+         }
       }
       
       // Draw next level button      
