@@ -1,10 +1,8 @@
-Hint Image load message.
-Hint copyrights, authors, species names.
-Hint list
+Descriptive hints as well as trait list
 
-cache.manifest
 iPod rotate broken
 
+Solution trees squished on final level
 
 TIDAL Lab Logo
 NSF Logo
@@ -14,3 +12,4 @@ Traits on comparison trees
 
 Don't repaint for zero movement (animate should return a value)
 
+Sound effects on tree join
