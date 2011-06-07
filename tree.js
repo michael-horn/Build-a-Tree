@@ -110,6 +110,17 @@ function Tree() {
    
    
 //--------------------------------------------------------------
+// findTaxonByTag -- searches for taxon by tag name
+//--------------------------------------------------------------
+   this.findTaxonByTag = function(tag) {
+      for (var i=0; i<this.taxa.length; i++) {
+         if (this.taxa[i].getTag() == tag) return this.taxa[i];
+      }
+      return null;
+   }
+   
+   
+//--------------------------------------------------------------
 // count -- returns the number of taxa in the list
 //--------------------------------------------------------------
    this.count = function() {
