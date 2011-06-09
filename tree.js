@@ -430,10 +430,54 @@ function Tree() {
 */
 
 
-   this.constructTree = function(overlap) {
+//--------------------------------------------------------------
+// Join two subtrees by creating a new common ancestor for them
+//--------------------------------------------------------------
+   this.joinSubtrees = function(a, b) {
+      if (a == null || b == null) return null;
+      a = a.getRoot();
+      b = b.getRoot();
+      if (a == b) return null;
       
-      // TODO Make this work with more than one dragging node!
-      // TODO preview tree should only affect partial tree being drawn
+      var clade = new Clade(CLADE_ID++);
+      clade.addChild(a);
+      clade.addChild(b);
+      clade.invalidate();  // recursively invalidate tree
+      this.taxa.unshift(clade);
+      this.sort();
+      return clade;
+   }
+
+//--------------------------------------------------------------
+// Graft a tip onto an existing tree
+// PARAMS:
+//   a - tip to graft on to the tree
+//   b - overlapping tip that is part of a subtree
+//--------------------------------------------------------------
+   this.graftTip = function(a, b) {
+      if (a == null || b == null) return null;
+      if (!a.isTip() || !b.isTip()) return null;
+      
+      var root = b.getRoot();
+      var parent = root.findParentByX(a.getCenterX());
+      var sibling = b;
+      while (sibling.getParent() != parent) {
+         sibling = sibling.getParent();
+      }
+      clade = new Clade(CLADE_ID++);
+      clade.addChild(a);
+      clade.addChild(sibling);
+      if (parent != null) {
+         parent.replaceChild(sibling, clade);
+      }
+      root.invalidate();  // recursively invalidate tree
+      this.taxa.unshift(clade);
+      this.sort();
+      return clade;
+   }
+
+
+   this.constructTree = function(overlap) {
       
       var t0 = this.findTaxonByID(overlap.a.getID());
       var t1 = this.findTaxonByID(overlap.b.getID());
@@ -445,55 +489,22 @@ function Tree() {
       //------------------------------------------------------
       // case 1: simple join of at least one unconnected tip
       //------------------------------------------------------
+      /*
       if (!t0.hasParent() || !t1.hasParent()) {
-         var a, b;
          if (t0.hasParent()) {
-            b = t0;
-            a = t1;
+            return this.graftTip(t1, t0);
          } else {
-            a = t0;
-            b = t1;
+            return this.graftTip(t0, t1);
          }
-         var root = b.getRoot();
-         var parent = root.findParentByX(a.getCenterX());
-         var sibling = b;
-         while (sibling.getParent() != parent) {
-            sibling = sibling.getParent();
-         }
-         clade = new Clade(CLADE_ID++);
-         clade.addChild(a);
-         clade.addChild(sibling);
-         if (parent != null) {
-            parent.replaceChild(sibling, clade);
-         }
-         root.invalidate();  // recursively invalidate tree
       }
       
       //------------------------------------------------------
       // case 2: join two trees
       //------------------------------------------------------
       else {
-         var a = t0.getRoot();
-         var b = t1.getRoot();
-         clade = new Clade(CLADE_ID++);
-         clade.addChild(a);
-         clade.addChild(b);
-         clade.invalidate();  // recursively invalidate tree
-      }
-      
-      this.taxa.unshift(clade);
-      this.sort();
-      return clade;
-         /*
-         else if (overlaps.length > 1) {
-            var ancestor = this.findCommonAncestorList(overlaps);
-            if (ancestor != null) {
-               ancestor.addChild(a);
-            }
-            
-            // TODO joining null ancestors
-         }
-         */
+      */
+         return this.joinSubtrees(t0.getRoot(), t1.getRoot());
+      //}
    }
 
 
