@@ -89,7 +89,7 @@ function Tip(id) {
          var dx = Math.abs(a.cx - b.cx);
          var dy = Math.abs(a.cy - b.cy);
          var r = a.w;
-         if (b.hasParent()) r *= 0.7;
+         //if (b.hasParent()) r *= 0.7;
          return ((dx * dx + dy * dy) < (r * r));
       }
       return false;
