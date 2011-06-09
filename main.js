@@ -189,14 +189,19 @@ function animate() {
 }
 
 
+//--------------------------------------------------------------------
+// This gets called from Node.touchDrag to show users a preview of
+// what their tree will look like when they let go...
+//--------------------------------------------------------------------
 function buildPreviewTree() {
    preview = null;
    var overlaps = tree.findAllOverlaps();
    if (overlaps.length > 0) {
       
-      // TODO only clone on change of overlap
+      // Create a clone of the master tree
       preview = tree.clone();
-   
+      
+      // Construct the tree by adding the new overlap
       for (var i=0; i<overlaps.length; i++) {
          preview.constructTree(overlaps[i]);
       }
@@ -204,13 +209,18 @@ function buildPreviewTree() {
 }
 
 
+//--------------------------------------------------------------------
+// This gets called from Node.touchUp to build the master tree
+//--------------------------------------------------------------------
 function buildTree() {
    preview = null;
    var overlaps = tree.findAllOverlaps();
    if (overlaps.length > 0) {
       for (var i=0; i<overlaps.length; i++) {
          var clade = tree.constructTree(overlaps[i]);
-         if (clade) addTouchable(clade);
+         
+         // Deciding not to let users drag entire trees after all...
+         // if (clade) addTouchable(clade);
       }
       tree.validateTree(solution);
    }
