@@ -379,6 +379,9 @@ function Clade(id) {
       if (this.snap) {
          this.snap.setCenter(this.cx, this.cy + 60);
       }
+      
+      // Draw cut button
+      this.drawCutButton(g);
    }
    
    this.computePosition = function() {
