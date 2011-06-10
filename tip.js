@@ -13,7 +13,6 @@
  * of the National Science Foundation (NSF).
  */
 
-
 //===================================================================
 // Tip of a cladogram ( extends Node)
 //===================================================================
@@ -29,7 +28,6 @@ function Tip(id) {
    this.velocity    = { vx : 0, vy : 0 };
    this.docked      = true;
    this.hint        = "";
-
    
    this.clone = function() {
       var copy = new Tip(this.getID());
@@ -89,7 +87,7 @@ function Tip(id) {
          var dx = Math.abs(a.cx - b.cx);
          var dy = Math.abs(a.cy - b.cy);
          var r = a.w;
-         //if (b.hasParent()) r *= 0.7;
+         if (b.hasParent()) r *= 0.9;
          return ((dx * dx + dy * dy) < (r * r));
       }
       return false;
@@ -110,10 +108,11 @@ function Tip(id) {
          g.arc(this.cx, this.cy, this.w/2 - 1.5, 0, Math.PI*2, true);
          g.fill();
       }
-      g.drawImage(this.image, this.cx - this.w/2, this.cy - this.w/2);   
+      g.drawImage(this.image, this.cx - this.w/2, this.cy - this.w/2);
+      
+      this.drawCutButton(g);
    }
 
-   
    this.animate = function() {
       this.velocity.vx += this.force.fx;
       this.velocity.vy += this.force.fy;
@@ -123,8 +122,11 @@ function Tip(id) {
          this.cx += this.velocity.vx;
          this.cy += this.velocity.vy;
       }
+      /*
       else if (this.force.stress > 2.5) {
          tree.breakTree(this);
       }
+      */
    }
+   
 }
