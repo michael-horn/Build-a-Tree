@@ -218,9 +218,7 @@ function buildTree() {
    if (overlaps.length > 0) {
       for (var i=0; i<overlaps.length; i++) {
          var clade = tree.constructTree(overlaps[i]);
-         
-         // Deciding not to let users drag entire trees after all...
-         // if (clade) addTouchable(clade);
+         if (clade) addTouchable(clade);
       }
       tree.validateTree(solution);
    }
