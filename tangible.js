@@ -18,6 +18,23 @@ var tree;
 
 var visuals = [];  // array of non-touchable visible objects to draw
 
+var TOKENS = {
+   0x4B : "bat",
+   0x0A : "bird",
+   0x5B : "butterfly",
+   0x3A : "crab",
+   0x5A : "frog",
+   0x4A : "fungus",
+   0x8A : "giraffe",
+   0x1B : "human",
+   0x7A : "lizard",
+   0x3B : "plant",
+   0x2B : "scorpion",
+   0x6A : "shark",
+   0x2A : "spider",
+   0x1A : "trex"
+};
+
 
 function startup() {
    canvas = document.getElementById("world");
@@ -55,7 +72,7 @@ function restart() {
          clade.setHintText(t.hint);
          clade.setDocked(false);
          clade.setCenter(Math.random() * w, Math.random() * h);
-         addTouchable(clade);
+         //addTouchable(clade);
       } else {
          clade = new Clade(t.id);
          clade.setTrait(t.trait);
@@ -110,10 +127,25 @@ function tick() {
 
 
 function animate() {
+   
+   // Set all tips invisible
    for (var i=0; i<tree.count(); i++) {
       var t = tree.getTaxon(i);
-      if (t.isTip()) {
-         t.setVisible(t.getCenterX() > 100);
+      if (t.isTip()) t.setVisible(false);
+   }
+   
+   // Show the tips for the tags that we have on the surface
+   var frame = pframe;
+   if (!frame) return;
+   
+   for (var i=0; i<frame.touches.length; i++) {
+      var t = frame.touches[i];
+      if (t.tag >= 0) {
+         var tip = tree.findTaxonByTag(TOKENS[t.tag]);
+         if (tip) {
+            t.setVisible(true);
+            t.setCenter(t.pageX, t.pageY);
+         }
       }
    }
 }
