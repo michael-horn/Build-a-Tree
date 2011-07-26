@@ -34,13 +34,15 @@ function Node(id) {
    this.dragging  = false;     // is being dragged on screen
    this.visible   = true;
    this.delta     = { x : 0, y : 0 };
-   this.cutting     = false;   // is the node being cut off the tree?
+   this.cutting   = false;     // is the node being cut off the tree?
+   this.pinned    = false;     // node is pinned to the mat and can't move
+   
    
    //---------------------------------------------------
    // set up the cut button
    //---------------------------------------------------
    var t = this;
-   this.cbutton = new Button(0, 0, 30, 24);
+   this.cbutton = new Button(0, 0, 45, 24);
    this.cbutton.setVisible(false);
    
    this.cbutton.action = function() {
@@ -48,7 +50,11 @@ function Node(id) {
       t.cutting = true;
       
       // TODO Fixme Tip specific
-      setTimeout(function() { tree.breakTree(t); t.cutting = false; t.velocity.vy -= 30; }, 250);
+      setTimeout(function() {
+         tree.breakTree(t);
+         t.cutting = false;
+         if (t.isTip()) t.velocity.vy -= 30;
+      }, 250);
    }
    
    this.cbutton.draw = function(g) {
@@ -214,6 +220,14 @@ function Node(id) {
    this.setVisible = function(v) {
       this.visible = v;
    }
+   
+   this.isPinned = function() {
+      return this.pinned;
+   }
+   
+   this.setPinned = function(pinned) {
+      this.pinned = pinned;
+   }
 
    this.drawCutButton = function(g) {   
       if (this.cbutton.isVisible() && this.hasParent()) {
@@ -300,6 +314,7 @@ function Node(id) {
       this.delta = { x : tp.x - this.cx, y : tp.y - this.cy };
       clearTimeout(ctimer);
       this.showCutButton();
+      this.getRoot().setPinned(true);
    }
    
    this.touchUp = function() {
@@ -308,6 +323,7 @@ function Node(id) {
       this.dragging = false;
       var t = this;
       ctimer = setTimeout( function() { t.hideCutButton(); }, 3000 );
+      this.getRoot().setPinned(false);
    }
    
    this.touchDrag = function(tp) {

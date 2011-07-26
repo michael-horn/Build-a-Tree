@@ -108,6 +108,10 @@ function Tip(id) {
          g.arc(this.cx, this.cy, this.w/2 - 1.5, 0, Math.PI*2, true);
          g.fill();
       }
+      g.fillStyle = "white";
+      g.beginPath();
+      g.arc(this.cx, this.cy, this.w/2 - 12, 0, Math.PI * 2, true);
+      g.fill();
       g.drawImage(this.image, this.cx - this.w/2, this.cy - this.w/2);
       
       this.drawCutButton(g);
@@ -118,7 +122,7 @@ function Tip(id) {
       this.velocity.vy += this.force.fy;
       this.velocity.vx *= 0.6;
       this.velocity.vy *= 0.6;
-      if (!this.isAncestorDragging()) {
+      if (!this.getRoot().isPinned()) {
          this.cx += this.velocity.vx;
          this.cy += this.velocity.vy;
       }

@@ -126,7 +126,14 @@ function Tree() {
    this.count = function() {
       return this.taxa.length;
    }
+
    
+//--------------------------------------------------------------
+// getTipCount -- returns the number of tips in the tree
+//--------------------------------------------------------------
+   this.getTipCount = function() {
+      return this.tips.length;
+   }
    
 //--------------------------------------------------------------
 // getRoot -- returns the first root in the list
@@ -177,9 +184,10 @@ function Tree() {
          }
       }
       
+      var root = this.getSingleRoot();
+      
       // Draw next level button      
-      if (this.button) {
-         var root = this.getSingleRoot();
+      if (root && this.button) {
          this.button.setCenter(
                root.getCenterX(),
                root.getCenterY() + 60);
@@ -314,7 +322,7 @@ function Tree() {
       
       // do we need a next level button?
       var root = this.getSingleRoot();
-      if (root) {
+      if (root && root.isCorrect()) {
          if (!this.button) this.createButton();
       } else {
          if (this.button) this.removeButton();
@@ -509,13 +517,12 @@ function Tree() {
 
 
 //--------------------------------------------------------------
-// drawSmallTree
+// layoutSmallTree
 //--------------------------------------------------------------
-   this.drawSmallTree = function(g, x, y, w, h) {
+   this.layoutSmallTree = function() {
       var root = this.getRoot();
       var tips = [];
       root.getTips(tips);
-      if (tips.length < 2) return;
       
       // layout tips
       for (var i=0; i<tips.length; i++) {
@@ -526,15 +533,26 @@ function Tree() {
       
       // layout internal nodes
       root.layout(root.getDepth());
+   }
+
+
+//--------------------------------------------------------------
+// drawSmallTree
+//--------------------------------------------------------------
+   this.drawSmallTree = function(g, x, y, w, h) {
+      var root = this.getRoot();
+      var tips = [];
+      root.getTips(tips);
+      if (tips.length < 2) return;
       
       g.fillStyle = "white";
       g.fillRect(x, y, w, h);
       
       // draw tree structure
       x += 25;
-      y += 25;
+      y += 45;
       w -= 50;
-      h -= 50;
+      h -= 70;
       g.fillStyle = "black";
       g.strokeStyle = "black";
       g.lineWidth = 3;
@@ -543,17 +561,15 @@ function Tree() {
       this.drawSubtree(g, x, y, w, h, root);
       g.stroke();
       
-      g.fillStyle = "white";
-      g.fillRect(x - 10, y, w + 20, 25);
-      
       // draw tip decorations
       for (var i=0; i<tips.length; i++) {
          var t = tips[i];
          var tx = t.treeX * w + x;
-         var ty = y;
-         g.drawImage(t.getImage(), tx - 20, ty - 20, 40, 40);
+         var ty = y - 22;
+         g.drawImage(t.getImage(), tx - 17, ty - 17, 34, 34);
       }
    }
+   
    
    this.drawSubtree = function(g, x, y, w, h, taxon) {
       if (taxon.hasChildren()) {

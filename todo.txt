@@ -1,15 +1,38 @@
-Descriptive hints as well as trait list
 
-iPod rotate broken
+Auto restart timer for museum
 
-Solution trees squished on final level
+1. Multiple hint boxes
+2. Drag hints like targets to tips
+3. Hints as images not <div> tags
+4. Show hint trait checklists a la Simbio
+5. Accumulate stars for correct internal nodes
+6. up/down tree highlights
+7. Make your tree like scientists' tree (in-game comparison)
+* Don't allow wrong answers to have a next button
+* Button to go back to prior levels
+* Flat buttons
+* Descriptive hints as well as trait list
+* iPod rotate broken
+* Solution trees squished on final level
+* Images at tips show populations, not single organisms
+* Sound effects
+* White circles at common ancestors?
 
 TIDAL Lab Logo
 NSF Logo
 Life on Earth Logo?
 
-Traits on comparison trees
-
 Don't repaint for zero movement (animate should return a value)
 
-Sound effects on tree join
+When merged, two tips should join in a single oval. The name should be the name of the group
+rather than the name of the tips.
+
+Clades should join together in concentric ovals growing outward and more faint.
+
+Show "X and Y diverged n million years ago" messages on joins of any two correct
+subclades, even if the union is not correct.
+
+Ditch scissors and use popping off again.
+
+Add "did you know" boxes on certain surprising joins.
+
