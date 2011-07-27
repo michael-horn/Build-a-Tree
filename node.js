@@ -36,6 +36,7 @@ function Node(id) {
    this.delta     = { x : 0, y : 0 };
    this.cutting   = false;     // is the node being cut off the tree?
    this.pinned    = false;     // node is pinned to the mat and can't move
+   this.highlight = false;
    
    
    //---------------------------------------------------
@@ -228,6 +229,14 @@ function Node(id) {
    this.setPinned = function(pinned) {
       this.pinned = pinned;
    }
+   
+   this.isHighlighted = function() {
+      return this.highlight;
+   }
+   
+   this.setHighlight = function(h) {
+      this.highlight = h;
+   }
 
    this.drawCutButton = function(g) {   
       if (this.cbutton.isVisible() && this.hasParent()) {
@@ -271,6 +280,8 @@ function Node(id) {
    this.hasChildren = function() { return false; }
    
    this.draw = function(g) { }
+   
+   this.drawHighlight = function(g) { }
    
    this.animate = function() { }
    

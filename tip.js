@@ -93,14 +93,21 @@ function Tip(id) {
       return false;
    }
    
+//----------------------------------------------------------------------
+// Draws the name of the tip
+//----------------------------------------------------------------------
+   this.drawHighlight = function(g) {
+      g.fillStyle = "white";
+      g.textAlign = "center";
+      g.textBaseline = "bottom";
+      g.font = "14pt Tahoma, Arial, sans-serif";
+      g.beginPath();
+      g.fillText(this.name, this.cx, this.cy - this.w/2 - 5);
+   }
+   
    this.draw = function(g) {
-      if (this.isAncestorDragging()) {
-         g.fillStyle = "white";
-         g.textAlign = "center";
-         g.textBaseline = "bottom";
-         g.font = "14pt Tahoma, Arial, sans-serif";
-         g.beginPath();
-         g.fillText(this.name, this.cx, this.cy - this.w/2 - 5);
+      if (this.isHighlighted()) {
+         this.drawHighlight(g);
       }
       if (!this.hasParent()) {
          g.fillStyle = this.color;
@@ -108,10 +115,12 @@ function Tip(id) {
          g.arc(this.cx, this.cy, this.w/2 - 1.5, 0, Math.PI*2, true);
          g.fill();
       }
+
       g.fillStyle = "white";
       g.beginPath();
       g.arc(this.cx, this.cy, this.w/2 - 12, 0, Math.PI * 2, true);
       g.fill();
+
       g.drawImage(this.image, this.cx - this.w/2, this.cy - this.w/2);
       
       this.drawCutButton(g);
@@ -133,4 +142,12 @@ function Tip(id) {
       */
    }
    
+   
+//----------------------------------------------------------------------
+// Recursively determine the highlight 
+//----------------------------------------------------------------------
+   this.determineHighlight = function(free) {
+      this.setHighlight(free && this.isDragging());
+      return this.isHighlighted();
+   }
 }

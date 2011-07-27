@@ -316,11 +316,42 @@ function Clade(id) {
    }
 
    
+//----------------------------------------------------------------------
+// Draws oval around all tips with the name of the clade above
+//----------------------------------------------------------------------
+   this.drawHighlight = function(g) {
+      var tips = [];
+      this.getTips(tips);
+      g.beginPath();
+      x0 = tips[0].getCenterX();
+      y0 = tips[0].getCenterY();
+      g.moveTo(x0, y0);
+      for (var i=1; i<tips.length; i++) {
+         x1 = tips[i].getCenterX();
+         y1 = tips[i].getCenterY();
+         g.lineTo(x1, y1);
+      }
+      g.strokeStyle = "rgba(255, 255, 255, 0.3)";
+      g.lineWidth = 60;
+      g.stroke();
+      g.fillStyle = "white";
+      g.textAlign = "center";
+      g.textBaseline = "bottom";
+      g.font = "14pt Tahoma, Arial, sans-serif";
+      g.beginPath();
+      g.fillText(this.name, (x0 + x1) / 2, (y0 + y1) / 2 - 43);
+   }
+
+   
+//----------------------------------------------------------------------
+// Draws the clade
+//----------------------------------------------------------------------
    this.draw = function(g) {
       if (!this.hasChildren()) return;
       
       var x0 = -1;
       var x1 = -1;
+      var y0, y1;
       
       g.strokeStyle = this.isCorrect()? "white" : "rgba(255, 255, 255, 0.3)";
       g.lineCap = "round";
@@ -354,6 +385,11 @@ function Clade(id) {
       }
       g.stroke();
       
+      // Oval around tips
+      if (this.isHighlighted()) {
+         this.drawHighlight(g);
+      }
+      
       // Trait markers
       if (this.isCorrect() && this.hasTrait()) {
          if (!this.snap || !this.snap.isAnimating()) {
@@ -365,6 +401,7 @@ function Clade(id) {
             g.beginPath();
             g.moveTo(this.cx - 10, ty);
             g.lineTo(this.cx + 10, ty);
+            g.strokeStyle = "white";
             g.stroke();
             g.fillStyle = "rgba(255, 255, 255, 0.7)";
             g.textAlign = "left";
@@ -384,6 +421,33 @@ function Clade(id) {
       this.drawCutButton(g);
    }
    
+   
+//----------------------------------------------------------------------
+// Recursively determine the highlight 
+//----------------------------------------------------------------------
+   this.determineHighlight = function(free) {
+
+      // if this clade is being dragged and the ancestor is not...      
+      this.setHighlight(this.isDragging() && free);
+      
+      var subdrag = false;
+      for (var i=0; i<this.children.length; i++) {
+         var child = this.children[i];
+         var h = child.determineHighlight(! this.isDragging() );
+         if (h) subdrag = true;
+      }
+      
+      if (!subdrag && this.isCorrect()) {
+         if (this.isRoot() || ! this.getParent().isCorrect()) {
+            this.setHighlight(true);
+         }
+      }
+      
+      return this.isHighlighted() || subdrag;
+   }
+   
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
    this.computePosition = function() {
       var x = 0;
       var y = 0;

@@ -175,6 +175,9 @@ function Tree() {
          if (clade.isRoot() && clade.hasChildren()) {
             clade.computePosition();
          }
+         if (clade.isRoot()) {
+            clade.determineHighlight(true);
+         }
       }
       
       // draw all nodes
@@ -450,7 +453,7 @@ function Tree() {
       var clade = new Clade(CLADE_ID++);
       clade.addChild(a);
       clade.addChild(b);
-      clade.invalidate();  // recursively invalidate tree
+      //clade.invalidate();  // recursively invalidate tree
       this.taxa.unshift(clade);
       this.sort();
       return clade;

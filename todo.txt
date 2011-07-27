@@ -27,8 +27,6 @@ Don't repaint for zero movement (animate should return a value)
 When merged, two tips should join in a single oval. The name should be the name of the group
 rather than the name of the tips.
 
-Clades should join together in concentric ovals growing outward and more faint.
-
 Show "X and Y diverged n million years ago" messages on joins of any two correct
 subclades, even if the union is not correct.
 
@@ -36,3 +34,4 @@ Ditch scissors and use popping off again.
 
 Add "did you know" boxes on certain surprising joins.
 
+Use Berkeley trees and character traits
