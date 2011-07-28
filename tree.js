@@ -392,7 +392,8 @@ function Tree() {
 //--------------------------------------------------------------
    this.breakTree = function(taxon) {
       if (taxon.hasParent()) {
-         taxon.parent.removeChild(taxon);
+         //taxon.parent.removeChild(taxon);
+         taxon.getParent().breakTree();
          this.validateTree(solution);
          this.sort();
       }

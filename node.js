@@ -12,10 +12,12 @@
  * material are those of the author(s) and do not necessarily reflect the views
  * of the National Science Foundation (NSF).
  */
+/*
 var SO = document.createElement("img");
 var SC = document.createElement("img");
 SO.src = "images/scissors_open.png";
 SC.src = "images/scissors_closed.png";
+*/
 
 
 //===================================================================
@@ -34,14 +36,15 @@ function Node(id) {
    this.dragging  = false;     // is being dragged on screen
    this.visible   = true;
    this.delta     = { x : 0, y : 0 };
-   this.cutting   = false;     // is the node being cut off the tree?
+   // this.cutting   = false;     // is the node being cut off the tree? SCISSORS
    this.pinned    = false;     // node is pinned to the mat and can't move
    this.highlight = false;
    
    
    //---------------------------------------------------
-   // set up the cut button
+   // set up the cut button  SCISSORS
    //---------------------------------------------------
+   /*
    var t = this;
    this.cbutton = new Button(0, 0, 45, 24);
    this.cbutton.setVisible(false);
@@ -67,6 +70,7 @@ function Node(id) {
          }
       }
    }
+   */
 
    this.copyNode = function(node) {
       node.id        = this.id;
@@ -238,6 +242,8 @@ function Node(id) {
       this.highlight = h;
    }
 
+   // SCISSORS
+   /*
    this.drawCutButton = function(g) {   
       if (this.cbutton.isVisible() && this.hasParent()) {
          var x = this.cx - 35;
@@ -270,6 +276,7 @@ function Node(id) {
          }
       }
    }
+   */
 
 
 //----------------------------------------------------------------------
@@ -301,7 +308,7 @@ function Node(id) {
 //----------------------------------------------------------------------
 // TOUCH FUNCTIONS
 //----------------------------------------------------------------------
-   var ctimer;
+   // var ctimer; SCISSORS
    
    this.containsTouch = function(tp) {
       var x = this.getX();
@@ -323,8 +330,8 @@ function Node(id) {
    this.touchDown = function(tp) {
       this.dragging = true;
       this.delta = { x : tp.x - this.cx, y : tp.y - this.cy };
-      clearTimeout(ctimer);
-      this.showCutButton();
+      // clearTimeout(ctimer);
+      // this.showCutButton(); // SCISSORS
       this.getRoot().setPinned(true);
    }
    
@@ -333,7 +340,7 @@ function Node(id) {
       buildTree();
       this.dragging = false;
       var t = this;
-      ctimer = setTimeout( function() { t.hideCutButton(); }, 3000 );
+      //ctimer = setTimeout( function() { t.hideCutButton(); }, 3000 ); // SCISSORS
       this.getRoot().setPinned(false);
    }
    

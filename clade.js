@@ -86,6 +86,10 @@ function Clade(id) {
       }
    }
    
+   
+//----------------------------------------------------------------------
+// Remove a child from the list of children and collapse singleton trees
+//----------------------------------------------------------------------
    this.removeChild = function(child) {
       
       // remove the child from the list
@@ -112,6 +116,22 @@ function Clade(id) {
       
       this.computeDepth();
    }
+   
+   
+//----------------------------------------------------------------------
+// Break apart tree and all supertrees
+//----------------------------------------------------------------------
+   this.breakTree = function() {
+      for (var i=0; i<this.children.length; i++) {
+         this.children[i].parent = null;
+      }
+      if (this.hasParent()) {
+         this.getParent().breakTree();
+      }
+      tree.remove(this);
+      removeTouchable(this);
+   }
+   
 
    this.getChildCount = function() {
       return this.children.length;
@@ -332,7 +352,7 @@ function Clade(id) {
          g.lineTo(x1, y1);
       }
       g.strokeStyle = "rgba(255, 255, 255, 0.3)";
-      g.lineWidth = 60;
+      g.lineWidth = 68;
       g.stroke();
       g.fillStyle = "white";
       g.textAlign = "center";
@@ -351,7 +371,6 @@ function Clade(id) {
       
       var x0 = -1;
       var x1 = -1;
-      var y0, y1;
       
       g.strokeStyle = this.isCorrect()? "white" : "rgba(255, 255, 255, 0.3)";
       g.lineCap = "round";
@@ -360,6 +379,7 @@ function Clade(id) {
       g.beginPath();
       
       // Vertical lines to children
+      /*
       for (var i=0; i<this.children.length; i++) {
          var c = this.children[i];
          if (c.isVisible()) {
@@ -373,13 +393,19 @@ function Clade(id) {
             x1 = Math.max(x1, c.getCenterX());
          }
       }
+      */
+      x0 = this.getFirstChild().getCenterX();
+      x1 = this.getLastChild().getCenterX();
 
       // Horizontal joining line
       g.moveTo(x0, this.cy);
       g.lineTo(x1, this.cy);
       
-      // Vertical stub for roots
-      if (this.isRoot()) {
+      // Line to parent
+      if (this.hasParent()) {
+         g.moveTo(this.getCenterX(), this.getCenterY() + 2);
+         g.lineTo(this.getCenterX(), this.getParent().getCenterY());
+      } else {
          g.moveTo(this.getCenterX(), this.getCenterY() + 2);
          g.lineTo(this.getCenterX(), this.getCenterY() + 40);
       }
@@ -418,7 +444,7 @@ function Clade(id) {
       }
       
       // Draw cut button
-      this.drawCutButton(g);
+      // this.drawCutButton(g);  // SCISSORS
    }
    
    
