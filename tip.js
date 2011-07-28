@@ -94,8 +94,11 @@ function Tip(id) {
    }
    
    this.getWaterline = function() {
-      var root = this.getRoot();
-      return (canvas.height / 2) - (65 * root.getDepth() / 2);
+      if (this.hasParent()) {
+         return this.getParent().getCenterY() - (SPRING_LENGTH * this.getParent().getDepth());
+      } else {
+         return this.getCenterY();
+      }
    }
    
 //----------------------------------------------------------------------
