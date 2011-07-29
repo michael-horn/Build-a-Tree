@@ -128,46 +128,39 @@ function prevLevel() {
    return false;
 }
 
-function showSolution() {
+
+function advanceLevel() {
    var l = getCurrentLevel();
    var level = LEVELS[l];
    
-   // Fill in the correct level name
-   var e = document.getElementById("level-name");
-   if (e) {
-      e.innerHTML = level.name;
-   }
-   
-   /*
-   // Fix the next button link
-   e = document.getElementById("next-button");
-   if (e) {
-      e.href = "instructions.html?level=" + (l + 2);
-   }
-   */
-   
    // draw the solution tree
    var c = document.getElementById("science-tree");
-   var g = c.getContext('2d');
    var w = c.width;
    var h = c.height;
+   var g = c.getContext('2d');
+   g.fillStyle = "white";
+   g.strokeStyle = "white";
    solution.drawSmallTree(g, 0, 0, w, h);
    
+   // draw the players' tree
    c = document.getElementById("your-tree");
-   g = c.getContext('2d');
    w = c.width;
    h = c.height;
+   g = c.getContext('2d');
+   g.fillStyle = "white";
+   g.strokeStyle = "white";
+   tree.layoutSmallTree();
    tree.drawSmallTree(g, 0, 0, w, h);
 
-   
    // show the dialog
    var d = document.getElementById("dialog-solution");
    if (d) {
       w = canvas.width;
-      d.style.left = w/2 - 400 + "px";
+      d.style.left = w/2 - 300 + "px";
       d.style.visibility = "visible";
    }
 }
+
 
 function hideSolution() {
    var d = document.getElementById("dialog-solution");
