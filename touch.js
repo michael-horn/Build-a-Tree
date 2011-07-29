@@ -107,6 +107,7 @@ function mouseUp(evt) {
 }
 
 function mouseDown(evt) {
+   resetMasterTimer();
    mdown = true;
    var pt = { x : evt.pageX, y : evt.pageY };
    var o = findTouchTarget(pt);
@@ -118,6 +119,7 @@ function mouseDown(evt) {
 }
 
 function mouseMove(evt) {
+   resetMasterTimer();
    if (mdown) {
       var pt = { x : evt.pageX, y : evt.pageY };
       var o = touch_bindings["mouse"];
@@ -133,6 +135,7 @@ function mouseMove(evt) {
 // Touch Event Handlers
 //-----------------------------------------------------------------
 function touchDown(evt) {
+   resetMasterTimer();
 	for (var i=0; i<evt.changedTouches.length; i++) {
       var t = evt.changedTouches[i];
       var pt = { x : t.pageX, y : t.pageY };
@@ -161,6 +164,8 @@ function touchUp(evt) {
 }
 
 function touchDrag(evt) {
+   resetMasterTimer();
+   
    for (var i=0; i<evt.changedTouches.length; i++) {
       var t = evt.changedTouches[i];
       var pt = { x : t.pageX, y : t.pageY };
