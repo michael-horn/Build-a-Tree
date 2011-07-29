@@ -123,7 +123,7 @@ function Tree() {
 //--------------------------------------------------------------
 // count -- returns the number of taxa in the list
 //--------------------------------------------------------------
-   this.count = function() {
+   this.getTaxaCount = function() {
       return this.taxa.length;
    }
 
@@ -134,6 +134,7 @@ function Tree() {
    this.getTipCount = function() {
       return this.tips.length;
    }
+   
    
 //--------------------------------------------------------------
 // getRoot -- returns the first root in the list
@@ -389,57 +390,15 @@ function Tree() {
    
    
 //--------------------------------------------------------------
+// Breaks a tree apart starting at taxon and working upward
 //--------------------------------------------------------------
    this.breakTree = function(taxon) {
       if (taxon.hasParent()) {
-         //taxon.parent.removeChild(taxon);
          taxon.getParent().breakTree();
          this.validateTree(solution);
          this.sort();
       }
    }
-
-   
-//--------------------------------------------------------------
-// Builds a tree by combining overlapping taxa.
-// Returns newly added clade (or null if none is created)
-//--------------------------------------------------------------
-/*
-   this.buildTree = function(taxon) {
-      var list = this.findOverlaps(taxon);
-      if (list.length == 0) return null;
-
-      var root = taxon.getRoot();
-      var roots = [];
-      roots.push(root);
-      
-      // Find all unique subtrees to be joined
-      for (var i=0; i<list.length; i++) {
-         var t = list[i].getRoot();
-         if (roots.indexOf(t) < 0) {
-            roots.push(t);
-         }
-      }
-   
-      // Create a new parent node joining the current taxa with all
-      // other overlapping subtrees
-      if (roots.length > 1) {
-         playSound("thip");
-         var clade = new Clade(CLADE_ID++);
-         for (var id in roots) {
-            clade.addChild(roots[id]);
-         }
-         this.taxa.unshift(clade);
-         touchables.push(clade);
-         
-         this.validateTree(solution);
-         this.sort();
-         
-         return clade;
-      }
-      return null;
-   }
-*/
 
 
 //--------------------------------------------------------------
@@ -459,6 +418,7 @@ function Tree() {
       this.sort();
       return clade;
    }
+
 
 //--------------------------------------------------------------
 // Graft a tip onto an existing tree
@@ -498,25 +458,7 @@ function Tree() {
       if (t0.getRoot() == t1.getRoot()) return null;
       var clade = null;
 
-      //------------------------------------------------------
-      // case 1: simple join of at least one unconnected tip
-      //------------------------------------------------------
-      /*
-      if (!t0.hasParent() || !t1.hasParent()) {
-         if (t0.hasParent()) {
-            return this.graftTip(t1, t0);
-         } else {
-            return this.graftTip(t0, t1);
-         }
-      }
-      
-      //------------------------------------------------------
-      // case 2: join two trees
-      //------------------------------------------------------
-      else {
-      */
-         return this.joinSubtrees(t0.getRoot(), t1.getRoot());
-      //}
+      return this.joinSubtrees(t0.getRoot(), t1.getRoot());
    }
 
 
@@ -549,16 +491,11 @@ function Tree() {
       root.getTips(tips);
       if (tips.length < 2) return;
       
-      g.fillStyle = "white";
-      g.fillRect(x, y, w, h);
-      
       // draw tree structure
       x += 25;
-      y += 45;
+      y += 25;
       w -= 50;
-      h -= 70;
-      g.fillStyle = "black";
-      g.strokeStyle = "black";
+      h -= 60;
       g.lineWidth = 3;
       g.lineCap = "round";
       g.beginPath();
@@ -569,7 +506,10 @@ function Tree() {
       for (var i=0; i<tips.length; i++) {
          var t = tips[i];
          var tx = t.treeX * w + x;
-         var ty = y - 22;
+         var ty = y;
+         g.beginPath();
+         g.arc(tx, ty, 10, 0, Math.PI * 2, true);
+         g.fill();
          g.drawImage(t.getImage(), tx - 17, ty - 17, 34, 34);
       }
    }
