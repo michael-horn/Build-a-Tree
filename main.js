@@ -16,6 +16,7 @@ var canvas;
 var context;
 var tree;
 var solution;
+var solution_box;
 var preview;
 var hint;
 
@@ -105,6 +106,10 @@ function restart() {
       }
    }
 
+   solution.layoutSmallTree();
+   solution_box = new SolutionBox(solution);
+   addTouchable(solution_box);
+   
    var howto = new AnimatedText();
    howto.setText("Drag circles together to form a tree...");
    howto.setDelay(1000);
@@ -160,7 +165,7 @@ function resize(evt) {
    canvas.width = window.innerWidth;
    canvas.height = window.innerHeight;
    var count = 0;
-   for (var i=0; i<tree.count(); i++) {
+   for (var i=0; i<tree.getTaxaCount(); i++) {
       var t = tree.getTaxon(i);
       if (t.isTip()) {
          if (t.isDocked()) {
@@ -250,7 +255,10 @@ function draw() {
    g.drawImage(GREEN_DOCK, 0, h/2 - 152, 87, 304);
    g.drawImage(PURPLE_DOCK, w - 87, h/2 - 152, 87, 304);
    g.drawImage(ORANGE_DOCK, w/2 - 152, h - 87, 304, 87);
-   
+
+   // Solution box
+   solution_box.draw(g);
+
    hint.draw(g);
    if (preview != null) {
       preview.draw(g);
@@ -275,5 +283,14 @@ function removeVisual(visual) {
          return;
       }
    }
+}
+
+function roundRect(g, x, y, w, h, r) {
+   g.beginPath();
+   g.arc(x + r, y + r, r, -Math.PI/2, Math.PI, true);
+   g.arc(x + r, y + h - r, r, Math.PI, Math.PI/2, true);
+   g.arc(x + w - r, y + h - r, r, Math.PI/2, 0, true);
+   g.arc(x + w - r, y + r, r, 0, -Math.PI/2, true);
+   g.closePath();
 }
 
