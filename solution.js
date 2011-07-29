@@ -26,8 +26,10 @@ function SolutionBox(solution) {
    this.tween = new Tween();
    
    this.delta = { x : 0, y : 0 };
-   this.w = Math.max(200, 55 + 30 * solution.getTipCount());
-   this.h = 110 + solution.getRoot().getDepth() * 20;
+   this.tw = 55 + 30 * solution.getTipCount();
+   this.th = 75 + solution.getRoot().getDepth() * 20;
+   this.w = Math.max(350, this.tw);
+   this.h = 80 + this.th;
    this.x = canvas.width / 2 - this.w / 2;
    this.y = 30 - this.h;
    
@@ -43,7 +45,19 @@ function SolutionBox(solution) {
       var sy = this.y;
       var sw = this.w;
       var sh = this.h;
-      roundRect(g, sx, sy, sw, sh, 20);
+      var tx = sx + (sw - this.tw) / 2;
+      var ty = sy + 55;
+      
+      var r = 15;
+      
+      g.beginPath();
+      g.moveTo(sx, sy);
+      g.arc(sx + r, sy + sh - r, r, Math.PI, Math.PI/2, true);
+      g.arc(sx + sw - r, sy + sh - r, r, Math.PI/2, 0, true);
+      g.lineTo(sx + sw, sy);
+      g.closePath();
+      
+      
       if (this.down && this.over) {
          g.fillStyle = "rgba(255, 255, 255, 0.4)";
       } else {
@@ -53,13 +67,19 @@ function SolutionBox(solution) {
       g.stroke();
       g.fill();
       g.fillStyle = "white";
-      solution.drawSmallTree(g, sx + 5, sy + 20, sw - 20, sh - 45);
+      solution.drawSmallTree(g, tx, ty, this.tw, this.th);
       g.fillStyle = "white";
       g.textAlign = "center";
       g.textBaseline = "bottom";
       g.font = "12pt Tahoma, Arial, sans-serif";
       g.beginPath(); 
       g.fillText("Scientist Tree", sx + sw/2, sy + sh - 5);
+      
+      g.font = "11pt Tahoma, Arial, sans-serif";
+      g.beginPath(); 
+      g.textBaseline = "top";
+      g.fillText("Here's what scientists think. Can you build your", sx + sw/2, sy + 2);
+      g.fillText("tree to show the same relationships?", sx + sw/2, sy + 23);
       
       // Arrow
       var tx = sx + sw - 35;
@@ -76,6 +96,26 @@ function SolutionBox(solution) {
    
    this.animate = function() {
       
+   }
+   
+   this.openBox = function() {
+      if (!this.open) {
+         this.tween.clearControlPoints();
+         this.tween.setStart(30 - this.h);
+         this.tween.setEnd(0);
+         this.open = true;
+         this.tween.play();
+      }
+   }
+   
+   this.closeBox = function() {
+      if (this.open) {
+         this.tween.clearControlPoints();
+         this.tween.setStart(0);
+         this.tween.setEnd(30 - this.h);
+         this.open = false;
+         this.tween.play();
+      }
    }
 
    
@@ -97,17 +137,10 @@ function SolutionBox(solution) {
    this.touchUp = function() {
       if (this.over) {
          if (this.open) {
-            this.tween.clearControlPoints();
-            this.tween.setStart(-18);
-            this.tween.setEnd(30 - this.h);
-            this.open = false;
+            this.closeBox();
          } else {
-            this.tween.clearControlPoints();
-            this.tween.setStart(30 - this.h);
-            this.tween.setEnd(-18);
-            this.open = true;
+            this.openBox();
          }
-         this.tween.play();
       }
       this.over = false;
       this.down = false;
