@@ -63,27 +63,25 @@
    </div>   
    
    <!-- LEVEL CLEARED -->
-   <div class="dialog" id="dialog-solution">
-      <div id="level-name">Level 1</div>
-      <div class="dialog-content">
-         Here's what scientists think.
-         How does your tree compare? <br>
-         Do the two trees show the same <b>relationships</b>?
-         <br>
+   <div id="dialog-solution">
+      <div id="level-name">Level Cleared!</div>
+
+         Does your tree show the same relationships as the scientists tree? <br>
          <table>
             <tr>
-               <td><canvas id="science-tree" width="280" height="250"></canvas></td>
-               <td><canvas id="your-tree" width="280" height="250"></canvas></td>
+               <td><canvas id="science-tree" width="200" height="150"></canvas></td>
+               <td><canvas id="your-tree" width="200" height="150"></canvas></td>
             </tr>
-            <tr style="font-size: 14px;">
+            <tr>
                <td>Scientist Tree</td>
                <td>Your Tree</td>
             </tr>
          </table>
-      </div>
+
       <br>
-      <a class="button" id="back-button" href="#" onclick="hideSolution(); return false;">Back</a>
-      <a class="button" id="next-button" href="#" onclick="return nextLevel();">Next Level</a>
+         <a href="#" onclick="return false;"><img src="images/levels.png" width="53" height="53" /></a>
+         <a href="#" onclick="hideSolution(); return false;"><img src="images/back.png" width="53" height="53" /></a>
+         <a href="#" onclick="return nextLevel();"><img src="images/next.png" width="53" height="53" href="#" onclick="return nextLevel();" /></a>
    </div>      
    
    <canvas id="world"></canvas>
