@@ -129,7 +129,7 @@ function tick() {
 function animate() {
    
    // Set all tips invisible
-   for (var i=0; i<tree.count(); i++) {
+   for (var i=0; i<tree.getTaxaCount(); i++) {
       var t = tree.getTaxon(i);
       if (t.isTip()) t.setVisible(false);
    }
