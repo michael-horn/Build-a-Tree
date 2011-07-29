@@ -27,7 +27,7 @@ function SolutionBox(solution) {
    
    this.delta = { x : 0, y : 0 };
    this.tw = 55 + 30 * solution.getTipCount();
-   this.th = 75 + solution.getRoot().getDepth() * 20;
+   this.th = 75 + solution.getRoot().getDepth() * 17;
    this.w = Math.max(350, this.tw);
    this.h = 80 + this.th;
    this.x = canvas.width / 2 - this.w / 2;
@@ -59,10 +59,11 @@ function SolutionBox(solution) {
       
       
       if (this.down && this.over) {
-         g.fillStyle = "rgba(255, 255, 255, 0.4)";
+         g.fillStyle = "#64B7E4"; 
       } else {
-         g.fillStyle = "rgba(255, 255, 255, 0.2)";
+         g.fillStyle = "#5AADDA";
       }
+      g.lineWidth = 4;
       g.strokeStyle = "white";
       g.stroke();
       g.fill();
