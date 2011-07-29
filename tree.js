@@ -194,7 +194,7 @@ function Tree() {
       if (root && this.button) {
          this.button.setCenter(
                root.getCenterX(),
-               root.getCenterY() + 60);
+               root.getCenterY() + 63);
          
          this.button.draw(g);
       }
@@ -326,10 +326,12 @@ function Tree() {
       
       // do we need a next level button?
       var root = this.getSingleRoot();
-      if (root && root.isCorrect()) {
-         if (!this.button) this.createButton();
-      } else {
+      if (!root) {
          if (this.button) this.removeButton();
+      } else if (root.isCorrect()) {
+         if (!this.button) this.createNextButton();
+      } else {
+         if (!this.button) this.createQuestionButton();
       }
    }
    
@@ -552,8 +554,7 @@ function Tree() {
       }
    }
    
-   
-   this.createButton = function() {
+   this.createNextButton = function() {
       this.button = new Button(0, 0, 40, 40);
       this.button.visible = false;
       addTouchable(this.button);
@@ -563,39 +564,67 @@ function Tree() {
          2300);
 
       this.button.action = function() {
-         setTimeout(function() { showSolution(); }, 500);
+         setTimeout(function() { advanceLevel(); }, 500);
       }
+      
       this.button.draw = function(g) {
          if (!this.visible) return;
          var cx = this.x + this.w/2;
          var cy = this.y + this.h/2;
-         g.save();
-         g.shadowOffsetX = 1;
-         g.shadowOffsetY = 1;
-         g.shadowBlur = 1;
-         g.shadowColor = "#333";
          g.strokeStyle = "white";
-         //g.fillStyle = "#39C";
-         g.fillStyle = (this.isDown() && this.isOver()) ? "green" : "#069";
-         g.lineWidth = 4;
+         g.fillStyle = (this.isDown() && this.isOver()) ?
+            "rgba(255, 255, 255, 0.4)" :
+            "rgba(255, 255, 255, 0.2)";
+         g.lineWidth = 4;   
          g.beginPath();
          g.arc(cx, cy, 20, 0, Math.PI * 2, true);
          g.fill();
          g.stroke();
-         g.fillStyle = "#fc3";
-         g.strokeStyle = "#c00";
-         g.lineWidth = 1;
          g.beginPath();
          g.moveTo(cx - 8, cy - 10);
          g.lineTo(cx + 12, cy);
          g.lineTo(cx - 8, cy + 10);
          g.closePath();
+         g.fillStyle = "white"; 
          g.fill();
-         g.stroke();
-         g.restore();
       }
    }
    
+   
+   this.createQuestionButton = function() {
+      this.button = new Button(0, 0, 40, 40);
+      this.button.visible = false;
+      addTouchable(this.button);
+      var t = this;
+      setTimeout(
+         function() { if (t.button) { t.button.visible = true; }},
+         500);
+
+      this.button.action = function() {
+         setTimeout(function() { showSolution(); }, 500);
+      }
+      
+      this.button.draw = function(g) {
+         if (!this.visible) return;
+         var cx = this.x + this.w/2;
+         var cy = this.y + this.h/2;
+         g.strokeStyle = "white";
+         g.fillStyle = (this.isDown() && this.isOver()) ?
+            "rgba(255, 255, 255, 0.4)" :
+            "rgba(255, 255, 255, 0.2)";
+         g.lineWidth = 4;   
+         g.beginPath();
+         g.arc(cx, cy, 20, 0, Math.PI * 2, true);
+         g.fill();
+         g.stroke();
+         g.beginPath();
+         g.fillStyle = "white";
+         g.textAlign = "center";
+         g.textBaseline = "middle";
+         g.font = "bold 22pt Tahoma, Arial, sans-serif";
+         g.fillText("?", cx + 1, cy);
+      }         
+   }
 }
 
 function getForce(a, b, nl) {
