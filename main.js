@@ -270,9 +270,6 @@ function draw() {
    g.drawImage(PURPLE_DOCK, w - 87, h/2 - 152, 87, 304);
    g.drawImage(ORANGE_DOCK, w/2 - 152, h - 87, 304, 87);
 
-   // Solution box
-   solution_box.draw(g);
-
    hint.draw(g);
    if (preview != null) {
       preview.draw(g);
@@ -284,6 +281,11 @@ function draw() {
    for (var i=0; i<visuals.length; i++) {
       visuals[i].draw(g);
    }
+   
+   // Solution box
+   solution_box.draw(g);
+
+   
 }
 
 function addVisual(visual) {
@@ -299,12 +301,7 @@ function removeVisual(visual) {
    }
 }
 
-function roundRect(g, x, y, w, h, r) {
-   g.beginPath();
-   g.arc(x + r, y + r, r, -Math.PI/2, Math.PI, true);
-   g.arc(x + r, y + h - r, r, Math.PI, Math.PI/2, true);
-   g.arc(x + w - r, y + h - r, r, Math.PI/2, 0, true);
-   g.arc(x + w - r, y + r, r, 0, -Math.PI/2, true);
-   g.closePath();
+function showSolution() {
+   solution_box.openBox();
 }
 
