@@ -108,7 +108,7 @@ a.button:active { color: red; }
    position: relative;
    top: -18px;
    left: 15px;
-   width: 75px;
+   width: 175px;
    padding: 5px;
    -moz-border-radius: 15px;
    border-radius: 15px;
@@ -118,9 +118,28 @@ a.button:active { color: red; }
    visibility: hidden;
    position: absolute;
    top: 80px;
-   left: 25px;
-   width: 750px;
+   left: 120px;
    margin-top: 0px;
+   
+   padding: 0px 20px 10px 20px;
+   border: 2px solid #333;
+   margin-top: 120px;
+   background-color: #116699;
+   font-family: verdana, arial, sans-serif;
+   font-size: 14px;
+   font-weight: normal;
+   text-align: center;
+   color: #fff;
+   -moz-box-shadow: 5px 5px 5px #333;
+   -webkit-box-shadow: 5px 5px 5px #333;
+   box-shadow: 5px 5px 5px #333;
+   -moz-border-radius: 10px;
+   border-radius: 10px;
+}
+
+#dialog-solution img {
+   margin-left: 10px;
+   margin-right: 10px;
 }
 
 #dialog-hint {
@@ -162,14 +181,14 @@ a.button:active { color: red; }
 }
 
 #science-tree {
-   background-color: white;
+   background-color: #5aadda;
    border: 1px #333 solid;
    margin: 20px 10px 0px 20px;
    padding: 20px;
 }
 
 #your-tree {
-   background-color: white;
+   background-color: #5aadda;
    border: 1px #333 solid;
    margin: 20px 20px 0px 10px;
    padding: 20px;
