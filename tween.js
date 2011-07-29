@@ -201,7 +201,7 @@ function Tween() {
    }
    
    this.setEndCallback = function(callback) {
-      this.ondone = callback;
+      this.onend = callback;
    }
 
    this.animate = function() {
@@ -223,7 +223,7 @@ function Tween() {
          }
          
          if (!this.isTweening()) {
-            this.ondone();
+            this.onend();
          } else {
             var tween = this;
             setTimeout(function () { tween.animate(); }, 30);
