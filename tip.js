@@ -134,7 +134,7 @@ function Tip(id) {
             lt = Math.max(8 - ((Math.abs(wl - this.getCenterY()) / 100) * 8), 0.2);
          }
          g.lineWidth = lt;
-         g.strokeStyle = this.getParent().isCorrect()? "white" : "rgba(255, 255, 255, 0.3)";
+         g.strokeStyle = this.getParent().isCorrect()? "white" : "#6AB7DC";
          g.lineCap = "round";
          g.beginPath();
          g.moveTo(this.getCenterX(), this.getCenterY() + 2);
