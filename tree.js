@@ -134,6 +134,20 @@ function Tree() {
    this.getTipCount = function() {
       return this.tips.length;
    }
+
+   
+//--------------------------------------------------------------
+// getCorrectCount -- return number of correct internal nodes
+//--------------------------------------------------------------
+   this.getCorrectCount = function() {
+      var count = 0;
+      for (var i=0; i<this.taxa.length; i++) {
+         if (this.taxa[i].hasChildren() && this.taxa[i].isCorrect()) {
+            count++;
+         }
+      }
+      return count;
+   }
    
    
 //--------------------------------------------------------------
@@ -337,14 +351,10 @@ function Tree() {
    
    
 //--------------------------------------------------------------
-// Find all overlapping tips
+// Find an overlapping tip if there is one
 //--------------------------------------------------------------
-   this.findAllOverlaps = function() {
-      var list = [];
+   this.findOverlap = function() {
       
-      //-------------------------------------------------
-      // Do tips first
-      //-------------------------------------------------
       for (var i=0; i<this.tips.length; i++) {
          var a = this.tips[i];
          if (a.isAncestorDragging()) {       
@@ -354,14 +364,13 @@ function Tree() {
                   
                   // this prevents reverse-order duplicates
                   if (!b.isAncestorDragging() || j > i) {
-                     list.push( { a : a, b : b } );
-                     break; // only allow one overlap per tip
+                     return { a : a, b : b };
                   }
                }
             }
          }
       }
-      return list;
+      return null;
    }
    
    
@@ -382,7 +391,7 @@ function Tree() {
                count++;
                t.validate(solution);
                if (t.isCorrect() && t.hasChildren()) {
-                  if (!t.snap) t.startSnap();
+                  //if (!t.snap) t.startSnap();
                }
             }
          }
@@ -458,7 +467,6 @@ function Tree() {
       
       // this prevents double joining trees
       if (t0.getRoot() == t1.getRoot()) return null;
-      var clade = null;
 
       return this.joinSubtrees(t0.getRoot(), t1.getRoot());
    }
