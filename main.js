@@ -240,7 +240,7 @@ function buildTree() {
          if (clade.isCorrect()) {
             var scount = tree.getCorrectCount() - 1;
             setTimeout(function() {
-               var star = new Star(clade.getCenterX(), clade.getCenterY() + 60);
+               var star = new Star(clade.getCenterX(), clade.getCenterY() + 50);
                addVisual(star);
                star.animateTo(33 + 35 * scount, 67);
             }, 800);
