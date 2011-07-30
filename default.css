@@ -184,12 +184,12 @@ a.button:active { color: red; }
    background-color: #5aadda;
    border: 1px #333 solid;
    margin: 20px 10px 0px 20px;
-   padding: 20px;
+   padding: 10px;
 }
 
 #your-tree {
    background-color: #5aadda;
    border: 1px #333 solid;
    margin: 20px 20px 0px 10px;
-   padding: 20px;
+   padding: 10px;
 }
