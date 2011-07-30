@@ -353,6 +353,7 @@ function Clade(id) {
       }
       g.strokeStyle = "rgba(255, 255, 255, 0.3)";
       g.lineWidth = 68;
+      g.lineCap = "round";
       g.stroke();
       g.fillStyle = "white";
       g.textAlign = "center";
@@ -372,35 +373,19 @@ function Clade(id) {
       var x0 = -1;
       var x1 = -1;
       
-      g.strokeStyle = this.isCorrect()? "white" : "rgba(255, 255, 255, 0.3)";
+      g.strokeStyle = this.isCorrect()? "white" : "#6AB7DC";
       g.lineCap = "round";
       g.lineWidth = 8;
       
       g.beginPath();
       
-      // Vertical lines to children
-      /*
-      for (var i=0; i<this.children.length; i++) {
-         var c = this.children[i];
-         if (c.isVisible()) {
-            if (x0 < 0) {
-               x0 = c.getCenterX();
-               x1 = c.getCenterX();
-            }
-            g.moveTo(c.getCenterX(), c.getCenterY());
-            g.lineTo(c.getCenterX(), this.getCenterY());
-            x0 = Math.min(x0, c.getCenterX());
-            x1 = Math.max(x1, c.getCenterX());
-         }
-      }
-      */
       x0 = this.getFirstChild().getCenterX();
       x1 = this.getLastChild().getCenterX();
 
       // Horizontal joining line
       g.moveTo(x0, this.cy);
       g.lineTo(x1, this.cy);
-      
+         
       // Line to parent
       if (this.hasParent()) {
          g.moveTo(this.getCenterX(), this.getCenterY() + 2);
@@ -410,6 +395,15 @@ function Clade(id) {
          g.lineTo(this.getCenterX(), this.getCenterY() + 40);
       }
       g.stroke();
+
+      // draw handle on root
+      if (this.isRoot() && this.hasChildren()) {
+         g.fillStyle = this.isCorrect()? "white" : "#6AB7DC";
+         g.beginPath();
+         g.arc(this.getCenterX(), this.getCenterY() + 50,
+               12, 0, Math.PI * 2, true);
+         g.fill();
+      }
       
       // Oval around tips
       if (this.isHighlighted()) {
@@ -423,6 +417,7 @@ function Clade(id) {
             if (this.hasParent()) {
                ty = (this.getCenterY() + this.parent.getCenterY()) / 2;
             }
+            g.lineCap = "round";
             g.lineWidth = 4;
             g.beginPath();
             g.moveTo(this.cx - 10, ty);
@@ -436,12 +431,12 @@ function Clade(id) {
             g.beginPath();
             g.fillText(this.trait, this.cx + 15, ty);
          }
-      }       
+      }
       
       // Draw snap text
-      if (this.snap) {
-         this.snap.setCenter(this.cx, this.cy + 60);
-      }
+      //if (this.snap) {
+      //   this.snap.setCenter(this.cx, this.cy + 60);
+      //}
       
       // Draw cut button
       // this.drawCutButton(g);  // SCISSORS
