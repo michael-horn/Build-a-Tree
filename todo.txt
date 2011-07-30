@@ -1,9 +1,7 @@
 
 * Button to go back to prior levels
-* Replace waterline with a nudge upward
 * Logging
 * Participant key screen
-* Birds and tyrannosaurs
 
 1. Multiple hint boxes
 3. Hints as images not <div> tags
