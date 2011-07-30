@@ -214,16 +214,14 @@ function animate() {
 //--------------------------------------------------------------------
 function buildPreviewTree() {
    preview = null;
-   var overlaps = tree.findAllOverlaps();
-   if (overlaps.length > 0) {
+   var overlap = tree.findOverlap();
+   if (overlap) {
       
       // Create a clone of the master tree
       preview = tree.clone();
       
       // Construct the tree by adding the new overlap
-      for (var i=0; i<overlaps.length; i++) {
-         preview.constructTree(overlaps[i]);
-      }
+      preview.constructTree(overlap);
    }
 }
 
@@ -233,13 +231,21 @@ function buildPreviewTree() {
 //--------------------------------------------------------------------
 function buildTree() {
    preview = null;
-   var overlaps = tree.findAllOverlaps();
-   if (overlaps.length > 0) {
-      for (var i=0; i<overlaps.length; i++) {
-         var clade = tree.constructTree(overlaps[i]);
-         if (clade) addTouchable(clade);
+   var overlap = tree.findOverlap();
+   if (overlap) {
+      var clade = tree.constructTree(overlap);
+      if (clade) {
+         addTouchable(clade);
+         tree.validateTree(solution);
+         if (clade.isCorrect()) {
+            var scount = tree.getCorrectCount() - 1;
+            setTimeout(function() {
+               var star = new Star(clade.getCenterX(), clade.getCenterY() + 60);
+               addVisual(star);
+               star.animateTo(33 + 35 * scount, 67);
+            }, 800);
+         }
       }
-      tree.validateTree(solution);
    }
 }
 
@@ -269,6 +275,20 @@ function draw() {
    g.drawImage(GREEN_DOCK, 0, h/2 - 152, 87, 304);
    g.drawImage(PURPLE_DOCK, w - 87, h/2 - 152, 87, 304);
    g.drawImage(ORANGE_DOCK, w/2 - 152, h - 87, 304, 87);
+   
+   // Draw stars
+   var scount = tree.getTipCount() - 1;
+   var ccount = tree.getCorrectCount();
+   var sx = 16;
+   var sy = 50;
+   for (var i=0; i<scount; i++) {
+      if (i < ccount) {
+         g.drawImage(STAR, sx, sy, 33, 33);
+      } else {
+         g.drawImage(STAR_BLANK, sx, sy, 33, 33);
+      }
+      sx += 35;
+   }
 
    hint.draw(g);
    if (preview != null) {
