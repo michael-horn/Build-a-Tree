@@ -301,12 +301,14 @@ function Tree() {
             clade.getTips(tips);
    
             // gravity / waterline
+            /*
             var waterline = (canvas.height / 2) - (65 * clade.getDepth() / 2);
 
             for (var j=0; j<tips.length; j++) {
                a = tips[j];
                a.force.fy += (waterline - a.cy) * 0.1;
             }
+            */
             
             // spring forces
             for (var j=0; j<tips.length - 1; j++) {
