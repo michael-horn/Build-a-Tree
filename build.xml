@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="BAT" default="init">
+
+
+<!-- *********************************************************** -->
+<!--                         INIT                                -->
+<!-- *********************************************************** -->
+<target name="init">
+   <tstamp>
+      <format property="build.date" pattern="MM-dd-yyyy" />
+   </tstamp>
+   <property name="project.name" value="Build-a-Tree" />
+   <property name="deploy.user" value="litl" />
+   <property name="deploy.host" value="litl.sesp.northwestern.edu" />
+   <property name="deploy.dir" value="/home/litl/public_html/bat" />
+</target>
+
+<target name="deploy" depends="init">
+   <input message="Password for ${deploy.host}: " addproperty="deploy.password" />
+
+   <scp todir="${deploy.user}:${deploy.password}@${deploy.host}:${deploy.dir}">
+      <fileset dir=".">
+         <include name="*.js" />
+         <include name="*.css" />
+         <include name="*.html" />
+         <include name="**/*.png" />
+         <include name="**/*.jpg" />
+         <include name="*.manifest" />
+         <include name="**/*.ogg" />
+      </fileset>
+   </scp>
+</target>
+
+</project>
