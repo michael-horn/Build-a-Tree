@@ -1,20 +1,18 @@
 
-Auto restart timer for museum
+* Button to go back to prior levels
+* Replace waterline with a nudge upward
+* Logging
+* Participant key screen
+* Birds and tyrannosaurs
 
 1. Multiple hint boxes
-2. Drag hints like targets to tips
 3. Hints as images not <div> tags
 4. Show hint trait checklists a la Simbio
-5. Accumulate stars for correct internal nodes
-6. up/down tree highlights
-7. Make your tree like scientists' tree (in-game comparison)
-* Don't allow wrong answers to have a next button
-* Button to go back to prior levels
-* Flat buttons
 * Descriptive hints as well as trait list
+
+
+6. up/down tree highlights
 * iPod rotate broken
-* Solution trees squished on final level
-* Images at tips show populations, not single organisms
 * Sound effects
 * White circles at common ancestors?
 
@@ -26,8 +24,6 @@ Don't repaint for zero movement (animate should return a value)
 
 Show "X and Y diverged n million years ago" messages on joins of any two correct
 subclades, even if the union is not correct.
-
-Ditch scissors and use popping off again.
 
 Add "did you know" boxes on certain surprising joins.
 
