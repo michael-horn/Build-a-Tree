@@ -23,9 +23,10 @@ const SPRING_LENGTH = 65;
 //==============================================================
 function Tree() {
    
-   this.taxa = [];       // list of taxa
-   this.tips = [];       // list of tips
-   this.button = null;   // level done button
+   this.taxa = [];         // list of taxa
+   this.tips = [];         // list of tips
+   this.button = null;     // level done button
+   this.complete = false;  // all nodes are connected?
 
 
 //--------------------------------------------------------------
@@ -176,6 +177,22 @@ function Tree() {
          }
       }
       return root;
+   }
+
+
+//--------------------------------------------------------------
+// Is there a single root for the tree?
+//--------------------------------------------------------------
+   this.isComplete = function() {
+      return this.complete;
+   }
+
+   
+//--------------------------------------------------------------
+// setComplete
+//--------------------------------------------------------------
+   this.setComplete = function(complete) {
+      this.complete = complete;
    }
 
 
@@ -341,13 +358,15 @@ function Tree() {
       }
       
       // do we need a next level button?
-      var root = this.getSingleRoot();
-      if (!root) {
-         if (this.button) this.removeButton();
-      } else if (root.isCorrect()) {
-         if (!this.button) this.createNextButton();
+      if (this.isComplete()) {
+         var root = this.getSingleRoot();
+         if (root.isCorrect()) {
+            if (!this.button) this.createNextButton();
+         } else {
+            if (!this.button) this.createQuestionButton();
+         }
       } else {
-         if (!this.button) this.createQuestionButton();
+         if (this.button) this.removeButton();
       }
    }
    
@@ -410,11 +429,13 @@ function Tree() {
          taxon.getParent().breakTree();
          this.validateTree(solution);
          this.sort();
+         this.complete = false;
       }
    }
 
 
 //--------------------------------------------------------------
+// PRIVATE
 // Join two subtrees by creating a new common ancestor for them
 //--------------------------------------------------------------
    this.joinSubtrees = function(a, b) {
@@ -439,6 +460,7 @@ function Tree() {
 //   a - tip to graft on to the tree
 //   b - overlapping tip that is part of a subtree
 //--------------------------------------------------------------
+/*
    this.graftTip = function(a, b) {
       if (a == null || b == null) return null;
       if (!a.isTip() || !b.isTip()) return null;
@@ -460,8 +482,12 @@ function Tree() {
       this.sort();
       return clade;
    }
+*/
 
 
+//--------------------------------------------------------------
+// constructTree
+//--------------------------------------------------------------
    this.constructTree = function(overlap) {
       
       var t0 = this.findTaxonByID(overlap.a.getID());
@@ -470,7 +496,12 @@ function Tree() {
       // this prevents double joining trees
       if (t0.getRoot() == t1.getRoot()) return null;
 
-      return this.joinSubtrees(t0.getRoot(), t1.getRoot());
+      var clade = this.joinSubtrees(t0.getRoot(), t1.getRoot());
+      
+      if (this.getSingleRoot() != null) {
+         this.complete = true;
+      }
+      return clade;
    }
 
 
