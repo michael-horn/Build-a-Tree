@@ -241,6 +241,20 @@ function Node(id) {
    this.setHighlight = function(h) {
       this.highlight = h;
    }
+   
+//----------------------------------------------------------------------
+// Location of this node in relation to parent
+//----------------------------------------------------------------------
+   this.getWaterline = function() {
+      if (this.hasParent()) {
+         var p = this.getParent();
+         var dd = p.getDepth() - this.getDepth();
+         return p.getCenterY() - (SPRING_LENGTH * dd);
+      } else {
+         return this.getCenterY();
+      }
+   }
+   
 
    // SCISSORS
    /*
