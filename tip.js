@@ -93,14 +93,6 @@ function Tip(id) {
       return false;
    }
    
-   this.getWaterline = function() {
-      if (this.hasParent()) {
-         return this.getParent().getCenterY() - (SPRING_LENGTH * this.getParent().getDepth());
-      } else {
-         return this.getCenterY();
-      }
-   }
-   
 //----------------------------------------------------------------------
 // Draws the name of the tip
 //----------------------------------------------------------------------
@@ -131,7 +123,7 @@ function Tip(id) {
          var wl = this.getWaterline();
          var lt = 8;  // default line thickness
          if (this.isDragging()) {
-            lt = Math.max(8 - ((Math.abs(wl - this.getCenterY()) / 100) * 8), 0.2);
+            lt = Math.max(8 - ((Math.abs(wl - this.getCenterY()) / 100) * 8), 1);
          }
          g.lineWidth = lt;
          g.strokeStyle = this.getParent().isCorrect()? "white" : "#6AB7DC";
