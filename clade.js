@@ -334,7 +334,21 @@ function Clade(id) {
          }
       }
    }
-
+   
+   
+//----------------------------------------------------------------------
+// animate
+//----------------------------------------------------------------------
+   this.animate = function() {
+      if (this.isDragging() && this.hasParent()) {
+         var p = this.getParent();
+         var ty = this.getWaterline();
+         if ((ty - this.cy) > 100) {
+            tree.breakTree(this);
+         }
+      }
+   }
+   
    
 //----------------------------------------------------------------------
 // Draws oval around all tips with the name of the clade above
@@ -377,17 +391,25 @@ function Clade(id) {
       g.lineCap = "round";
       g.lineWidth = 8;
       
-      g.beginPath();
-      
       x0 = this.getFirstChild().getCenterX();
       x1 = this.getLastChild().getCenterX();
 
       // Horizontal joining line
+      g.beginPath();
       g.moveTo(x0, this.cy);
       g.lineTo(x1, this.cy);
+      g.stroke();
          
       // Line to parent
+      g.beginPath();
       if (this.hasParent()) {
+         var wl = this.getWaterline();
+         var lt = 8;  // default line thickness
+         if (this.isDragging() && wl > this.cy) {
+            lt = Math.max(8 - (8 * (wl - this.cy) / 100), 1);
+         }
+         g.lineWidth = lt;
+         
          g.moveTo(this.getCenterX(), this.getCenterY() + 2);
          g.lineTo(this.getCenterX(), this.getParent().getCenterY());
       } else {
@@ -396,15 +418,6 @@ function Clade(id) {
       }
       g.stroke();
 
-      // draw handle on root
-      if (this.isRoot() && this.hasChildren()) {
-         g.fillStyle = this.isCorrect()? "white" : "#6AB7DC";
-         g.beginPath();
-         g.arc(this.getCenterX(), this.getCenterY() + 50,
-               12, 0, Math.PI * 2, true);
-         g.fill();
-      }
-      
       // Oval around tips
       if (this.isHighlighted()) {
          this.drawHighlight(g);
