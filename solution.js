@@ -21,7 +21,6 @@ function SolutionBox(solution) {
    this.solution = solution;
    this.open = false;
    this.down = false;
-   this.over = false;
    
    this.tween = new Tween();
    
@@ -58,7 +57,7 @@ function SolutionBox(solution) {
       g.closePath();
       
       
-      if (this.down && this.over) {
+      if (this.down) {
          g.fillStyle = "#64B7E4"; 
       } else {
          g.fillStyle = "#5AADDA";
@@ -102,7 +101,7 @@ function SolutionBox(solution) {
    this.openBox = function() {
       if (!this.open) {
          this.tween.clearControlPoints();
-         this.tween.setStart(30 - this.h);
+         this.tween.setStart(this.y);
          this.tween.setEnd(0);
          this.open = true;
          this.tween.play();
@@ -112,7 +111,7 @@ function SolutionBox(solution) {
    this.closeBox = function() {
       if (this.open) {
          this.tween.clearControlPoints();
-         this.tween.setStart(0);
+         this.tween.setStart(this.y);
          this.tween.setEnd(30 - this.h);
          this.open = false;
          this.tween.play();
@@ -132,23 +131,23 @@ function SolutionBox(solution) {
    
    this.touchDown = function(tp) {
       this.down = true;
-      this.over = true;
+      this.delta = { x : tp.x - this.x, y : tp.y - this.y };
    }
    
    this.touchUp = function() {
-      if (this.over) {
-         if (this.open) {
-            this.closeBox();
-         } else {
-            this.openBox();
-         }
+      this.delta = { x : 0, y : 0 };
+      if (this.open) {
+         this.closeBox();
+      } else {
+         this.openBox();
       }
-      this.over = false;
       this.down = false;
    }
    
    this.touchDrag = function(tp) {
-      this.over = this.containsTouch(tp);
+      var ny = tp.y - this.delta.y;
+      var min = 30 - this.h;
+      this.y = Math.max(min, Math.min(0, ny));
    }
    
    this._taction = function(value) {
