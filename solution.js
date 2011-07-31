@@ -153,7 +153,6 @@ function SolutionBox(solution) {
    
    this._taction = function(value) {
       this.y = value;
-      console.log(value);
    }
    
    this._tdone = function() {
