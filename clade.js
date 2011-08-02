@@ -122,6 +122,7 @@ function Clade(id) {
 // Break apart tree and all supertrees
 //----------------------------------------------------------------------
    this.breakTree = function() {
+      log("breaking", this.getTreeString());
       for (var i=0; i<this.children.length; i++) {
          this.children[i].parent = null;
       }
@@ -265,6 +266,15 @@ function Clade(id) {
       this.snap.setDuration(1200);
       this.snap.startZoomIn();
    }
+   
+   this.getTreeString = function() {
+      var s = "( ";
+      for (var i=0; i<this.children.length; i++) {
+         s += this.children[i].getTreeString() + " ";
+      }
+      return (s + ")");
+   }
+   
    
 //----------------------------------------------------------------------
 // Deterministic layout algorithm (not force-directed)
