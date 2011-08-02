@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+   <title>Build-a-Tree Login</title>
+   <link rel="stylesheet" href="default.css" />
+   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+   <script type="text/javascript">
+   function login() {
+      var pkey = document.getElementById("key").value;
+      sessionStorage.setItem("pkey", pkey);
+      return true;
+   }
+   </script>
+</head>
+
+<body>
+
+<div class="key-form">
+<form action="index.html" method="get" onsubmit="return login();">
+   Participant Key: 
+   <input type="text" name="key" id="key" contenteditable="true">
+   <input type="submit" value="Go" >
+</form>
+</div>
+
+</body>
+</html>
