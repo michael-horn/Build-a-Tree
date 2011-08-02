@@ -318,6 +318,7 @@ function Node(id) {
 
    this.invalidate = function() { return; }
 
+   this.getTreeString = function() { return ""; }
    
 //----------------------------------------------------------------------
 // TOUCH FUNCTIONS
@@ -347,6 +348,7 @@ function Node(id) {
       // clearTimeout(ctimer);
       // this.showCutButton(); // SCISSORS
       this.getRoot().setPinned(true);
+      log("drag", this.getTreeString());
    }
    
    this.touchUp = function() {
