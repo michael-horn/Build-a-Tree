@@ -296,7 +296,7 @@ function Tree() {
          if (t.isTip() && hint.intersects(t)) {
             hint.setHighlight(true);
             
-            if (!t.isAncestorDragging()) {
+            if (!t.isAncestorDragging() && !t.hasParent()) {
                hint.showHint(t);
                var dx = hint.getCenterX() - t.getCenterX();
                var dy = hint.getCenterY() - t.getCenterY();
