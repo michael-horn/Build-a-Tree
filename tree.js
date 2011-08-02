@@ -63,6 +63,7 @@ function Tree() {
    this.clear = function() {
       this.taxa = [];
       this.tips = [];
+      this.complete = false;
    }
    
    
@@ -360,7 +361,7 @@ function Tree() {
       // do we need a next level button?
       if (this.isComplete()) {
          var root = this.getSingleRoot();
-         if (root.isCorrect()) {
+         if (root && root.isCorrect()) {
             if (!this.button) this.createNextButton();
          } else {
             if (!this.button) this.createQuestionButton();
@@ -426,6 +427,7 @@ function Tree() {
 //--------------------------------------------------------------
    this.breakTree = function(taxon) {
       if (taxon.hasParent()) {
+         log("disconnect", taxon.getTreeString());
          taxon.getParent().breakTree();
          this.validateTree(solution);
          this.sort();
@@ -605,6 +607,7 @@ function Tree() {
          2300);
 
       this.button.action = function() {
+         log("press", "Advance Level Button");
          setTimeout(function() { advanceLevel(); }, 500);
       }
       
@@ -642,6 +645,7 @@ function Tree() {
          500);
 
       this.button.action = function() {
+         log("press", "Question Button");
          setTimeout(function() { showSolution(); }, 500);
       }
       
