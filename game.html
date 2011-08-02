@@ -25,43 +25,7 @@
 <body onload="startup();">
    <img src="images/title-small.png" style="position: absolute" />
    <img src="images/restart.png" style="position: absolute; right: 14px; top: 38px;" onclick="restart();"/>
-   
-   <!-- HINT -->
-   <div id="dialog-hint">
-      <table>
-         <tr>
-            <td colspan="3" style="padding-bottom: 6px;">
-               <span id="hint-cname">Green Anole</span>
-               <span id="hint-name">Anolis carolineas</span>
-               <span id="hint-location">Miami, Florida</span> <br>
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <img src="images/hints/snail.png" id="hint-image" style="border: 1px solid #333;"/>
-            </td>
-            <td style="width: 20px;"></td>
-            <td style="width: 250px; padding: 10px; vertical-align: top; border: 1px solid black; background-color: white;">
-               <div class="hint-list">
-                  <span id="hint-text">Traits:</span>
-                  <ul style="padding-left: 25px;" id="trait-list">
-                     <li>Hint 1</li>
-                     <li>Hint 1</li>
-                     <li>Hint 1</li>
-                  </ul>
-               </div>
-            </td>
-         </tr>
-         <tr>
-            <td colspan="3" style="vertical-align: bottom;">
-               <span class="copyright">
-               <span id="hint-author">Steven McGee (flickr: batty5)</span>.
-               <img alt="Creative Commons License" src="images/cc-by-nc-sa.png" id="cc-image" style="margin: 5px 0 0 10px;" />
-               </span>
-            </td>
-         </tr>
-      </table>
-   </div>   
+   <img id="hint-image" src="images/info/lizard.png" style="position: absolute; right: 90px; bottom: 95px; visibility: hidden;" />
    
    <!-- LEVEL CLEARED -->
    <div id="dialog-solution">
