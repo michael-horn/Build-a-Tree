@@ -8,8 +8,11 @@
    <link rel="stylesheet" href="default.css" />
    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
    <script src="touch.js"></script>
+   <script src="logging.js"></script>
    
    <script type="text/javascript">
+      initLogDatabase();
+      log("start", "Game");
       function startGame() {
          window.location = "instructions.html?level=1";
          return false;
