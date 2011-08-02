@@ -105,6 +105,7 @@ function SolutionBox(solution) {
          this.tween.setEnd(0);
          this.open = true;
          this.tween.play();
+         log("show", "Solution");
       }
    }
    
@@ -115,6 +116,7 @@ function SolutionBox(solution) {
          this.tween.setEnd(30 - this.h);
          this.open = false;
          this.tween.play();
+         log("hide", "Solution");
       }
    }
 
