@@ -30,7 +30,7 @@ var HINTS = {
       name : "Cynopterus brachyotis",
       cname : "Short Nosed Fruit Bat",
       location : "Singapore",
-      image : "images/hints/bat.jpg",
+      image : "images/info/bat.png",
       author : "Ria Tan",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
@@ -43,7 +43,7 @@ var HINTS = {
       name : "Sterna hirundo", 
       cname : "Common Tern",
       location : "",
-      image : "images/hints/bird.jpg",
+      image : "images/info/bird.png",
       author : "Luciano Giussani (flickr: giuss95)",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
@@ -55,7 +55,7 @@ var HINTS = {
       name : "Papillio machaon",
       cname : "Common Yellow Swallowtail (butterfly)",
       location : "Kriti, Greece",
-      image : "images/hints/butterfly.jpg",
+      image : "images/info/butterfly.png",
       author : "Stavros Markopoulos (flickr: macropoulos)",
       cright : "cc-by-nc",
       text : "Bats are a type of mammal."
@@ -67,7 +67,7 @@ var HINTS = {
       name : "Callinectes bocourti",
       cname : "Blunt-tooth swimming crab",
       location : "Guatemala",
-      image : "images/hints/crab.jpg",
+      image : "images/info/crab.png",
       author : "Thomas (Guatemala) (flickr)",
       cright : "cc-by-nc",
       text : "Bats are a type of mammal."
@@ -79,7 +79,7 @@ var HINTS = {
       name : "Agalychnis callidryas",
       cname : "Red Eyed Tree Frog",
       location : "Costa Rica",
-      image : "images/hints/frog.jpg",
+      image : "images/info/frog.png",
       author : "kibuyu (flickr)",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
@@ -91,7 +91,7 @@ var HINTS = {
       name : "Cortinarius hemitrichus",
       cname : "Mushroom",
       location : "Russia",
-      image : "images/hints/fungus.jpg",
+      image : "images/info/fungus.png",
       author : "Tatiana Bulyonkova (flickr: ressaure)",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
@@ -103,7 +103,7 @@ var HINTS = {
       name : "Giraffa camelopardalis",
       cname : "Giraffe",
       location : "Kenya",
-      image : "images/hints/giraffe.jpg",
+      image : "images/info/giraffe.png",
       author : "kibuyu (flickr)",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
@@ -114,7 +114,7 @@ var HINTS = {
       name : "Homo sapiens",
       cname : "Human (Jonathan Losos)",
       location : "",
-      image : "images/hints/human.jpg",
+      image : "images/info/human.png",
       author : "",
       cright : "cc-blank",
       text : "Bats are a type of mammal."
@@ -126,7 +126,7 @@ var HINTS = {
       name : "Anolis carolinensis",
       cname : "Green Anole",
       location : "North Carolina, USA",
-      image : "images/hints/lizard.jpg",
+      image : "images/info/lizard.png",
       author : "e_monk (flickr)",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
@@ -138,7 +138,7 @@ var HINTS = {
       name : "Lepodoptera",
       cname : "Butterfly Milkweed",
       location : "Wisconsin, USA",
-      image : "images/hints/plant.jpg",
+      image : "images/info/plant.png",
       author : "Peter Gorman (flickr: pchgorman)",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
@@ -150,7 +150,7 @@ var HINTS = {
       name : "Leiurus quinquestriatus",
       cname : "Deathstalker Scorpion",
       location : "Maryland, USA",
-      image : "images/hints/scorpion.jpg",
+      image : "images/info/scorpion.png",
       author : "Matt Reinbold (flickr: Furryscaly)",
       cright : "cc-by-sa",
       text : "Bats are a type of mammal."
@@ -161,7 +161,7 @@ var HINTS = {
       name : "Carcharhinus amblyrhynchos",
       cname : "Grey reef shark",
       location : "",
-      image : "images/hints/shark.jpg",
+      image : "images/info/shark.png",
       author : "Fbattail (Wikimedia Commons)",
       cright : "cc-by-sa",
       text : "Bats are a type of mammal."
@@ -173,7 +173,7 @@ var HINTS = {
       name : "Phidippus mystaceus",
       cname : "Jumping Spider",
       location : "Oklahoma, USA",
-      image : "images/hints/spider.jpg",
+      image : "images/info/spider.png",
       author : "Thomas Shahan",
       cright : "cc-by",
       text : "Bats are a type of mammal."
@@ -184,7 +184,7 @@ var HINTS = {
       name : "",
       cname : "Tyranosaurus Rex",
       location : "Field Museum of Natural History, Chicago, Illinois",
-      image : "images/hints/trex.jpg",
+      image : "images/info/trex.png",
       author : "",
       cright : "cc-blank", 
       text : "Bats are a type of mammal."
@@ -257,7 +257,7 @@ function Hint() {
    }
 
    this.hideHint = function() {
-      var d = document.getElementById("dialog-hint");
+      var d = document.getElementById("hint-image");
       d.style.visibility = "hidden";
    }
    
@@ -265,6 +265,7 @@ function Hint() {
       if (taxon && taxon.getTag()) {
          var h = HINTS[taxon.getTag()];
 
+         /*
          var name = document.getElementById("hint-name");
          var cname = document.getElementById("hint-cname");
          var location = document.getElementById("hint-location");
@@ -303,21 +304,17 @@ function Hint() {
             html += "<li>" + traits[i] + "</li>";
          }
          if (tlist) tlist.innerHTML = html;
+         */
          
-         var d = document.getElementById("dialog-hint");
+         var d = document.getElementById("hint-image");
          if (d) {
-            var w = canvas.width;
-            d.style.left = w/2 - 330 + "px";
+            //var w = canvas.width;
+            //d.style.left = w/2 - 330 + "px";
             //d.style.marginLeft = Math.round(w/2);
             
             // open the hint when the image has loaded
-            if (img.complete) {
-               d.style.visibility = "visible";
-            } else {
-               img.onload = function() {
-                  d.style.visibility = "visible";
-               }
-            }
+            d.src = h.image;
+            d.style.visibility = "visible";
          }
          
       }
