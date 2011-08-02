@@ -53,7 +53,6 @@ footer {
    margin-left: auto;
    margin-right: auto;
    background-color: #fe6; 
-   /* background-color: #FFAA33; */
    font-family: verdana, helvetica, sans-serif;
    font-size: 18px;
    text-align: center;
@@ -67,7 +66,6 @@ footer {
 
 .dialog-content {
    background-color: #ffee66;
-   /* background-color: white; */
    padding: 15px;
    border: 1px solid #333;
    -moz-box-shadow: inset 0px 0px 5px #666;
@@ -192,4 +190,30 @@ a.button:active { color: red; }
    border: 1px #333 solid;
    margin: 20px 20px 0px 10px;
    padding: 10px;
+}
+
+.key-form {
+   padding: 100px;
+   margin-top: 100px;
+   margin-left: auto;
+   margin-right: auto;
+   width: 500px;
+   text-align: center;
+   font-family: sans-serif;
+   font-size: 16px;
+   color: white;
+}
+
+.key-form input[type='text'] {
+   height: 23px;
+   width: 150px;
+   font-size: 14px;
+   -webkit-user-select: auto;
+}
+
+.key-form input[type='submit'] {
+   height: 23px;
+   width: 50px;
+   font-size: 14px;
+   display: inline;
 }
