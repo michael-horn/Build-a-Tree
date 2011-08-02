@@ -20,11 +20,13 @@
    <script src="touch.js"></script>
    <script src="hint.js"></script>
    <script src="solution.js"></script>
+   <script src="logging.js"></script>
    <script src="main.js"></script>
 </head>
 <body onload="startup();">
    <img src="images/title-small.png" style="position: absolute" />
-   <img src="images/restart.png" style="position: absolute; right: 14px; top: 38px;" onclick="restart();"/>
+   <img src="images/back.png" style="position: absolute; right: 18px; top: 38px;" onclick="log('press', 'Restart Button'); restart();"/>
+   <img src="images/levels.png" style="position: absolute; right: 18px; top: 95px;" onclick="log('press', 'Levels Button'); restart();"/>
    <img id="hint-image" src="images/info/lizard.png" style="position: absolute; right: 90px; bottom: 95px; visibility: hidden;" />
    
    <!-- LEVEL CLEARED -->
@@ -44,9 +46,10 @@
          </table>
 
       <br>
-         <a href="#" onclick="return false;"><img src="images/levels.png" width="53" height="53" /></a>
-         <a href="#" onclick="hideSolution(); return false;"><img src="images/back.png" width="53" height="53" /></a>
-         <a href="#" onclick="return nextLevel();"><img src="images/next.png" width="53" height="53" href="#" onclick="return nextLevel();" /></a>
+         <img src="images/close.png" width="53" height="53" onclick="log('press', 'Close Button'); hideSolution();" /></a>
+         <img src="images/levels.png" width="53" height="53" onclick="log('press', 'Levels Button'); restart();" />
+         <img src="images/back.png" width="53" height="53" onclick="log('press', 'Restart Button'); restart();" /></a>
+         <img src="images/next.png" width="53" height="53" href="#" onclick="log('press', 'Next Level'); return nextLevel();" />
    </div>      
    
    <canvas id="world"></canvas>
