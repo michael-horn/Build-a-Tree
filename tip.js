@@ -93,6 +93,9 @@ function Tip(id) {
       return false;
    }
    
+   this.getTreeString = function() { return this.getName(); }
+   
+   
 //----------------------------------------------------------------------
 // Draws the name of the tip
 //----------------------------------------------------------------------
