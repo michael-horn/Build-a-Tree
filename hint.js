@@ -198,6 +198,7 @@ function Hint() {
    this.image = document.createElement("img");
    this.image.src = "images/hint.png";
    this.down = false;
+   this.current = null;
 
    this.getCenterX = function() {
       return canvas.width - 45;
@@ -259,10 +260,13 @@ function Hint() {
    this.hideHint = function() {
       var d = document.getElementById("hint-image");
       d.style.visibility = "hidden";
+      this.current = null;
+      log("hide", "Hint");
    }
    
    this.showHint = function(taxon) {
-      if (taxon && taxon.getTag()) {
+      if (taxon && this.current != taxon && taxon.getTag()) {
+         this.current = taxon;
          var h = HINTS[taxon.getTag()];
 
          /*
@@ -316,7 +320,7 @@ function Hint() {
             d.src = h.image;
             d.style.visibility = "visible";
          }
-         
+         log("show", "Hint " + taxon.getTreeString());  
       }
    }
    
