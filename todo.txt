@@ -3,20 +3,13 @@
 * Logging
 * Participant key screen
 
-1. Multiple hint boxes
-3. Hints as images not <div> tags
-4. Show hint trait checklists a la Simbio
-* Descriptive hints as well as trait list
 
 
-6. up/down tree highlights
 * iPod rotate broken
 * Sound effects
-* White circles at common ancestors?
 
 TIDAL Lab Logo
 NSF Logo
-Life on Earth Logo?
 
 Don't repaint for zero movement (animate should return a value)
 
@@ -25,10 +18,10 @@ subclades, even if the union is not correct.
 
 Add "did you know" boxes on certain surprising joins.
 
-Use Berkeley trees and character traits
-
 Highlight attachment points for unjoined tips.
 
 Use training tree highlighting
    * touch two to see the divergence points
-   * touch trait to see all that share 
+   * touch trait to see all that share
+   
+   
