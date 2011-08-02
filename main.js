@@ -36,6 +36,7 @@ var ORANGE_DOCK = document.createElement("img");
 
 
 function startup() {
+   initLogDatabase();
    canvas = document.getElementById("world");
    context = canvas.getContext('2d');
    canvas.width = window.innerWidth;
@@ -61,6 +62,7 @@ function startup() {
 
 
 function resetMasterTimer() {
+// UNCOMMENT to activate restart timer
 //   clearTimeout(restart_timer);
 //   restart_timer = setTimeout( masterRestart, 25000 );   
 }
@@ -76,6 +78,9 @@ function restart() {
    var l = getCurrentLevel();
    
    var level = LEVELS[l];
+   
+   log("start", level.name);
+   hideSolution();
    
    tree.clear();
    solution.clear();
@@ -235,6 +240,7 @@ function buildTree() {
    if (overlap) {
       var clade = tree.constructTree(overlap);
       if (clade) {
+         log("connect", clade.getTreeString());
          addTouchable(clade);
          tree.validateTree(solution);
          if (clade.isCorrect()) {
