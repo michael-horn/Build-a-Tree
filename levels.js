@@ -128,9 +128,18 @@ function prevLevel() {
    return false;
 }
 
+function gotoLevel(level) {
+   var l = getMaxLevel();
+   if (level <= l + 1) {
+      window.location = "game.html?level=" + level;
+   }
+   return false;
+}
+
 
 function advanceLevel() {
    var l = getCurrentLevel();
+   setMaxLevel(l + 1);
    var level = LEVELS[l];
    
    // draw the solution tree
@@ -167,6 +176,45 @@ function hideSolution() {
    d.style.visibility = "hidden";
 }
 
+function hideLevels() {
+   var d = document.getElementById("dialog-levels");
+   if (d) d.style.visibility = "hidden";
+}
+
+function showLevels() {
+   var d = document.getElementById("dialog-levels");
+   if (d) {
+      adjustLevelStars();
+      w = canvas.width;
+      d.style.left = w/2 - 182 + "px";
+      d.style.visibility = "visible";
+   }
+}
+
+
+function adjustLevelStars() {
+   var l = getMaxLevel();
+   console.log(l);   
+   for (var i=1; i<=LEVELS.length; i++) {
+      var line = document.getElementById("levels-line-" + i);
+      if (line) {
+         var stars = line.getElementsByTagName("img");
+         for (var j=0; j<stars.length; j++) {
+            if (i <= l) {
+               stars[j].src = "images/star.png";
+            } else {
+               stars[j].src = "images/star_blank.png";
+            }
+         }
+         
+         var a = line.getElementsByTagName("a");
+         if (a && a.length > 0) {
+            a[0].className = (i <= l+1) ? "enabled" : "disabled";
+         }
+      }
+   }
+}
+
 
 function getCurrentLevel() {
    var s = gup("level");
@@ -174,6 +222,28 @@ function getCurrentLevel() {
       return Math.floor(s) - 1;
    } else {
       return 0;
+   }
+}
+
+function getMaxLevel() {
+   if (supportsSessionStorage()) {
+      return Math.floor(sessionStorage.getItem("max-level"));
+   } else {
+      return getCurrentLevel();
+   }
+}
+
+function setMaxLevel(l) {
+   if (supportsSessionStorage()) {
+      if (l > getMaxLevel()) {
+         sessionStorage.setItem("max-level", l);
+      }
+   }
+}
+
+function resetMaxLevel() {
+   if (supportsSessionStorage()) {
+      sessionStorage.setItem("max-level", 0); 
    }
 }
 
