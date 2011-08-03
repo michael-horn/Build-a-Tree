@@ -26,14 +26,86 @@
 <body onload="startup();">
    <img src="images/title-small.png" style="position: absolute" />
    <img src="images/back.png" style="position: absolute; right: 18px; top: 38px;" onclick="log('press', 'Restart Button'); restart();"/>
-   <img src="images/levels.png" style="position: absolute; right: 18px; top: 95px;" onclick="log('press', 'Levels Button'); restart();"/>
+   <img src="images/levels.png" style="position: absolute; right: 18px; top: 95px;" onclick="log('press', 'Levels Button'); showLevels();" />
    <img id="hint-image" src="images/info/lizard.png" style="position: absolute; right: 90px; bottom: 95px; visibility: hidden;" />
+   
+   <!-- LEVEL SELECTOR -->
+   <div id="dialog-levels">
+      <img src="images/title-small.png" />
+      <table>
+      <tr id="levels-line-1">
+         <td><a href="#" onclick="return gotoLevel(1);">Level 1</a></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td colspan="6"></td>
+      </tr>
+      <tr id="levels-line-2">
+         <td><a href="#" onclick="return gotoLevel(2);">Level 2</a></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td colspan="6"></td>
+      </tr>
+      <tr id="levels-line-3">
+         <td><a href="#" onclick="return gotoLevel(3);">Level 3</a></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td colspan="6"></td>
+      </tr>
+      <tr id="levels-line-4">
+         <td><a href="#" onclick="return gotoLevel(4);">Level 4</a></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td colspan="6"></td>
+      </tr>
+      <tr id="levels-line-5">
+         <td><a href="#" onclick="return gotoLevel(5);">Level 5</a></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td colspan="3"></td>
+      </tr>
+      <tr id="levels-line-6">
+         <td><a href="#" onclick="return gotoLevel(6);">Level 6</a></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td colspan="3"></td>
+      </tr>
+      <tr id="levels-line-7">
+         <td><a href="#" onclick="return gotoLevel(7);">Level 7</a></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+      </tr>
+      </table>
+      <br />
+         <a href="index.html">Start Over</a><br />
+         <a href="credits.html">Credits</a><br />
+      <img src="images/close.png" onclick="log('press', 'Close Button'); hideLevels();" />
+   </div>
+   
    
    <!-- LEVEL CLEARED -->
    <div id="dialog-solution">
       <div id="level-name">Level Cleared!</div>
 
-         Does your tree show the same relationships as the scientists tree? <br>
+         <h2>Does your tree show the same relationships<br /> as the scientists tree? </h2>
          <table>
             <tr>
                <td><canvas id="science-tree" width="200" height="150"></canvas></td>
@@ -47,7 +119,7 @@
 
       <br>
          <img src="images/close.png" width="53" height="53" onclick="log('press', 'Close Button'); hideSolution();" /></a>
-         <img src="images/levels.png" width="53" height="53" onclick="log('press', 'Levels Button'); restart();" />
+         <img src="images/levels.png" width="53" height="53" onclick="log('press', 'Levels Button'); hideSolution(); showLevels();" />
          <img src="images/back.png" width="53" height="53" onclick="log('press', 'Restart Button'); restart();" /></a>
          <img src="images/next.png" width="53" height="53" href="#" onclick="log('press', 'Next Level'); return nextLevel();" />
    </div>      
