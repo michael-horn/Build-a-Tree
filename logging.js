@@ -84,7 +84,7 @@ function getUserKey() {
    if (user && user.length > 0) {
       return user;
    } else {
-      return "??";
+      return "00";
    }
 }
 
