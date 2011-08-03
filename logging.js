@@ -55,7 +55,7 @@ function log(action, target) {
       log_db.transaction(function (tx) {
          tx.executeSql("INSERT INTO plog (user, timestamp, action, target) " +
                     "VALUES (" +
-                    "'" + getUser() + "', " +
+                    "'" + getUserKey() + "', " +
                     "'" + getTimestamp() + "', " +
                     "'" + action + "', " +
                     "'" + target + "')");
@@ -64,7 +64,19 @@ function log(action, target) {
 }
 
 
-function getUser() {
+function getMaxUserKey(callback) {
+   if (log_db) {
+      log_db.transaction(function (tx) {
+         tx.executeSql("SELECT MAX(user) as 'user' FROM plog;", [],
+                     callback, null);
+      });
+   }
+                     console.log(_max_user);
+   return Math.floor(_max_user);
+}
+
+
+function getUserKey() {
    var user = null;
    if (supportsSessionStorage()) {
       user = sessionStorage.getItem("pkey");
