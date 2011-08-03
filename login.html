@@ -5,22 +5,63 @@
    <title>Build-a-Tree Login</title>
    <link rel="stylesheet" href="default.css" />
    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+   <script src="logging.js"></script>
+   
    <script type="text/javascript">
+   
+   initLogDatabase();
+   
+   function initKey() {
+      var e = document.getElementById("key");
+      if (e) {
+         getMaxUserKey(
+            function(tx, result) {
+               for (var i=0; i<result.rows.length; i++) {
+                  var key = result.rows.item(i)['user'];
+                  e.value = Math.floor(key) + 1;
+                  break;
+               }
+            });
+      }
+   }
+   
+   
    function login() {
       var pkey = document.getElementById("key").value;
       sessionStorage.setItem("pkey", pkey);
       return true;
    }
+
+   
+   function incrKey() {
+      var e = document.getElementById("key");
+      if (e) {
+         e.value = Math.floor(e.value) + 1;
+      }
+   }
+   
+   
+   function decrKey() {
+      var e = document.getElementById("key");
+      if (e) {
+         e.value = Math.floor(e.value) - 1;
+      }
+   }
    </script>
 </head>
 
-<body>
+<body onload="initKey();">
 
 <div class="key-form">
 <form action="index.html" method="get" onsubmit="return login();">
    Participant Key: 
-   <input type="text" name="key" id="key" contenteditable="true">
-   <input type="submit" value="Go" >
+   <input type="text" name="key" id="key" value="100" contenteditable="true">
+      <br>
+      <br>
+      <br>
+   <img src="images/plus.png" onclick="incrKey();">
+   <img src="images/minus.png" onclick="decrKey();">
+   <input type="image" src="images/next.png">
 </form>
 </div>
 
