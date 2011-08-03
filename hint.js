@@ -268,59 +268,16 @@ function Hint() {
       if (taxon && this.current != taxon && taxon.getTag()) {
          this.current = taxon;
          var h = HINTS[taxon.getTag()];
-
-         /*
-         var name = document.getElementById("hint-name");
-         var cname = document.getElementById("hint-cname");
-         var location = document.getElementById("hint-location");
-         var author = document.getElementById("hint-author");
-         var img = document.getElementById("hint-image");
-         var text = document.getElementById("hint-text");
-         var cright = document.getElementById("cc-image");
-         var tlist = document.getElementById("trait-list");
-         
-         if (name) name.innerHTML = h.name;
-         if (cname) cname.innerHTML = h.cname;
-         //if (text) text.innerHTML = h.text;
-         if (img) img.src = h.image;
-         
-         if (cright) cright.src = "images/" + h.cright + ".png";
-
-         if (location) {
-            if (h.location.length > 0) {
-               location.innerHTML = " &#151; " + h.location;
-            } else {
-               location.innerHTML = "";
-            }
-         }
-         if (author) {
-            if (h.author.length > 0) {
-               author.innerHTML = "Photo by " + h.author;
-            } else {
-               author.innerHTML = "";
-            }
-         }
-         
-         // List of traits
-         var traits = this.getTraits(taxon);
-         var html = "";
-         for (var i=0; i<traits.length; i++) {
-            html += "<li>" + traits[i] + "</li>";
-         }
-         if (tlist) tlist.innerHTML = html;
-         */
-         
          var d = document.getElementById("hint-image");
          if (d) {
-            //var w = canvas.width;
-            //d.style.left = w/2 - 330 + "px";
-            //d.style.marginLeft = Math.round(w/2);
-            
-            // open the hint when the image has loaded
+            var w = canvas.width;
+            var l = w/2 - 537/2;
+            d.style.left = l + "px";
             d.src = h.image;
             d.style.visibility = "visible";
          }
          log("show", "Hint " + taxon.getTreeString());  
+
       }
    }
    
