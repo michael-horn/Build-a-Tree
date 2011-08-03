@@ -1,11 +1,7 @@
+* surface friendly participant ID
 
-* Button to go back to prior levels
-* Logging
-* Participant key screen
+* iPod testing
 
-
-
-* iPod rotate broken
 * Sound effects
 
 TIDAL Lab Logo
