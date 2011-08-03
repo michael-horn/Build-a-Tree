@@ -5,6 +5,7 @@
    <title>Build-a-Tree Login</title>
    <link rel="stylesheet" href="default.css" />
    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+   <script src="touch.js"></script>
    <script src="logging.js"></script>
    
    <script type="text/javascript">
@@ -50,7 +51,7 @@
    </script>
 </head>
 
-<body onload="initKey();">
+<body onload="defineEventHandlers(null); initKey();">
 
 <div class="key-form">
 <form action="index.html" method="get" onsubmit="return login();">
