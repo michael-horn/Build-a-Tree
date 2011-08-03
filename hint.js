@@ -135,8 +135,8 @@ var HINTS = {
    // http://www.flickr.com/photos/52421717@N00/4719233894/
    plant :
    {
-      name : "Lepodoptera",
-      cname : "Butterfly Milkweed",
+      name : "Echinacea pallida",
+      cname : "Pale Purple Coneflower",
       location : "Wisconsin, USA",
       image : "images/info/plant.png",
       author : "Peter Gorman (flickr: pchgorman)",
