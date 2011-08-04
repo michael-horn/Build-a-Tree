@@ -195,10 +195,8 @@ function touchDrag(evt) {
 // Microsoft Surface Touch Interface
 //-----------------------------------------------------------------
 var pframe = null;
-var touchMouse = null;
 
 function processTouches(data) {
-   
    var frame = eval("(" + data + ")" );
    if (!frame || !frame.touches) return;
    
@@ -210,10 +208,6 @@ function processTouches(data) {
    for (var i=0; i<frame.touches.length; i++) {
       var t = frame.touches[i];
       
-      if (touchMouse == null || touchMouse.identifier == t.identifier) {
-         touchMouse = t;   
-      }
-
       if (t.down) {
          changed.push(t);
          down = true;
@@ -225,13 +219,10 @@ function processTouches(data) {
       else if (t.up) {
          changed.push(t);
          up = true;
+         sendEvent("click", t);
       }
    }
    frame.changedTouches = changed;
-   
-   if (frame.touches.length == 0) {
-      touchMouse = null;
-   }
    
    if (down) touchDown(frame);
 
@@ -239,28 +230,19 @@ function processTouches(data) {
    
    if (up) touchUp(frame);
    
-   if (touchMouse) {
-      if (touchMouse.drag) {
-         sendEvent("mousemove");
-      } else if (touchMouse.down) {
-         sendEvent("mousedown");
-      } else if (touchMouse.up) {
-         sendEvent("mouseup");
-         sendEvent("click");
-      }
-   }
-   
    pframe = frame;
 }
 
 
-function sendEvent(ename) {
-   var tx = touchMouse.pageX;
-   var ty = touchMouse.pageY;
-   var evt = document.createEvent("MouseEvents");
-   evt.initMouseEvent(ename, true, true, window, tx, ty, tx, ty, false, false, false, false, 0, null);
-   var el = document.elementFromPoint(tx, ty);
-   if (el) {
-      el.dispatchEvent(evt);
+function sendEvent(ename, touchMouse) {
+   if (touchMouse.finger) {
+      var tx = touchMouse.pageX;
+      var ty = touchMouse.pageY;
+      var evt = document.createEvent("MouseEvents");
+      evt.initMouseEvent(ename, true, true, window, tx, ty, tx, ty, false, false, false, false, 0, null);
+      var el = document.elementFromPoint(tx, ty);
+      if (el) {
+         el.dispatchEvent(evt);
+      }
    }
 }
