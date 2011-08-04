@@ -608,7 +608,7 @@ function Tree() {
 
       this.button.action = function() {
          log("press", "Advance Level Button");
-         setTimeout(function() { advanceLevel(); }, 500);
+         setTimeout(function() { showSolution(); }, 500);
       }
       
       this.button.draw = function(g) {
@@ -646,7 +646,7 @@ function Tree() {
 
       this.button.action = function() {
          log("press", "Question Button");
-         setTimeout(function() { showSolution(); }, 500);
+         setTimeout(function() { showSolutionBox(); }, 500);
       }
       
       this.button.draw = function(g) {
