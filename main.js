@@ -20,10 +20,6 @@ var solution_box;
 var preview;
 var hint;
 
-// Master restart event timer
-var restart_timer;
-
-
 var visuals = [];  // array of non-touchable visible objects to draw
 
 var GREEN = "#33CC33";
@@ -58,17 +54,6 @@ function startup() {
    setInterval(tick, 30);
    defineEventHandlers(canvas);
    resetMasterTimer();
-}
-
-
-function resetMasterTimer() {
-// UNCOMMENT to activate restart timer
-//   clearTimeout(restart_timer);
-//   restart_timer = setTimeout( masterRestart, 25000 );   
-}
-
-function masterRestart() {
-   window.location = "index.html";
 }
 
 
