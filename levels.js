@@ -136,8 +136,23 @@ function gotoLevel(level) {
    return false;
 }
 
+function showDYK() {
+   var d = document.getElementById("dialog-dyk");
+   if (d) {
+      var w = canvas.width;
+      d.style.left = w/2 - 282 + "px";
+      d.style.visibility = "visible";
+   }
+}
 
-function advanceLevel() {
+function hideDYK() {
+   var d = document.getElementById("dialog-dyk");
+   if (d) {
+      d.style.visibility = "hidden";
+   }
+}
+
+function showSolution() {
    var l = getCurrentLevel();
    setMaxLevel(l + 1);
    var level = LEVELS[l];
@@ -165,7 +180,7 @@ function advanceLevel() {
    var d = document.getElementById("dialog-solution");
    if (d) {
       w = canvas.width;
-      d.style.left = w/2 - 300 + "px";
+      d.style.left = w/2 - 312 + "px";
       d.style.visibility = "visible";
    }
 }
