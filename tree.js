@@ -379,7 +379,7 @@ function Tree() {
       
       for (var i=0; i<this.tips.length; i++) {
          var a = this.tips[i];
-         if (a.isAncestorDragging()) {       
+         if (a.isAncestorDragging() || a.hasToken()) {       
             for (var j=0; j<this.tips.length; j++) {
                var b = this.tips[j];
                if (a.overlaps(b)) {
