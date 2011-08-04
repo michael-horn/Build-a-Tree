@@ -327,7 +327,7 @@ function removeVisual(visual) {
    }
 }
 
-function showSolution() {
+function showSolutionBox() {
    solution_box.openBox();
 }
 
