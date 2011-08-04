@@ -44,57 +44,6 @@ footer {
    margin-right: 50px;
 }
 
-.dialog {
-   padding: 0px 20px 20px 20px;
-   border: 2px solid #333;
-   width: 440px;
-   margin-top: 120px;
-   margin-left: auto;
-   margin-right: auto;
-   background-color: #fe6; 
-   font-family: verdana, helvetica, sans-serif;
-   font-size: 18px;
-   text-align: center;
-   color: #333;
-   -moz-box-shadow: 5px 5px 5px #333;
-   -webkit-box-shadow: 5px 5px 5px #333;
-   box-shadow: 5px 5px 5px #333;
-   -moz-border-radius: 10px;
-   border-radius: 10px;
-}
-
-.dialog-content {
-   background-color: #ffee66;
-   padding: 15px;
-   border: 1px solid #333;
-   -moz-box-shadow: inset 0px 0px 5px #666;
-   -webkit-box-shadow: inset 0px 0px 5px #666;
-   box-shadow: inset 0px 0px 5px #666;
-}
-
-.dialog h1 {
-   font-size: 22px;
-   color: #333;
-   text-shadow: 0px 1px 0px #999;
-}
-
-.button {
-   background-color: #39c;
-   border: 2px solid #333;
-   text-align: center;
-   padding: 5px 15px 5px 15px;
-   font-size: 18px;
-   font-weight: bold;
-   color: white;
-   border-radius: 10px;
-   text-decoration: none;
-   -moz-border-radius: 5px;
-   border-radius: 5px;
-}
-
-a.button:hover { color: #fc3; }
-a.button:active { color: red; }
-
 #level-name {
    background-color: white;
    border: 2px solid #333;
@@ -111,73 +60,32 @@ a.button:active { color: red; }
    border-radius: 15px;
 }
 
-#dialog-solution {
-   visibility: hidden;
+.dialog {
    position: absolute;
-   top: 80px;
-   left: 120px;
-   margin-top: 0px;
-   
-   padding: 0px 20px 10px 20px;
-   border: 2px solid #333;
-   margin-top: 120px;
-   background-color: #116699;
-   font-family: tahoma, arial, sans-serif;
-   font-size: 14px;
-   font-weight: normal;
-   text-align: center;
-   color: #fff;
-   -moz-box-shadow: 5px 5px 5px #333;
-   -webkit-box-shadow: 5px 5px 5px #333;
-   box-shadow: 5px 5px 5px #333;
-   -moz-border-radius: 20px;
-   border-radius: 20px;
-}
-
-#dialog-solution img {
-   margin-left: 10px;
-   margin-right: 10px;
-}
-
-#dialog-instructions {
-   visibility: visible;
-   padding: 0px 30px 20px 30px;
+   top: 120px;
+   left: 200px;
+   width: 560px;
+   padding: 20px 30px 20px 30px;
    border: 2px solid #333;
    background-color: #116699;
-   width: 400px;
-   margin-top: 120px;
-   margin-left: auto;
-   margin-right: auto;
    font-family: tahoma, arial, sans-serif;
-   font-size: 16px;
-   text-align: center;
+   font-size: 18px;
    color: white;
+   text-align: left;
+   text-shadow: 0px 0px 2px #005588;
    -moz-box-shadow: 5px 5px 5px #333;
    -webkit-box-shadow: 5px 5px 5px #333;
    box-shadow: 5px 5px 5px #333;
    -moz-border-radius: 20px;
    border-radius: 20px;
+   
 }
 
 #dialog-levels {
    visibility: hidden;
-   position: absolute;
-   padding: 20px 30px 20px 30px;
-   border: 2px solid #333;
-   background-color: #116699;
-   width: 300px;
-   top: 120px;
-   left: 200px;
-   font-family: tahoma, arial, sans-serif;
-   font-size: 16px;
    font-weight: bold;
+   width: 300px;
    text-align: center;
-   color: #333;
-   -moz-box-shadow: 5px 5px 5px #333;
-   -webkit-box-shadow: 5px 5px 5px #333;
-   box-shadow: 5px 5px 5px #333;
-   -moz-border-radius: 20px;
-   border-radius: 20px;
 }
 
 #dialog-levels td {
@@ -193,49 +101,45 @@ a.button:active { color: red; }
    color: #aaa;
 }
 
-.level-star {
-   width: 17px;
-   height: 17px;
+#dialog-dyk {
+   visibility: hidden;
+   width: 500px;
 }
 
-#dialog-levels li {
-   list-style: none;
-   text-align: left;
-   padding-top: 12px;
-   margin: 0px;
+#dialog-solution {
+   visibility: hidden;
 }
 
-#hint-cname   { font-weight: bold; }
-#hint-name    { font-style: italic; padding-left: 5px; }
-#hint-author  { font-size: 11px; font-weight: bold; }
-.copyright    { font-size: 11px; }
-.hint-list    { font-size: 18px; }
-#hint-text    { font-weight: bold; }
-
-.dialog .clade {
-   font-weight: bold;
-}
-
-.dialog button {
-   padding: 10px;
-   font-family: verdana, helvetica, sans-serif;
-   font-size: 20px;
+#dialog-solution td {
    text-align: center;
-   margin-top: 10px;
 }
 
 #science-tree {
    background-color: #5aadda;
    border: 1px #333 solid;
-   margin: 20px 10px 0px 20px;
+   margin-right: 5px;
    padding: 10px;
 }
 
 #your-tree {
    background-color: #5aadda;
    border: 1px #333 solid;
-   margin: 20px 20px 0px 10px;
+   margin-left: 5px;
    padding: 10px;
+}
+
+#dialog-instructions {
+   visibility: visible;
+   width: 400px;
+   position: static;
+   margin-top: 120px;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.level-star {
+   width: 17px;
+   height: 17px;
 }
 
 .key-form {
