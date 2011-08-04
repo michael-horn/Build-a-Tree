@@ -109,12 +109,20 @@ function Tip(id) {
    }
    
    this.draw = function(g) {
-      if (this.isHighlighted()) {
+      
+      if (this.hasToken() && !this.hasParent()) {
+         g.beginPath();
+         g.fillStyle = "rgba(255, 255, 255, 0.1)";
+         g.arc(this.cx, this.cy, this.w/2 + 4, 0, Math.PI * 2, true);
+         g.fill();
+         this.drawHighlight(g);
+      }
+      else if (this.isHighlighted()) {
          this.drawHighlight(g);
       }
       
       // Draw colored circle if not connected to the tree
-      if (!this.hasParent()) {
+      if (!this.hasParent() && !this.hasToken()) {
          g.fillStyle = this.color;
          g.beginPath();
          g.arc(this.cx, this.cy, this.w/2 - 1.5, 0, Math.PI*2, true);
@@ -122,10 +130,10 @@ function Tip(id) {
       }
       
       // Draw connecting line to parent
-      else {
+      else if (this.hasParent()) {
          var wl = this.getWaterline();
          var lt = 8;  // default line thickness
-         if (this.isDragging()) {
+         if (this.isDragging() || this.hasToken()) {
             lt = Math.max(8 - ((Math.abs(wl - this.getCenterY()) / 100) * 8), 1);
          }
          g.lineWidth = lt;
@@ -136,15 +144,14 @@ function Tip(id) {
          g.lineTo(this.getCenterX(), this.getParent().getCenterY());
          g.stroke();
       }
-
-      g.fillStyle = "white";
-      g.beginPath();
-      g.arc(this.cx, this.cy, this.w/2 - 12, 0, Math.PI * 2, true);
-      g.fill();
-
-      g.drawImage(this.image, this.cx - this.w/2, this.cy - this.w/2);
       
-      //this.drawCutButton(g);  // SCISSORS
+      if (!this.hasToken()) {
+         g.fillStyle = "white";
+         g.beginPath();
+         g.arc(this.cx, this.cy, this.w/2 - 12, 0, Math.PI * 2, true);
+         g.fill();
+         g.drawImage(this.image, this.cx - this.w/2, this.cy - this.w/2);
+      }
    }
 
    this.animate = function() {
@@ -152,12 +159,13 @@ function Tip(id) {
       this.velocity.vy += this.force.fy;
       this.velocity.vx *= 0.6;
       this.velocity.vy *= 0.6;
-      if (!this.getRoot().isPinned() && !this.isDragging()) {
+      
+      if (!this.getRoot().isPinned() && !this.isDragging() && !this.hasToken()) {
          this.cx += this.velocity.vx;
          this.cy += this.velocity.vy;
       }
 
-      else if (this.isDragging() && this.hasParent()) {
+      else if ((this.isDragging() || this.hasToken()) && this.hasParent()) {
          var p = this.getParent();
          var ty = this.getWaterline();
          if (Math.abs(this.cy - ty) > 100) {
