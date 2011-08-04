@@ -256,14 +256,14 @@ function draw() {
    
    // Current level
    g.font = "bold 20px Arial, sans-serif";
-   g.textAlign = "center";
+   g.textAlign = "right";
    g.textBaseline = "bottom";
    g.strokeStyle = "rgb(196, 72, 35)";
    g.fillStyle = "white"; //"#fc3";
    g.lineWidth = 2;
    g.beginPath();
-   g.strokeText(level.name, w - 46, 30);
-   g.fillText(level.name, w - 46, 30);
+   g.strokeText(level.name, w - 6, 30);
+   g.fillText(level.name, w - 6, 30);
    
    // Docks
    g.drawImage(GREEN_DOCK, 0, h/2 - 152, 87, 304);
