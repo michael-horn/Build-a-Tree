@@ -14,19 +14,20 @@
 <body onload="defineEventHandlers(null);">
    <img src="images/title-small.png" style="position: absolute" /> <br>
 
-   <div id="dialog-instructions">
-      <div id="level-name">Level 1</div>
-
+   <div id="dialog-instructions" class="dialog">
+      <img src="images/level1.png" /><br>
+         <p style="text-align: center;">
          Can you build a tree showing how
          Birds, Lizards, and Plants
          are related? <br><br>
          <img id="img-clade1" src="images/bird.png" />
          <img id="img-clade2" src="images/lizard.png" />
          <img id="img-clade3" src="images/plant.png" />
-   
-         <br clear="all"><br><br>
-         <img src="images/next.png" onclick="return startLevel();">
-         <br>
+         </p>
+         <div style="text-align: center">
+            <img src="images/back.png" onclick="window.location = 'index.html';" style="margin: 0 10px 0 10px;" />
+            <img src="images/next.png" onclick="startLevel();" style="margin: 0 10px 0 10px;" />
+         </div>
    </div>
 </body>
 </html>
