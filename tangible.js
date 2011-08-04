@@ -12,8 +12,6 @@
  * material are those of the author(s) and do not necessarily reflect the views
  * of the National Science Foundation (NSF).
  */
-var UI_STATE = "tangible";
-
 var TOKEN_IDS = {
    0x4B : "bat",
    0x0A : "bird",
@@ -30,17 +28,6 @@ var TOKEN_IDS = {
    0x2A : "spider",
    0x1A : "trex"
 };
-
-
-function isTangibleUI() {
-   return UI_STATE == "tangible";
-}
-
-function isTouchUI() {
-   return UI_STATE != "tangible";
-}
-
-var _prev_frame = [];
 
 function updateTokens() {
    frame = pframe;
