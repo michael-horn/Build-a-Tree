@@ -86,7 +86,7 @@ const LEVELS = [
 },
 
 {
-   name : "Level 7",
+   name : "Bonus Level 7",
    
    taxa : [
       { id : 0, parent_id : null, name : "Animals", depth : 5, tag : "animals", trait : null },
