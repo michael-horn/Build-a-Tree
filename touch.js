@@ -19,6 +19,20 @@ var touchables = [];
 // Maps user contact points to touchable objects
 var touch_bindings = [];
 
+// Master restart event timer
+var restart_timer;
+
+
+function resetMasterTimer() {
+// UNCOMMENT to activate restart timer
+//   clearTimeout(restart_timer);
+//   restart_timer = setTimeout( masterRestart, 25000 );   
+}
+
+function masterRestart() {
+   window.location = "index.html";
+}
+
 
 function addTouchable(t) {
    touchables.unshift(t);
@@ -195,7 +209,6 @@ function processTouches(data) {
    
    for (var i=0; i<frame.touches.length; i++) {
       var t = frame.touches[i];
-      
       
       if (touchMouse == null || touchMouse.identifier == t.identifier) {
          touchMouse = t;   
