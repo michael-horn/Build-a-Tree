@@ -115,11 +115,12 @@ function restart() {
    addTouchable(solution_box);
    
    var howto = new AnimatedText();
-   howto.setText("Drag circles together to form a tree...");
+   howto.setText(level.name); 
    howto.setDelay(1000);
    howto.setDuration(3000);
-   howto.setCenter(w/2, 300);
-   howto.setFontSize(20);
+   howto.setCenter(w/2, h/2);
+   howto.setFontSize(60);
+   howto.setFontWeight("bold");
    howto.setTextColor(255, 255, 255);
    howto.startFadeIn();
 
