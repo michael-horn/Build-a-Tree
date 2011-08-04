@@ -12,13 +12,6 @@
  * material are those of the author(s) and do not necessarily reflect the views
  * of the National Science Foundation (NSF).
  */
-/*
-var SO = document.createElement("img");
-var SC = document.createElement("img");
-SO.src = "images/scissors_open.png";
-SC.src = "images/scissors_closed.png";
-*/
-
 
 //===================================================================
 // Abstract node class
@@ -36,42 +29,11 @@ function Node(id) {
    this.dragging  = false;     // is being dragged on screen
    this.visible   = true;
    this.delta     = { x : 0, y : 0 };
-   // this.cutting   = false;     // is the node being cut off the tree? SCISSORS
    this.pinned    = false;     // node is pinned to the mat and can't move
    this.highlight = false;
+   this.token     = false;     // tangible token on table for this node?
    
    
-   //---------------------------------------------------
-   // set up the cut button  SCISSORS
-   //---------------------------------------------------
-   /*
-   var t = this;
-   this.cbutton = new Button(0, 0, 45, 24);
-   this.cbutton.setVisible(false);
-   
-   this.cbutton.action = function() {
-      t.hideCutButton();
-      t.cutting = true;
-      
-      // TODO Fixme Tip specific
-      setTimeout(function() {
-         tree.breakTree(t);
-         t.cutting = false;
-         if (t.isTip()) t.velocity.vy -= 30;
-      }, 250);
-   }
-   
-   this.cbutton.draw = function(g) {
-      if (this.visible) {
-         if (this.isDown() && this.isOver()) {
-            g.drawImage(SO, this.x + 10, this.y);
-         } else {
-            g.drawImage(SO, this.x, this.y);
-         }
-      }
-   }
-   */
-
    this.copyNode = function(node) {
       node.id        = this.id;
       node.name      = this.name;
@@ -242,6 +204,14 @@ function Node(id) {
       this.highlight = h;
    }
    
+   this.hasToken = function() {
+      return this.token;
+   }
+   
+   this.setToken = function(token) {
+      this.token = token;
+   }
+   
 //----------------------------------------------------------------------
 // Location of this node in relation to parent
 //----------------------------------------------------------------------
@@ -255,43 +225,6 @@ function Node(id) {
       }
    }
    
-
-   // SCISSORS
-   /*
-   this.drawCutButton = function(g) {   
-      if (this.cbutton.isVisible() && this.hasParent()) {
-         var x = this.cx - 35;
-         var y = this.getParent().getCenterY() - 32;
-         this.cbutton.setPosition(x, y);
-         this.cbutton.draw(g);
-      }
-      if (this.cutting && this.hasParent()) {
-         var x = this.cx - 18;
-         var y = this.getParent().getCenterY() - 32;
-         g.drawImage(SC, x, y);
-      }
-   }   
-   
-   this.showCutButton = function() {
-      if (!this.cbutton.isVisible() && this.hasParent()) {
-         this.cbutton.setVisible(true);
-         addTouchable(this.cbutton);
-      }
-   }
-   
-   this.hideCutButton = function() {
-      if (this.cbutton.isVisible()) {
-         if (this.cbutton.isDown()) {
-            var t = this;
-            setTimeout(function() { t.hideCutButton() }, 1000);
-         } else {
-            this.cbutton.setVisible(false);
-            removeTouchable(this.cbutton);
-         }
-      }
-   }
-   */
-
 
 //----------------------------------------------------------------------
 // VIRTUAL FUNCTIONS 
@@ -323,9 +256,12 @@ function Node(id) {
 //----------------------------------------------------------------------
 // TOUCH FUNCTIONS
 //----------------------------------------------------------------------
-   // var ctimer; SCISSORS
    
    this.containsTouch = function(tp) {
+      
+      // don't allow touch for tokens on the table
+      if (this.hasToken()) return false;
+      
       var x = this.getX();
       var y = this.getY();
       var w = this.w;
