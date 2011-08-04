@@ -1,7 +1,6 @@
-* surface friendly participant ID
-
 * iPod testing
 
+* Animated level # on start of new level
 * Sound effects
 
 TIDAL Lab Logo
@@ -19,5 +18,3 @@ Highlight attachment points for unjoined tips.
 Use training tree highlighting
    * touch two to see the divergence points
    * touch trait to see all that share
-   
-   
