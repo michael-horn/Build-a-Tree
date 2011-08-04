@@ -145,6 +145,7 @@ function moveToDock(clade, index) {
       off = -100;
    }
    clade.setDocked(true);
+   clade.dock_index = index;
    
    // PURPLE
    if (i == 0) {
@@ -191,6 +192,7 @@ function animate() {
    var h = hint.getHighlight();
    hint.setHighlight(false);
    tree.animate();
+   updateTokens();
    
    if (h && !hint.getHighlight()) {
       hint.hideHint();
