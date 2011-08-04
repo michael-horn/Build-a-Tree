@@ -71,8 +71,7 @@ function getMaxUserKey(callback) {
                      callback, null);
       });
    }
-                     console.log(_max_user);
-   return Math.floor(_max_user);
+   return 0;
 }
 
 
