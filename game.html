@@ -25,12 +25,14 @@
 </head>
 <body onload="startup();">
    <img src="images/title-small.png" style="position: absolute" />
-   <img src="images/back.png" style="position: absolute; right: 18px; top: 38px;" onclick="log('press', 'Restart Button'); restart();"/>
+   <img src="images/restart.png" style="position: absolute; right: 18px; top: 38px;" onclick="log('press', 'Restart Button'); restart();"/>
    <img src="images/levels.png" style="position: absolute; right: 18px; top: 95px;" onclick="log('press', 'Levels Button'); showLevels();" />
    <img id="hint-image" src="images/info/lizard.png" style="position: absolute; left: 200px; top: 150px; visibility: hidden;" />
+
+
    
    <!-- LEVEL SELECTOR -->
-   <div id="dialog-levels">
+   <div id="dialog-levels" class="dialog">
       <img src="images/title-small.png" />
       <table>
       <tr id="levels-line-1">
@@ -99,34 +101,59 @@
          <a href="credits.html">Credits</a><br />
       <img src="images/close.png" onclick="log('press', 'Close Button'); hideLevels();" />
    </div>
+
+
    
+   <!-- DID YOU KNOW -->
+   <div id="dialog-dyk" class="dialog">
+      <img src="images/dyk.png" /> <br>
+      <p>
+Plants and animals are both eukaryotes (<i>ew-KARR-ee-ohts</i>), which means that they
+are complex multicellular organism. Plants and animals diverged (evolved into
+two different forms of life) around 1,400 million years ago.
+      </p>
+      <p>
+Birds and lizards diverged much more recently&#151;around 277
+million years ago. This means that birds and lizards had an ancestor in common
+more recently than animals and plants.
+      </p>
+      <div style="text-align: center">
+         <img src="images/back.png" onclick="log('press', 'Back Button'); hideDYK(); showSolution();" style="margin: 0 10px 0 10px;" />
+         <img src="images/next.png" onclick="log('press', 'Next Button'); hideDYK(); nextLevel();" style="margin: 0 10px 0 10px;" />
+      </div>
+   </div>
+
+
    
    <!-- LEVEL CLEARED -->
-   <div id="dialog-solution">
-      <div id="level-name">Level Cleared!</div>
+   <div id="dialog-solution" class="dialog">
+      <img src="images/cleared.png" />
 
-         <h2>Does your tree show the same relationships<br /> as the scientists tree? </h2>
+         <h2>Does your tree show the same relationships as the scientist tree? </h2>
          <table>
             <tr>
-               <td><canvas id="science-tree" width="200" height="150"></canvas></td>
-               <td><canvas id="your-tree" width="200" height="150"></canvas></td>
+               <td><canvas id="science-tree" width="250" height="200"></canvas></td>
+               <td><canvas id="your-tree" width="250" height="200"></canvas></td>
             </tr>
             <tr>
                <td>Scientist Tree</td>
                <td>Your Tree</td>
             </tr>
          </table>
+         <br>
 
-      <br>
-         <img src="images/close.png" width="53" height="53" onclick="log('press', 'Close Button'); hideSolution();" /></a>
-         <img src="images/levels.png" width="53" height="53" onclick="log('press', 'Levels Button'); hideSolution(); showLevels();" />
-         <img src="images/back.png" width="53" height="53" onclick="log('press', 'Restart Button'); restart();" /></a>
-         <img src="images/next.png" width="53" height="53" href="#" onclick="log('press', 'Next Level'); return nextLevel();" />
-   </div>      
-   
+      <div style="text-align: center">
+         <img src="images/back.png" onclick="log('press', 'Back Button'); hideSolution();" style="margin: 0 10px 0 10px;" />
+         <img src="images/next.png" onclick="log('press', 'Next Button'); hideSolution(); showDYK();" style="margin: 0 10px 0 10px;" />
+      </div>
+   </div>
+
+
+
+   <!-- MAIN CANVAS -->   
    <canvas id="world"></canvas>
-   <audio src="sounds/swish.ogg" id="sound-chime"></audio>
-   <audio src="sounds/thip.ogg" id="sound-thip"></audio>
+   
+   
    
 </body>
 </html>
