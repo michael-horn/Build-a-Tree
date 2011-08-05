@@ -116,7 +116,7 @@ function restart() {
    
    var howto = new AnimatedText();
    howto.setText(level.name); 
-   howto.setDelay(1000);
+   howto.setDelay(500);
    howto.setDuration(3000);
    howto.setCenter(w/2, h/2);
    howto.setFontSize(60);
