@@ -78,7 +78,12 @@ footer {
    box-shadow: 5px 5px 5px #333;
    -moz-border-radius: 20px;
    border-radius: 20px;
-   
+}
+
+#dialog-help {
+   visibility: hidden;
+   width: 400px;
+   text-align: center;
 }
 
 #dialog-levels {
