@@ -140,13 +140,15 @@ function hideAllDialogs() {
    hideDialog("dialog-dyk");
    hideDialog("dialog-solution");
    hideDialog("dialog-levels");
+   hideDialog("dialog-instructions");
 }
 
 function showDialog(name, width) {
    hideAllDialogs();
    var d = document.getElementById(name);
    if (d) {
-      d.style.left = canvas.width/2 - width/2 + "px";
+      var w = window.innerWidth;
+      d.style.left = w/2 - width/2 + "px";
       d.style.visibility = "visible";
    }
 }
@@ -157,6 +159,14 @@ function showHelp() {
 
 function hideHelp() {
    hideDialog("dialog-help");
+}
+
+function showInstructions() {
+   showDialog("dialog-instructions", 464);
+}
+
+function hideInstructions() {
+   hideDialog("dialog-instructions");
 }
 
 function showDYK() {
