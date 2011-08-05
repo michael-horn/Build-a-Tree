@@ -1,7 +1,9 @@
+Add "did you know" boxes on certain surprising joins.
+
 * iPod testing
 
-* Animated level # on start of new level
 * Sound effects
+* New bird silhouette
 
 TIDAL Lab Logo
 NSF Logo
@@ -10,8 +12,6 @@ Don't repaint for zero movement (animate should return a value)
 
 Show "X and Y diverged n million years ago" messages on joins of any two correct
 subclades, even if the union is not correct.
-
-Add "did you know" boxes on certain surprising joins.
 
 Highlight attachment points for unjoined tips.
 
