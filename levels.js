@@ -1,3 +1,17 @@
+/*
+ * Build-a-Tree
+ * Life on Earth Project (http://sdr.seas.harvard.edu/content/life-earth)
+ *
+ * Michael S. Horn
+ * Northwestern University
+ * michael-horn@northwestern.edu
+ * Copyright 2011, Michael S. Horn
+ *
+ * This project was funded by the National Science Foundation (grant 1010889).
+ * Any opinions, findings and conclusions or recommendations expressed in this
+ * material are those of the author(s) and do not necessarily reflect the views
+ * of the National Science Foundation (NSF).
+ */
 
 // id, parent-id, name, depth, image,    
 const LEVELS = [
@@ -110,102 +124,83 @@ const LEVELS = [
 }
 ];
 
-function startLevel() {
-   var l = getCurrentLevel() + 1;
-   window.location = "game.html?level=" + l;
-   return false;
+
+//===================================================================
+// Dialog control functions
+//===================================================================
+
+function hideDialog(name) {
+   var d = document.getElementById(name);
+   if (d) d.style.visibility = "hidden";
 }
 
-function nextLevel() {
-   var l = getCurrentLevel() + 2;
-   window.location = "game.html?level=" + l;
-   return false;
+function hideAllDialogs() {
+   hideDialog("dialog-help");
+   hideDialog("dialog-dyk");
+   hideDialog("dialog-dyk");
+   hideDialog("dialog-solution");
+   hideDialog("dialog-levels");
 }
 
-function prevLevel() {
-   var l = Math.max(0, getCurrentLevel());
-   window.location = "game.html?level=" + l;
-   return false;
-}
-
-function gotoLevel(level) {
-   var l = getMaxLevel();
-   if (level <= l + 1) {
-      window.location = "game.html?level=" + level;
-   }
-   return false;
-}
-
-function showDYK() {
-   var d = document.getElementById("dialog-dyk");
+function showDialog(name, width) {
+   hideAllDialogs();
+   var d = document.getElementById(name);
    if (d) {
-      var w = canvas.width;
-      d.style.left = w/2 - 282 + "px";
+      d.style.left = canvas.width/2 - width/2 + "px";
       d.style.visibility = "visible";
    }
 }
 
+function showHelp() {
+   showDialog("dialog-help", 464);
+}
+
+function hideHelp() {
+   hideDialog("dialog-help");
+}
+
+function showDYK() {
+   showDialog("dialog-dyk", 564);
+}
+
 function hideDYK() {
-   var d = document.getElementById("dialog-dyk");
-   if (d) {
-      d.style.visibility = "hidden";
-   }
+   hideDialog("dialog-dyk");
+}
+
+function showLevels() {
+   adjustLevelStars();
+   showDialog("dialog-levels", 364);
+}
+
+function hideLevels() {
+   hideDialog("dialog-levels");
 }
 
 function showSolution() {
-   var l = getCurrentLevel();
-   setMaxLevel(l + 1);
-   var level = LEVELS[l];
+   setMaxLevel(getCurrentLevel() + 1);
    
    // draw the solution tree
    var c = document.getElementById("science-tree");
-   var w = c.width;
-   var h = c.height;
    var g = c.getContext('2d');
    g.fillStyle = "white";
    g.strokeStyle = "white";
-   solution.drawSmallTree(g, 0, 0, w, h);
+   solution.drawSmallTree(g, 0, 0, c.width, c.height);
    
    // draw the players' tree
    c = document.getElementById("your-tree");
-   w = c.width;
-   h = c.height;
    g = c.getContext('2d');
    g.fillStyle = "white";
    g.strokeStyle = "white";
    tree.layoutSmallTree();
-   tree.drawSmallTree(g, 0, 0, w, h);
+   tree.drawSmallTree(g, 0, 0, c.width, c.height);
 
    // show the dialog
-   var d = document.getElementById("dialog-solution");
-   if (d) {
-      w = canvas.width;
-      d.style.left = w/2 - 312 + "px";
-      d.style.visibility = "visible";
-   }
+   showDialog("dialog-solution", 624);
 }
-
 
 function hideSolution() {
-   var d = document.getElementById("dialog-solution");
-   d.style.visibility = "hidden";
+   hideDialog("dialog-solution");
 }
-
-function hideLevels() {
-   var d = document.getElementById("dialog-levels");
-   if (d) d.style.visibility = "hidden";
-}
-
-function showLevels() {
-   var d = document.getElementById("dialog-levels");
-   if (d) {
-      adjustLevelStars();
-      w = canvas.width;
-      d.style.left = w/2 - 182 + "px";
-      d.style.visibility = "visible";
-   }
-}
-
 
 function adjustLevelStars() {
    var l = getMaxLevel();
@@ -231,6 +226,10 @@ function adjustLevelStars() {
 }
 
 
+//===================================================================
+// Game Level Control Functions
+//===================================================================
+
 function getCurrentLevel() {
    var s = gup("level");
    if (s.length > 0) {
@@ -240,6 +239,21 @@ function getCurrentLevel() {
    }
 }
 
+
+function gotoLevel(level) {
+   var l = getMaxLevel();
+   if (level <= l + 1) {
+      window.location = "game.html?level=" + level;
+   }
+   return false;
+}
+
+
+function nextLevel() {
+   return gotoLevel(getCurrentLevel() + 2);
+}
+
+
 function getMaxLevel() {
    if (supportsSessionStorage()) {
       return Math.floor(sessionStorage.getItem("max-level"));
@@ -247,6 +261,7 @@ function getMaxLevel() {
       return getCurrentLevel();
    }
 }
+
 
 function setMaxLevel(l) {
    if (supportsSessionStorage()) {
@@ -256,11 +271,13 @@ function setMaxLevel(l) {
    }
 }
 
+
 function resetMaxLevel() {
    if (supportsSessionStorage()) {
       sessionStorage.setItem("max-level", 0); 
    }
 }
+
 
 function gup(name)
 {
