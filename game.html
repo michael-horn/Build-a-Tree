@@ -28,9 +28,17 @@
    <img src="images/title-small.png" style="position: absolute" />
    <img src="images/restart.png" style="position: absolute; right: 18px; top: 38px;" onclick="log('press', 'Restart Button'); restart();"/>
    <img src="images/levels.png" style="position: absolute; right: 18px; top: 95px;" onclick="log('press', 'Levels Button'); showLevels();" />
+   <img src="images/help.png" style="position: absolute; right: 18px; top: 152px;" onclick="log('press', 'Help Button'); showHelp();" />
    <img id="hint-image" src="images/info/lizard.png" style="position: absolute; left: 200px; top: 150px; visibility: hidden;" />
 
 
+   <!-- HELP DIALOG -->
+   <div id="dialog-help" class="dialog">
+      <img src="images/howtoplay.png"><br>
+      <img src="images/help/animation.gif" style="border: 2px solid white; margin: 10px 0 10px 0;"> <br>
+      <img src="images/close.png" onclick="log('press', 'Close Button'); hideHelp();" />
+   </div>
+   
    
    <!-- LEVEL SELECTOR -->
    <div id="dialog-levels" class="dialog">
