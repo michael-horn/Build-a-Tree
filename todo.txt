@@ -1,9 +1,9 @@
 Add "did you know" boxes on certain surprising joins.
+* New bird silhouette
 
 * iPod testing
 
 * Sound effects
-* New bird silhouette
 
 TIDAL Lab Logo
 NSF Logo
