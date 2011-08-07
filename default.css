@@ -93,6 +93,13 @@ footer {
    text-align: center;
 }
 
+#dialog-credits {
+   visibility: hidden;
+   width: 500px;
+   font-size: 14px;
+   font-weight: normal;
+}
+
 #dialog-levels td {
    padding-top: 12px;
 }
