@@ -146,7 +146,7 @@ function showDialog(name, width) {
    hideAllDialogs();
    var d = document.getElementById(name);
    if (d) {
-      d.style.left = canvas.width/2 - width/2 + "px";
+      d.style.left = window.innerWidth/2 - width/2 + "px";
       d.style.visibility = "visible";
    }
 }
@@ -157,6 +157,22 @@ function showHelp() {
 
 function hideHelp() {
    hideDialog("dialog-help");
+}
+
+function showCredits() {
+   showDialog("dialog-credits", 564);
+}
+
+function hideCredits() {
+   hideDialog("dialog-credits");
+}
+
+function showInstructions() {
+   showDialog("dialog-instructions", 464);
+}
+
+function hideInstructions() {
+   hideDialog("dialog-instructions");
 }
 
 function showDYK() {
