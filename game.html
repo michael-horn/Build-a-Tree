@@ -111,9 +111,7 @@
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
-         <td><img src="images/star.png" class="level-star" /></td>
-         <td><img src="images/star.png" class="level-star" /></td>
-         <td colspan="3"></td>
+         <td colspan="5"></td>
       </tr>
       <tr id="levels-line-6">
          <td><a href="#" onclick="return gotoLevel(6);">Level 6</a></td>
@@ -133,14 +131,24 @@
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
+         <td colspan="3"></td>
+      </tr>
+      <tr id="levels-line-8">
+         <td><a href="#" onclick="return gotoLevel(8);">Level 8</a></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
       </tr>
       </table>
       <br />
-         <a href="index.html">Start Over</a><br />
-         <a href="#" onclick="log('press', 'Credits'); showCredits();">Credits</a><br />
+         <a href="index.html">Start Over</a>
+         <a href="#" onclick="log('press', 'Credits'); showCredits();">Credits</a><br /><br />
       <img src="images/close.png" onclick="log('press', 'Close Button'); hideLevels();" />
    </div>
 
@@ -148,17 +156,8 @@
    
    <!-- DID YOU KNOW -->
    <div id="dialog-dyk" class="dialog">
-      <img src="images/dyk.png" /> <br>
-      <p>
-Plants and animals are both eukaryotes (<i>ew-KARR-ee-ohts</i>), which means that they
-are complex multicellular organism. Plants and animals diverged (evolved into
-two different forms of life) around 1,400 million years ago.
-      </p>
-      <p>
-Birds and lizards diverged much more recently&#151;around 277
-million years ago. This means that birds and lizards had an ancestor in common
-more recently than animals and plants.
-      </p>
+      <img src="images/dyk.png" />
+      <div id="dyk-text"></div>
       <div style="text-align: center">
          <img src="images/back.png" onclick="log('press', 'Back Button'); hideDYK(); showSolution();" style="margin: 0 10px 0 10px;" />
          <img src="images/next.png" onclick="log('press', 'Next Button'); hideDYK(); nextLevel();" style="margin: 0 10px 0 10px;" />
