@@ -80,7 +80,13 @@ footer {
    border-radius: 20px;
 }
 
-#dialog-help {
+#dialog-help1 {
+   visibility: hidden;
+   width: 400px;
+   text-align: center;
+}
+
+#dialog-help2 {
    visibility: hidden;
    width: 400px;
    text-align: center;

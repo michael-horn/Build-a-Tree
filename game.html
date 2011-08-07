@@ -28,15 +28,29 @@
    <img src="images/title-small.png" style="position: absolute" />
    <img src="images/restart.png" style="position: absolute; right: 18px; top: 38px;" onclick="log('press', 'Restart Button'); restart();"/>
    <img src="images/levels.png" style="position: absolute; right: 18px; top: 95px;" onclick="log('press', 'Levels Button'); showLevels();" />
-   <img src="images/help.png" style="position: absolute; right: 18px; top: 152px;" onclick="log('press', 'Help Button'); showHelp();" />
+   <img src="images/help.png" style="position: absolute; right: 18px; top: 152px;" onclick="log('press', 'Help Button'); showHelp(1);" />
    <img id="hint-image" src="images/info/lizard.png" style="position: absolute; left: 200px; top: 150px; visibility: hidden;" />
 
 
    <!-- HELP DIALOG -->
-   <div id="dialog-help" class="dialog">
+   <div id="dialog-help1" class="dialog">
       <img src="images/howtoplay.png"><br>
-      <img src="images/help/animation.gif" style="border: 2px solid white; margin: 10px 0 10px 0;"> <br>
-      <img src="images/close.png" onclick="log('press', 'Close Button'); hideHelp();" />
+      <img src="images/help/animation1.gif" style="border: 2px solid white; margin: 10px 0 10px 0;"> <br>
+      <div style="text-align: center">
+         <img src="images/back.png" onclick="log('press', 'Back Button'); hideHelp();" style="margin: 0 10px 0 10px;" />
+         <img src="images/next.png" onclick="log('press', 'Next Button'); showHelp(2);" style="margin: 0 10px 0 10px;" />
+      </div>
+   </div>
+   
+   
+   <!-- HELP DIALOG -->
+   <div id="dialog-help2" class="dialog">
+      <img src="images/howtoplay.png"><br>
+      <img src="images/help/animation2.gif" style="border: 2px solid white; margin: 10px 0 10px 0;"> <br>
+      <div style="text-align: center">
+         <img src="images/back.png" onclick="log('press', 'Back Button'); showHelp(1);" style="margin: 0 10px 0 10px;" />
+         <img src="images/next.png" onclick="log('press', 'Next Button'); hideHelp();" style="margin: 0 10px 0 10px;" />
+      </div>
    </div>
    
    

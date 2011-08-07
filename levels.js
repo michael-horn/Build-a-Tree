@@ -180,11 +180,14 @@ function hideDialog(name) {
 }
 
 function hideAllDialogs() {
-   hideDialog("dialog-help");
+   hideDialog("dialog-help1");
+   hideDialog("dialog-help2");
    hideDialog("dialog-dyk");
    hideDialog("dialog-dyk");
    hideDialog("dialog-solution");
    hideDialog("dialog-levels");
+   hideDialog("dialog-credits");
+   hideDialog("dialog-instructions");
 }
 
 function showDialog(name, width) {
@@ -196,12 +199,13 @@ function showDialog(name, width) {
    }
 }
 
-function showHelp() {
-   showDialog("dialog-help", 464);
+function showHelp(n) {
+   showDialog("dialog-help" + n, 464);
 }
 
 function hideHelp() {
-   hideDialog("dialog-help");
+   hideDialog("dialog-help1");
+   hideDialog("dialog-help2");
 }
 
 function showCredits() {
