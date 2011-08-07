@@ -220,7 +220,6 @@ function hideSolution() {
 
 function adjustLevelStars() {
    var l = getMaxLevel();
-   console.log(l);   
    for (var i=1; i<=LEVELS.length; i++) {
       var line = document.getElementById("levels-line-" + i);
       if (line) {
