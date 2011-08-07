@@ -27,6 +27,7 @@
          <include name="*.html" />
          <include name="**/*.png" />
          <include name="**/*.jpg" />
+         <include name="**/*.gif" />
          <include name="*.manifest" />
          <include name="*.properties" />
          <include name="**/*.ogg" />
