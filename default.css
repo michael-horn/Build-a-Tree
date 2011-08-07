@@ -105,8 +105,7 @@ footer {
 }
 
 #dialog-levels a {
-   margin-right: 8px;
-   display: block;
+   margin: 10px;
 }
 
 #dialog-levels a.disabled {
