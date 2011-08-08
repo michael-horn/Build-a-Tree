@@ -350,7 +350,7 @@ function Clade(id) {
 // animate
 //----------------------------------------------------------------------
    this.animate = function() {
-      if (this.isDragging() && this.hasParent()) {
+      if (this.getRoot().isPinned() && this.hasParent()) {
          var p = this.getParent();
          var ty = this.getWaterline();
          if ((ty - this.cy) > 100) {
@@ -394,6 +394,7 @@ function Clade(id) {
    this.draw = function(g) {
       if (!this.hasChildren()) return;
       
+      var pinned = this.getRoot().isPinned();
       var x0 = -1;
       var x1 = -1;
       
@@ -415,7 +416,7 @@ function Clade(id) {
       if (this.hasParent()) {
          var wl = this.getWaterline();
          var lt = 8;  // default line thickness
-         if (this.isDragging() && wl > this.cy) {
+         if (pinned && wl > this.cy) {
             lt = Math.max(8 - (8 * (wl - this.cy) / 100), 1);
          }
          g.lineWidth = lt;
