@@ -20,7 +20,7 @@ const LEVELS = [
    
    taxa : [
       { id : 0, parent_id : null, name : "Eukaryotes", depth : 2, tag : "eukaryotes", trait : "complex cellular structure" },
-      { id : 1, parent_id : 0, name : "Animals", depth : 1, tag : "animals", trait : null },
+      { id : 1, parent_id : 0, name : "Animals", depth : 1, tag : "animals", trait : "free movement" },
       { id : 2, parent_id : 0, name : "Plants", depth : 0, tag : "plant" },
       { id : 3, parent_id : 1, name : "Birds", depth : 0, tag : "bird" },
       { id : 4, parent_id : 1, name : "Lizards", depth : 0, tag : "lizard" }
