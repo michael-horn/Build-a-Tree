@@ -202,6 +202,13 @@ function Tree() {
 //--------------------------------------------------------------
    this.draw = function(g) {
       
+      // layout tips
+      for (var i=0; i<tips.length; i++) {
+         var t = tips[i];
+         t.treeY = 0;
+         t.treeX = i / (tips.length - 1);
+      }
+      
       // layout the internal nodes
       for (var i=0; i<this.taxa.length; i++) {
          var clade = this.taxa[i];
@@ -317,16 +324,6 @@ function Tree() {
             var a, b, force;
             var tips = [];
             clade.getTips(tips);
-   
-            // gravity / waterline
-            /*
-            var waterline = (canvas.height / 2) - (65 * clade.getDepth() / 2);
-
-            for (var j=0; j<tips.length; j++) {
-               a = tips[j];
-               a.force.fy += (waterline - a.cy) * 0.1;
-            }
-            */
             
             // spring forces
             for (var j=0; j<tips.length - 1; j++) {
