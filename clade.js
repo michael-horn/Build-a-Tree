@@ -276,23 +276,6 @@ function Clade(id) {
    }
    
    
-//----------------------------------------------------------------------
-// Deterministic layout algorithm (not force-directed)
-//----------------------------------------------------------------------
-   this.layout = function(maxDepth) {
-      this.treeY = this.depth / maxDepth;
-      this.treeX = 0;
-      for (var i=0; i<this.children.length; i++) {
-         var child = this.children[i];
-         if (!child.isTip()) {
-            child.layout(maxDepth);
-         }
-         this.treeX += this.children[i].treeX;   
-      }
-      this.treeX /= this.children.length;
-   }
-
-
    this.invalidate = function() {   
       this.setCorrect(false);
       for (var i=0; i<this.children.length; i++) {
@@ -526,5 +509,22 @@ function Clade(id) {
          this.cx = x / count;
          this.cy = y + 65 * this.depth;
       }
+   }
+
+   
+//----------------------------------------------------------------------
+// Deterministic layout algorithm (not force-directed)
+//----------------------------------------------------------------------
+   this.layout = function(maxDepth) {
+      this.treeY = this.depth / maxDepth;
+      this.treeX = 0;
+      for (var i=0; i<this.children.length; i++) {
+         var child = this.children[i];
+         if (!child.isTip()) {
+            child.layout(maxDepth);
+         }
+         this.treeX += this.children[i].treeX;   
+      }
+      this.treeX /= this.children.length;
    }
 }
