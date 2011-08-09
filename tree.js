@@ -202,16 +202,22 @@ function Tree() {
 //--------------------------------------------------------------
    this.draw = function(g) {
       
-      // layout tips
-      for (var i=0; i<tips.length; i++) {
-         var t = tips[i];
-         t.treeY = 0;
-         t.treeX = i / (tips.length - 1);
-      }
+      var tips = [];
       
       // layout the internal nodes
       for (var i=0; i<this.taxa.length; i++) {
          var clade = this.taxa[i];
+         
+         if (clade.hasChildren()) {
+            
+            // layout tips for this root
+            tips = [];
+            clade.getTips(tips);
+            for (var j=0; j<tips.length; j++) {
+               tips[j].treeY = 0;
+               tips[j].treeX = j;
+            }
+         }
          if (clade.isRoot() && clade.hasChildren()) {
             clade.computePosition();
          }
