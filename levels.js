@@ -173,6 +173,14 @@ const LEVELS = [
 //===================================================================
 // Dialog control functions
 //===================================================================
+function isDialogOpen(name) {
+   var d = document.getElementById(name);
+   if (d) {
+      return d.style.visibility == "visible";
+   } else {
+      return false;
+   }
+}
 
 function hideDialog(name) {
    var d = document.getElementById(name);
@@ -206,6 +214,14 @@ function showHelp(n) {
 function hideHelp() {
    hideDialog("dialog-help1");
    hideDialog("dialog-help2");
+}
+
+function toggleHelp() {
+   if (isDialogOpen("dialog-help1") || isDialogOpen("dialog-help2")) {
+      hideHelp();
+   } else {
+      showHelp(1);
+   }
 }
 
 function showCredits() {
@@ -246,6 +262,14 @@ function showLevels() {
 
 function hideLevels() {
    hideDialog("dialog-levels");
+}
+
+function toggleLevels() {
+   if (isDialogOpen("dialog-levels")) {
+      hideLevels();
+   } else {
+      showLevels();
+   }
 }
 
 function showSolution() {
