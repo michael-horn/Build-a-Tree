@@ -319,3 +319,7 @@ function showSolutionBox() {
    solution_box.openBox();
 }
 
+function toggleSolutionBox() {
+   solution_box.toggleBox();
+}
+
