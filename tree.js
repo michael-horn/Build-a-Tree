@@ -638,6 +638,8 @@ function Tree() {
    this.createQuestionButton = function() {
       this.button = new Button(0, 0, 40, 40);
       this.button.visible = false;
+      this.button.firstpress = true;
+      
       addTouchable(this.button);
       var t = this;
       setTimeout(
@@ -646,7 +648,12 @@ function Tree() {
 
       this.button.action = function() {
          log("press", "Question Button");
-         setTimeout(function() { showSolutionBox(); }, 500);
+         if (this.firstpress) {
+            showSolutionBox();
+            this.firstpress = false;
+         } else {
+            toggleSolutionBox();
+         }
       }
       
       this.button.draw = function(g) {
