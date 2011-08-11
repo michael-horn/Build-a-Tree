@@ -409,6 +409,7 @@ function Clade(id) {
       
       g.lineCap = "round";
       g.strokeStyle = this.isCorrect()? "white" : "#6AB7DC";
+      g.fillStyle   = this.isCorrect()? "white" : "#6AB7DC";
 
       
       //--------------------------------
@@ -439,6 +440,15 @@ function Clade(id) {
       g.stroke();
 
 
+      //--------------------------------
+      // Handle for roots
+      //--------------------------------
+      if (this.isRoot() && this.isCorrect() && !tree.isComplete()) {
+         g.beginPath();
+         g.arc(this.getCenterX(), this.getCenterY() + 50, 11, 0, Math.PI * 2, true);
+         g.fill();
+      }
+      
       //--------------------------------
       // Oval around tips
       //--------------------------------
@@ -544,4 +554,30 @@ function Clade(id) {
       }
       this.treeX /= this.children.length;
    }
+
+   
+   this.containsTouch = function(tp) {
+      console.log("contains touch");
+      var x = this.getX();
+      var y = this.getY();
+      var w = this.w;
+      var h = this.w;
+      if (tp.x >= x && tp.y >= y && tp.x <= x + w && tp.y <= y + h) {
+         return true;
+      }
+      if (this.hasParent()) {
+         x = this.getCenterX() - 6;
+         y = this.getCenterY();
+         var py = this.parent.getCenterY();
+         return (tp.x >= x && tp.x <= x + 12 && tp.y >= y && tp.y <= py + 10);
+      }
+      else if (this.isCorrect() && !tree.isComplete()) {
+         x = this.getCenterX() - 20;
+         y = this.getCenterY() + 50 - 20;
+         return (tp.x >= x && tp.x <= x + 40 && tp.y >= y && tp.y <= y + 40);
+      }
+      return false;
+   }
+   
+   
 }
