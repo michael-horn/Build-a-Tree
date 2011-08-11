@@ -253,6 +253,9 @@ function Node(id) {
 
    this.getTreeString = function() { return ""; }
    
+   this.isDocked = function() { return false; }
+   
+   
 //----------------------------------------------------------------------
 // TOUCH FUNCTIONS
 //----------------------------------------------------------------------
@@ -281,8 +284,6 @@ function Node(id) {
    this.touchDown = function(tp) {
       this.dragging = true;
       this.delta = { x : tp.x - this.cx, y : tp.y - this.cy };
-      // clearTimeout(ctimer);
-      // this.showCutButton(); // SCISSORS
       this.getRoot().setPinned(true);
       log("drag", this.getTreeString());
    }
