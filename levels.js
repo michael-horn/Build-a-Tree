@@ -121,7 +121,7 @@ const LEVELS = [
    
    dyk : null
 },
-
+/*
 {
    name : "Level 7",
    
@@ -167,6 +167,7 @@ const LEVELS = [
    
    dky : null
 }
+*/
 ];
 
 
@@ -337,7 +338,10 @@ function getCurrentLevel() {
 
 function gotoLevel(level) {
    var l = getMaxLevel();
-   if (level <= l + 1) {
+   if (level - 1 >= LEVELS.length) {
+      window.location = "finish.html";
+   }
+   else if (level <= l + 1) {
       window.location = "game.html?level=" + level;
    }
    return false;
