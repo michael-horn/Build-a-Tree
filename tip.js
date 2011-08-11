@@ -81,7 +81,7 @@ function Tip(id) {
       var a = this;
       var b = taxon;
       if (a != b &&
-          a.isTip() && b.isTip() &&
+          (a.isTip() || b.isTip()) &&
           !a.isDocked() && !b.isDocked() &&
           a.getRoot() != b.getRoot()) {
          var dx = Math.abs(a.cx - b.cx);
