@@ -273,7 +273,7 @@ function Node(id) {
          x = this.getCenterX() - 6;
          y = this.getCenterY();
          var py = this.parent.getCenterY();
-         return (tp.x >= x && tp.x <= x + 12 && tp.y >= y && tp.y <= py - 10);
+         return (tp.x >= x && tp.x <= x + 12 && tp.y >= y && tp.y <= py + 10);
       }
       return false;
    }
