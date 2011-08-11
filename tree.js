@@ -381,15 +381,12 @@ function Tree() {
       
       for (var i=0; i<this.tips.length; i++) {
          var a = this.tips[i];
-         if (a.isAncestorDragging() || a.hasToken()) {       
-            for (var j=0; j<this.tips.length; j++) {
-               var b = this.tips[j];
+         if (a.isAncestorDragging() || a.hasToken()) {
+            
+            for (var j=0; j<this.taxa.length; j++) {
+               var b = this.taxa[j];
                if (a.overlaps(b)) {
-                  
-                  // this prevents reverse-order duplicates
-                  if (!b.isAncestorDragging() || j > i) {
-                     return { a : a, b : b };
-                  }
+                  return { a : a, b : b };
                }
             }
          }
