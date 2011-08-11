@@ -60,9 +60,7 @@ function startup() {
 function restart() {
    var w = canvas.width;
    var h = canvas.height;
-   var l = getCurrentLevel();
-   
-   var level = LEVELS[l];
+   var level = LEVELS[getCurrentLevel()];
    
    log("start", level.name);
    hideSolution();
@@ -249,8 +247,7 @@ function draw() {
    var w = canvas.width;
    var h = canvas.height;
    var r = 15;
-   var l = getCurrentLevel();
-   var level = LEVELS[l];
+   var level = LEVELS[getCurrentLevel()];
    
    g.clearRect(0, 0, w, h);
    
