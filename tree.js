@@ -214,8 +214,7 @@ function Tree() {
             tips = [];
             clade.getTips(tips);
             for (var j=0; j<tips.length; j++) {
-               tips[j].treeY = 0;
-               tips[j].treeX = j;
+               tips[j].treeIndexX = j;
             }
          }
          if (clade.isRoot() && clade.hasChildren()) {

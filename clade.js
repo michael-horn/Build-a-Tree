@@ -378,7 +378,7 @@ function Clade(id) {
       var c1 = this.getLastChild();
 
       // natural length of horizontal connecting line
-      var nl = Math.abs(c1.treeX - c0.treeX) * SPRING_LENGTH + 30;
+      var nl = Math.abs(c1.treeIndexX - c0.treeIndexX) * SPRING_LENGTH + 30;
       
       // actual length of connecting line
       var al = Math.abs(c1.getCenterX() - c0.getCenterX());
@@ -505,11 +505,11 @@ function Clade(id) {
    
    
 //----------------------------------------------------------------------
-// recursively compute position of children, treeX coord, and depth
+// recursively compute position of children, treeIndexX coord, and depth
 //----------------------------------------------------------------------
    this.computePosition = function() {
       this.depth = 0;
-      this.treeX = 0;
+      this.treeIndexX = 0;
       this.cx = 0;
       this.cy = 0;
       
@@ -518,12 +518,12 @@ function Clade(id) {
          if (child.hasChildren()) {
             child.computePosition();
          }
-         this.treeX += child.treeX;
+         this.treeIndexX += child.treeIndexX;
          this.depth = Math.max(this.depth, child.getDepth() + 1);
          this.cx += child.getCenterX();
          this.cy = Math.max(child.getCenterY(), this.cy);
       }
-      this.treeX /= this.children.length;
+      this.treeIndexX /= this.children.length;
       this.cx /= this.children.length;
       this.cy += SPRING_LENGTH;
    }
