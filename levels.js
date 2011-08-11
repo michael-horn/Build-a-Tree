@@ -19,8 +19,8 @@ const LEVELS = [
    name : "Level 1", 
    
    taxa : [
-      { id : 0, parent_id : null, name : "Eukaryotes", depth : 2, tag : "eukaryotes", trait : "complex cellular structure" },
-      { id : 1, parent_id : 0, name : "Animals", depth : 1, tag : "animals", trait : "spinal chord" },
+      { id : 0, parent_id : null, name : "Eukaryotes", depth : 2, tag : "eukaryotes", trait : "cells with organelles" },
+      { id : 1, parent_id : 0, name : "Animals", depth : 1, tag : "animals", trait : "digestive cavity" },
       { id : 2, parent_id : 0, name : "Plants", depth : 0, tag : "plant" },
       { id : 3, parent_id : 1, name : "Birds", depth : 0, tag : "bird" },
       { id : 4, parent_id : 1, name : "Lizards", depth : 0, tag : "lizard" }
@@ -54,8 +54,8 @@ const LEVELS = [
    name : "Level 3", 
    
    taxa : [
-      { id : 0, parent_id : null, name : "Eukaryotes", depth : 2, tag : "eukaryotes", trait : "complex cellular structure" },
-      { id : 1, parent_id : 0, name : "Animals and Fungi", depth : 1, tag : "a+f", trait : null },
+      { id : 0, parent_id : null, name : "Eukaryotes", depth : 2, tag : "eukaryotes", trait : "cells with organelles" },
+      { id : 1, parent_id : 0, name : "Animals and Fungi", depth : 1, tag : "a+f", trait : "cells with chitin" },
       { id : 2, parent_id : 0, name : "Plants", depth : 0, tag : "plant" },
       { id : 3, parent_id : 1, name : "Fungi", depth : 0, tag : "fungus" },
       { id : 4, parent_id : 1, name : "Humans", depth : 0, tag : "human" }
@@ -90,7 +90,7 @@ const LEVELS = [
    
    taxa : [
       { id : 0, parent_id : null, name : "Amniotes", depth : 3, tag : "amniotes", trait : "amniotic egg" },
-      { id : 1, parent_id : 0, name : "Diapsids", depth : 2, tag : "diapsids", trait : "long lower arm bone" },
+      { id : 1, parent_id : 0, name : "Diapsids", depth : 2, tag : "diapsids", trait : "lizard-like face" },
       { id : 2, parent_id : 1, name : "Theropods", depth : 1, tag : "dinobirds", trait : "wishbone" },
       { id : 3, parent_id : 2, name : "Birds", depth : 0, tag : "bird" },
       { id : 4, parent_id : 2, name : "T. Rex", depth : 0, tag : "trex" },
@@ -130,7 +130,7 @@ const LEVELS = [
       { id : 1, parent_id : 0, name : "Vertebrates", depth : 3, tag : "vertebrates", trait : "internal skeleton" },
       { id : 2, parent_id : 0, name : "Arthropods", depth : 1, tag : "arthropods", trait : "exoskeleton" },
       { id : 3, parent_id : 1, name : "Amniotes", depth : 2, tag : "amniotes", trait : "amniotic egg" },
-      { id : 4, parent_id : 3, name : "Diapsids", depth : 1, tag : "diapsids", trait : "long lower arm bone" },
+      { id : 4, parent_id : 3, name : "Diapsids", depth : 1, tag : "diapsids", trait : "lizard-like face" },
       { id : 5, parent_id : 1, name : "Frogs", depth : 0, tag : "frog", hint : "Frogs are a type of <i>amphibian</i>. Amphibians belong to a group of animals called vertebrates." },
       { id : 6, parent_id : 3, name : "Bats", depth : 0, tag : "bat", hint: "Bats are a type of mammal. Mammals belong to a group of animals called <i>diapsids</i> that also includes birds and lizards."  },
       { id : 7, parent_id : 4, name : "Birds", depth : 0, tag : "bird", hint : "Birds and lizards belong to a group of animals called <i>diapsids</i>. Crocodiles and dinosaurs are also diapsids." },
