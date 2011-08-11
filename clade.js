@@ -409,7 +409,6 @@ function Clade(id) {
       
       g.lineCap = "round";
       g.strokeStyle = this.isCorrect()? "white" : "#6AB7DC";
-      g.fillStyle   = this.isCorrect()? "white" : "#6AB7DC";
 
       
       //--------------------------------
@@ -444,8 +443,13 @@ function Clade(id) {
       // Handle for roots
       //--------------------------------
       if (this.isRoot() && this.isCorrect() && !tree.isComplete()) {
+         g.fillStyle = this.isCorrect()? "white" : "#6AB7DC";
          g.beginPath();
          g.arc(this.getCenterX(), this.getCenterY() + 50, 11, 0, Math.PI * 2, true);
+         g.fill();
+         g.fillStyle = "#6AB7DC";
+         g.beginPath();
+         g.arc(this.getCenterX(), this.getCenterY() + 50, 8, 0, Math.PI * 2, true);
          g.fill();
       }
       
