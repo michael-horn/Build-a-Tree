@@ -301,12 +301,12 @@ function hideSolution() {
 
 function adjustLevelStars() {
    var l = getMaxLevel();
-   for (var i=1; i<=LEVELS.length; i++) {
+   for (var i=0; i<LEVELS.length; i++) {
       var line = document.getElementById("levels-line-" + i);
       if (line) {
          var stars = line.getElementsByTagName("img");
          for (var j=0; j<stars.length; j++) {
-            if (i <= l) {
+            if (i < l) {
                stars[j].src = "images/star.png";
             } else {
                stars[j].src = "images/star_blank.png";
@@ -315,7 +315,7 @@ function adjustLevelStars() {
          
          var a = line.getElementsByTagName("a");
          if (a && a.length > 0) {
-            a[0].className = (i <= l+1) ? "enabled" : "disabled";
+            a[0].className = (i <= l) ? "enabled" : "disabled";
          }
       }
    }
