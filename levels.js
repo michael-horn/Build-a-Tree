@@ -329,7 +329,7 @@ function adjustLevelStars() {
 function getCurrentLevel() {
    var s = gup("level");
    if (s.length > 0) {
-      return Math.floor(s) - 1;
+      return Math.floor(s);
    } else {
       return 0;
    }
@@ -337,11 +337,10 @@ function getCurrentLevel() {
 
 
 function gotoLevel(level) {
-   var l = getMaxLevel();
-   if (level - 1 >= LEVELS.length) {
+   if (level >= LEVELS.length) {
       window.location = "finish.html";
    }
-   else if (level <= l + 1) {
+   else if (level <= getMaxLevel()) {
       window.location = "game.html?level=" + level;
    }
    return false;
@@ -349,7 +348,7 @@ function gotoLevel(level) {
 
 
 function nextLevel() {
-   return gotoLevel(getCurrentLevel() + 2);
+   return gotoLevel(getCurrentLevel() + 1);
 }
 
 
