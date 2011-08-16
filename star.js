@@ -48,6 +48,11 @@ function Star(x, y) {
       tween.play();
    }
    
+   // required function for visuals
+   this.isForeground = function() {
+      return true;
+   }
+   
    this.draw = function(g) {
       if (this.visible) {
          g.drawImage(STAR, this.x - this.w/2, this.y - this.w/2, this.w, this.w);
