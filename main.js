@@ -112,16 +112,40 @@ function restart() {
    solution_box = new SolutionBox(solution);
    addTouchable(solution_box);
    
-   var howto = new AnimatedText();
-   howto.setText(level.name); 
-   howto.setDelay(500);
-   howto.setDuration(3000);
-   howto.setCenter(w/2, h/2);
-   howto.setFontSize(60);
-   howto.setFontWeight("bold");
-   howto.setTextColor(255, 255, 255);
-   howto.startFadeIn();
-
+   var lname = new AnimatedText();
+   lname.setText(level.name);
+   lname.useShadow(true);
+   lname.setDelay(200);
+   lname.setDuration(2000);
+   lname.setCenter(w/2, h/2 - 40);
+   lname.setFontSize(60);
+   lname.setFontWeight("bold");
+   lname.setTextColor(255, 255, 255);
+   lname.startFadeIn();
+   
+   if (level.subtitle) {
+      lname = new AnimatedText();
+      lname.setText(level.subtitle);
+      lname.useShadow(true);
+      lname.setDelay(200);
+      lname.setDuration(2000);
+      lname.setCenter(w/2, h/2 + 10);
+      lname.setFontSize("24");
+      lname.setFontWeight("bold");
+      lname.setTextColor(255, 255, 255);
+      lname.startFadeIn();
+   }
+   
+   if (level.help) {
+      var help = new AnimatedText();
+      help.setText(level.help);
+      help.setDelay(2300);
+      help.setDuration(20000);
+      help.setCenter(w/2, h - 150);
+      help.setFontSize(24);
+      help.setTextColor(255, 255, 255);
+      help.startFadeIn();
+   }
 }
 
 function playSound(name) {
@@ -251,6 +275,13 @@ function draw() {
    
    g.clearRect(0, 0, w, h);
    
+   // Draw background visuals
+   for (var i=0; i<visuals.length; i++) {
+      if (!visuals[i].isForeground()) {
+         visuals[i].draw(g);
+      }
+   }
+   
    // Current level
    g.font = "bold 20px Arial, sans-serif";
    g.textAlign = "right";
@@ -288,9 +319,11 @@ function draw() {
       tree.draw(g);
    }
    
-   // Draw extra visuals
+   // Draw foreground visuals
    for (var i=0; i<visuals.length; i++) {
-      visuals[i].draw(g);
+      if (visuals[i].isForeground()) {
+         visuals[i].draw(g);
+      }
    }
    
    // Solution box
