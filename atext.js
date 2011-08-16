@@ -16,7 +16,12 @@ function AnimatedText() {
 
    var atext = this;
    this.tween.setEndCallback(function() { atext.tweenDone(); });
-   this.tween.setStartCallback(function() { atext.tweenStart(); });   
+   this.tween.setStartCallback(function() { atext.tweenStart(); });
+   
+   // required function for visuals
+   this.isForeground = function() {
+      return false;
+   }
    
    this.useShadow = function(shadow) {
       this.shadow = shadow;
@@ -141,7 +146,11 @@ function AnimatedText() {
       g.textAlign = "center";
       g.beginPath();
       if (this.outline) {
-         g.strokeStyle = "red";
+         g.strokeStyle = ("rgba(" +
+                          this.ocolor.r + ", " +
+                          this.ocolor.g + ", " +
+                          this.ocolor.b + ", " +
+                          this.alpha + ")");
          g.lineWidth = 3;
          g.lineCap = "round";
          g.strokeText(this.text, this.cx, this.cy);
