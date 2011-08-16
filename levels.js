@@ -16,7 +16,9 @@
 // id, parent-id, name, depth, image,    
 const LEVELS = [
 {
-   name : "Level 1", 
+   name : "Level 1",
+   
+   subtitle : "Plants and Animals",
    
    taxa : [
       { id : 0, parent_id : null, name : "Eukaryotes", depth : 2, tag : "eukaryotes", trait : "cells with organelles" },
@@ -30,11 +32,15 @@ const LEVELS = [
           "That means that they are complex multicellular organism. " +
           "Plants and animals diverged (evolved into two different forms of life) " +
           "around 1,400 million years ago. Birds and lizards diverged much more " +
-          "recently&#151;around 277 million years ago.</p>")
+          "recently&#151;around 277 million years ago.</p>"),
+   
+   help : ("Drag circles together to build a tree.")
 },
 
 {
    name : "Level 2", 
+   
+   subtitle : "Bats, Birds, and People",
    
    taxa : [
       { id : 0, parent_id : null, name : "Vertebrates", depth : 2, tag : "vertebrates", trait : "internal skeleton" },
@@ -47,7 +53,9 @@ const LEVELS = [
    dyk : ("<p>Bats, like humans, are placental mammals. Bats have hair, give " +
           "birth to live babies, and nurse their young. Even though bats " +
           "and birds look similar in many ways, bats are more closely related " +
-          "to humans because they share a more recent ancestor in common.</p>")
+          "to humans because they share a more recent ancestor in common.</p>"),
+   
+   help : ("Things that look alike aren't always closely related!")
 },
 
 {
@@ -88,6 +96,8 @@ const LEVELS = [
 {
    name : "Level 5",
    
+   subtitle : "Amniotes",
+   
    taxa : [
       { id : 0, parent_id : null, name : "Amniotes", depth : 3, tag : "amniotes", trait : "amniotic egg" },
       { id : 1, parent_id : 0, name : "Diapsids", depth : 2, tag : "diapsids", trait : "lizard-like face" },
@@ -105,6 +115,8 @@ const LEVELS = [
 {
    name : "Level 6",
    
+   subtitle : "Vertebrates and Invertebrates",
+   
    taxa : [
       { id : 0, parent_id : null, name : "Animals", depth : 3, tag : "animals", trait : null },
       { id : 1, parent_id : 0, name : "Vertebrates", depth : 2, tag : "vertebrates", trait : "internal skeleton" },
@@ -119,7 +131,9 @@ const LEVELS = [
       { id : 10, parent_id : 2, name : "Insects", depth : 0, tag : "butterfly" }
    ],
    
-   dyk : null
+   dyk : null,
+   
+   help : "Order matters! Build small trees first and then put them all together."
 },
 /*
 {
