@@ -79,7 +79,7 @@ function restart() {
       var t = level.taxa[i];
 
       // only add tips to the list of taxa
-      if (t.depth == 0) {
+      if (t.tip) {
          clade = new Tip(t.id);
          clade.setTag(t.tag);
          clade.setImageSrc(t.tag);
@@ -91,7 +91,7 @@ function restart() {
       }
       
       // add everything to the solution tree
-      if (t.depth == 0) {
+      if (t.tip) {
          clade = new Tip(t.id);
          clade.setImageSrc(t.tag);
       } else {
@@ -100,7 +100,6 @@ function restart() {
       }
       clade.setTag(t.tag);
       clade.setName(t.name);
-      clade.setDepth(t.depth);
       solution.add(clade);
       var parent = solution.findTaxonByID(t.parent_id);
       if (parent) {
