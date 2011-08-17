@@ -366,6 +366,19 @@ function Clade(id) {
       g.font = "14pt Tahoma, Arial, sans-serif";
       g.beginPath();
       g.fillText(this.name, (x0 + x1) / 2, (y0 + y1) / 2 - 43);
+      
+      if (this.isDragging()) {
+         g.fillStyle = "white";
+         g.beginPath();
+         g.font = "11pt Tahoma, Arial, sans-serif";
+         g.beginPath();
+         var y = 90;
+         if (tree.isComplete() || this.hasParent()) {
+            y = 110;
+         }
+         g.fillText("Ancestor of", this.getCenterX(), this.getCenterY() + y);
+         g.fillText(this.name, this.getCenterX(), this.getCenterY() + y + 15);
+      }
    }
    
    
@@ -451,6 +464,12 @@ function Clade(id) {
          g.beginPath();
          g.arc(this.getCenterX(), this.getCenterY() + 50, 8, 0, Math.PI * 2, true);
          g.fill();
+         if (this.isDragging()) {
+            g.fillStyle = "white";
+            g.beginPath();
+            g.arc(this.getCenterX(), this.getCenterY() + 50, 4, 0, Math.PI * 2, true);
+            g.fill();
+         }
       }
       
       //--------------------------------
