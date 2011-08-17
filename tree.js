@@ -511,6 +511,7 @@ function Tree() {
 //--------------------------------------------------------------
    this.layoutSmallTree = function() {
       var root = this.getRoot();
+      root.computeDepth();
       var tips = [];
       root.getTips(tips);
       
