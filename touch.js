@@ -25,8 +25,8 @@ var restart_timer;
 
 function resetMasterTimer() {
 // COMMENT to disable restart timer
-   clearTimeout(restart_timer);
-   restart_timer = setTimeout( masterRestart, 30000 );   
+//   clearTimeout(restart_timer);
+//   restart_timer = setTimeout( masterRestart, 30000 );   
 }
 
 function masterRestart() {
