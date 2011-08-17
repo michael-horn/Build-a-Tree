@@ -276,23 +276,6 @@ function Clade(id) {
    }
    
    
-//----------------------------------------------------------------------
-// Deterministic layout algorithm (not force-directed)
-//----------------------------------------------------------------------
-   this.layout = function(maxDepth) {
-      this.treeY = this.depth / maxDepth;
-      this.treeX = 0;
-      for (var i=0; i<this.children.length; i++) {
-         var child = this.children[i];
-         if (!child.isTip()) {
-            child.layout(maxDepth);
-         }
-         this.treeX += this.children[i].treeX;   
-      }
-      this.treeX /= this.children.length;
-   }
-
-
    this.invalidate = function() {   
       this.setCorrect(false);
       for (var i=0; i<this.children.length; i++) {
@@ -350,12 +333,10 @@ function Clade(id) {
 // animate
 //----------------------------------------------------------------------
    this.animate = function() {
-      if (this.isDragging() && this.hasParent()) {
-         var p = this.getParent();
-         var ty = this.getWaterline();
-         if ((ty - this.cy) > 100) {
-            tree.breakTree(this);
-         }
+      if (this.getHorizontalStretch() >= 1) {
+         tree.breakTree(this.getFirstChild());
+      } else if (this.getVerticalStretch() >= 1) {
+         tree.breakTree(this);
       }
    }
    
@@ -367,8 +348,8 @@ function Clade(id) {
       var tips = [];
       this.getTips(tips);
       g.beginPath();
-      x0 = tips[0].getCenterX();
-      y0 = tips[0].getCenterY();
+      var x0 = tips[0].getCenterX();
+      var y0 = tips[0].getCenterY();
       g.moveTo(x0, y0);
       for (var i=1; i<tips.length; i++) {
          x1 = tips[i].getCenterX();
@@ -385,8 +366,53 @@ function Clade(id) {
       g.font = "14pt Tahoma, Arial, sans-serif";
       g.beginPath();
       g.fillText(this.name, (x0 + x1) / 2, (y0 + y1) / 2 - 43);
+      
+      if (this.isDragging()) {
+         g.fillStyle = "white";
+         g.beginPath();
+         g.font = "11pt Tahoma, Arial, sans-serif";
+         g.beginPath();
+         var y = 90;
+         if (tree.isComplete() || this.hasParent()) {
+            y = 110;
+         }
+         g.fillText("Ancestor of", this.getCenterX(), this.getCenterY() + y);
+         g.fillText(this.name, this.getCenterX(), this.getCenterY() + y + 15);
+      }
+   }
+   
+   
+//----------------------------------------------------------------------
+// Returns a stretch factor from 0 to 1
+//----------------------------------------------------------------------
+   this.getHorizontalStretch = function() {
+      
+      var c0 = this.getFirstChild();
+      var c1 = this.getLastChild();
+
+      // natural length of horizontal connecting line
+      var nl = Math.abs(c1.treeIndexX - c0.treeIndexX) * SPRING_LENGTH + 30;
+      
+      // actual length of connecting line
+      var al = Math.abs(c1.getCenterX() - c0.getCenterX());
+      
+      return Math.max(0, Math.min(150, al - nl) / 150);
    }
 
+   
+//----------------------------------------------------------------------
+// Returns a stretch factor from 0 to 1
+//----------------------------------------------------------------------
+   this.getVerticalStretch = function() {
+      var pinned = this.getRoot().isPinned();
+      var wl = this.getWaterline();
+      if (this.hasParent() && pinned && wl > this.cy) {
+         return Math.max(0, Math.min(100, wl - this.cy) / 100);
+      } else {
+         return 0;
+      }
+   }
+   
    
 //----------------------------------------------------------------------
 // Draws the clade
@@ -394,46 +420,69 @@ function Clade(id) {
    this.draw = function(g) {
       if (!this.hasChildren()) return;
       
-      var x0 = -1;
-      var x1 = -1;
-      
-      g.strokeStyle = this.isCorrect()? "white" : "#6AB7DC";
       g.lineCap = "round";
-      g.lineWidth = 8;
-      
-      x0 = this.getFirstChild().getCenterX();
-      x1 = this.getLastChild().getCenterX();
+      g.strokeStyle = this.isCorrect()? "white" : "#6AB7DC";
 
+      
+      //--------------------------------
       // Horizontal joining line
+      //--------------------------------
+      var x0 = this.getFirstChild().getCenterX();
+      var x1 = this.getLastChild().getCenterX();
+
+      g.lineWidth = Math.max(1, (1 - this.getHorizontalStretch()) * 8);
       g.beginPath();
       g.moveTo(x0, this.cy);
       g.lineTo(x1, this.cy);
       g.stroke();
+
          
+      //--------------------------------
       // Line to parent
+      //--------------------------------
       g.beginPath();
+      g.lineWidth = Math.max(1, (1 - this.getVerticalStretch()) * 8);            
+      g.moveTo(this.getCenterX(), this.getCenterY() + 2);
+      
       if (this.hasParent()) {
-         var wl = this.getWaterline();
-         var lt = 8;  // default line thickness
-         if (this.isDragging() && wl > this.cy) {
-            lt = Math.max(8 - (8 * (wl - this.cy) / 100), 1);
-         }
-         g.lineWidth = lt;
-         
-         g.moveTo(this.getCenterX(), this.getCenterY() + 2);
          g.lineTo(this.getCenterX(), this.getParent().getCenterY());
       } else {
-         g.moveTo(this.getCenterX(), this.getCenterY() + 2);
          g.lineTo(this.getCenterX(), this.getCenterY() + 40);
       }
       g.stroke();
 
+
+      //--------------------------------
+      // Handle for roots
+      //--------------------------------
+      if (this.isRoot() && this.isCorrect() && !tree.isComplete()) {
+         g.fillStyle = this.isCorrect()? "white" : "#6AB7DC";
+         g.beginPath();
+         g.arc(this.getCenterX(), this.getCenterY() + 50, 11, 0, Math.PI * 2, true);
+         g.fill();
+         g.fillStyle = "#6AB7DC";
+         g.beginPath();
+         g.arc(this.getCenterX(), this.getCenterY() + 50, 8, 0, Math.PI * 2, true);
+         g.fill();
+         if (this.isDragging()) {
+            g.fillStyle = "white";
+            g.beginPath();
+            g.arc(this.getCenterX(), this.getCenterY() + 50, 4, 0, Math.PI * 2, true);
+            g.fill();
+         }
+      }
+      
+      //--------------------------------
       // Oval around tips
+      //--------------------------------
       if (this.isHighlighted()) {
          this.drawHighlight(g);
       }
+
       
+      //--------------------------------
       // Trait markers
+      //--------------------------------
       if (this.isCorrect() && this.hasTrait()) {
          if (!this.snap || !this.snap.isAnimating()) {
             var ty = this.getCenterY() + 22;
@@ -460,9 +509,6 @@ function Clade(id) {
       //if (this.snap) {
       //   this.snap.setCenter(this.cx, this.cy + 60);
       //}
-      
-      // Draw cut button
-      // this.drawCutButton(g);  // SCISSORS
    }
    
    
@@ -490,40 +536,71 @@ function Clade(id) {
       return this.isHighlighted() || subdrag;
    }
    
+   
 //----------------------------------------------------------------------
+// recursively compute position of children, treeIndexX coord, and depth
 //----------------------------------------------------------------------
    this.computePosition = function() {
-      var x = 0;
-      var y = 0;
-      
-      // recursively compute position of children and depth
       this.depth = 0;
+      this.treeIndexX = 0;
+      this.cx = 0;
+      this.cy = 0;
+      
       for (var i=0; i<this.children.length; i++) {
          var child = this.children[i];
          if (child.hasChildren()) {
             child.computePosition();
          }
+         this.treeIndexX += child.treeIndexX;
          this.depth = Math.max(this.depth, child.getDepth() + 1);
+         this.cx += child.getCenterX();
+         this.cy = Math.max(child.getCenterY(), this.cy);
       }
-      
-      // compute x-coordinate and y-coordinate
-      var count = 0;
-      var tips = [];
-
-      this.getTips(tips);
-      for (var i=0; i<tips.length; i++) {
-         var tip = tips[i];
-         if (tip.isVisible()) {
-            x += tip.getCenterX();
-            y = Math.max(tip.getCenterY(), y);
-            count++;
-         }
-      }
-      this.setVisible(count > 0);
-
-      if (count > 0) {
-         this.cx = x / count;
-         this.cy = y + 65 * this.depth;
-      }
+      this.treeIndexX /= this.children.length;
+      this.cx /= this.children.length;
+      this.cy += SPRING_LENGTH;
    }
+
+   
+//----------------------------------------------------------------------
+// Deterministic layout algorithm (not force-directed)
+//----------------------------------------------------------------------
+   this.layout = function(maxDepth) {
+      this.treeY = this.depth / maxDepth;
+      this.treeX = 0;
+      for (var i=0; i<this.children.length; i++) {
+         var child = this.children[i];
+         if (!child.isTip()) {
+            child.layout(maxDepth);
+         }
+         this.treeX += child.treeX;   
+      }
+      this.treeX /= this.children.length;
+   }
+
+   
+   this.containsTouch = function(tp) {
+      console.log("contains touch");
+      var x = this.getX();
+      var y = this.getY();
+      var w = this.w;
+      var h = this.w;
+      if (tp.x >= x && tp.y >= y && tp.x <= x + w && tp.y <= y + h) {
+         return true;
+      }
+      if (this.hasParent()) {
+         x = this.getCenterX() - 6;
+         y = this.getCenterY();
+         var py = this.parent.getCenterY();
+         return (tp.x >= x && tp.x <= x + 12 && tp.y >= y && tp.y <= py + 10);
+      }
+      else if (this.isCorrect() && !tree.isComplete()) {
+         x = this.getCenterX() - 20;
+         y = this.getCenterY() + 50 - 20;
+         return (tp.x >= x && tp.x <= x + 40 && tp.y >= y && tp.y <= y + 40);
+      }
+      return false;
+   }
+   
+   
 }

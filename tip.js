@@ -81,7 +81,7 @@ function Tip(id) {
       var a = this;
       var b = taxon;
       if (a != b &&
-          a.isTip() && b.isTip() &&
+          (a.isTip() || b.isTip()) &&
           !a.isDocked() && !b.isDocked() &&
           a.getRoot() != b.getRoot()) {
          var dx = Math.abs(a.cx - b.cx);
@@ -110,6 +110,8 @@ function Tip(id) {
    
    this.draw = function(g) {
       
+      var pinned = this.getRoot().isPinned();
+      
       if (this.hasToken() && !this.hasParent()) {
          g.beginPath();
          g.fillStyle = "rgba(255, 255, 255, 0.1)";
@@ -133,7 +135,7 @@ function Tip(id) {
       else if (this.hasParent()) {
          var wl = this.getWaterline();
          var lt = 8;  // default line thickness
-         if (this.isDragging() || this.hasToken()) {
+         if (this.hasToken() || pinned) {
             lt = Math.max(8 - ((Math.abs(wl - this.getCenterY()) / 100) * 8), 1);
          }
          g.lineWidth = lt;
@@ -155,17 +157,19 @@ function Tip(id) {
    }
 
    this.animate = function() {
+      var pinned = this.getRoot().isPinned();
+      
       this.velocity.vx += this.force.fx;
       this.velocity.vy += this.force.fy;
       this.velocity.vx *= 0.6;
       this.velocity.vy *= 0.6;
       
-      if (!this.getRoot().isPinned() && !this.isDragging() && !this.hasToken()) {
+      if (!pinned && !this.isDragging() && !this.hasToken()) {
          this.cx += this.velocity.vx;
          this.cy += this.velocity.vy;
       }
 
-      else if ((this.isDragging() || this.hasToken()) && this.hasParent()) {
+      else if ((pinned || this.hasToken()) && this.hasParent()) {
          var p = this.getParent();
          var ty = this.getWaterline();
          if (Math.abs(this.cy - ty) > 100) {

@@ -98,6 +98,14 @@ function SolutionBox(solution) {
       
    }
    
+   this.toggleBox = function() {
+      if (this.open) {
+         this.closeBox();
+      } else {
+         this.openBox();
+      }
+   }
+   
    this.openBox = function() {
       if (!this.open) {
          this.tween.clearControlPoints();

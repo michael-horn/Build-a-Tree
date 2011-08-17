@@ -182,7 +182,7 @@ var HINTS = {
    trex :
    {
       name : "",
-      cname : "Tyranosaurus Rex",
+      cname : "Tyrannosaurus Rex",
       location : "Field Museum of Natural History, Chicago, Illinois",
       image : "images/info/trex.png",
       author : "",

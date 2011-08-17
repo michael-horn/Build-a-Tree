@@ -16,19 +16,31 @@
 // id, parent-id, name, depth, image,    
 const LEVELS = [
 {
-   name : "Level 1", 
+   name : "Level 1",
+   
+   subtitle : "Plants and Animals",
    
    taxa : [
-      { id : 0, parent_id : null, name : "Eukaryotes", depth : 2, tag : "eukaryotes", trait : "complex cellular structure" },
-      { id : 1, parent_id : 0, name : "Animals", depth : 1, tag : "animals", trait : null },
+      { id : 0, parent_id : null, name : "Eukaryotes", depth : 2, tag : "eukaryotes", trait : "cells with organelles" },
+      { id : 1, parent_id : 0, name : "Animals", depth : 1, tag : "animals", trait : "digestive cavity" },
       { id : 2, parent_id : 0, name : "Plants", depth : 0, tag : "plant" },
       { id : 3, parent_id : 1, name : "Birds", depth : 0, tag : "bird" },
       { id : 4, parent_id : 1, name : "Lizards", depth : 0, tag : "lizard" }
-   ]   
+   ],
+   
+   dyk : ("<p>Plants and animals are both eukaryotes (<i>you-KARR-ee-ohts</i>). " +
+          "That means that they are complex multicellular organism. " +
+          "Plants and animals diverged (evolved into two different forms of life) " +
+          "around 1,400 million years ago. Birds and lizards diverged much more " +
+          "recently&#151;around 277 million years ago.</p>"),
+   
+   help : ("Drag circles together to build a tree.")
 },
 
 {
    name : "Level 2", 
+   
+   subtitle : "Bats, Birds, and People",
    
    taxa : [
       { id : 0, parent_id : null, name : "Vertebrates", depth : 2, tag : "vertebrates", trait : "internal skeleton" },
@@ -36,19 +48,32 @@ const LEVELS = [
       { id : 2, parent_id : 1, name : "Humans", depth : 0, tag : "human" },
       { id : 3, parent_id : 0, name : "Birds", depth : 0, tag : "bird" },
       { id : 4, parent_id : 1, name : "Bats", depth : 0, tag : "bat" }
-   ]   
+   ],
+   
+   dyk : ("<p>Bats, like humans, are placental mammals. Bats have hair, give " +
+          "birth to live babies, and nurse their young. Even though bats " +
+          "and birds look similar in many ways, bats are more closely related " +
+          "to humans because they share a more recent ancestor in common.</p>"),
+   
+   help : ("Things that look alike aren't always closely related!")
 },
 
 {
    name : "Level 3", 
    
    taxa : [
-      { id : 0, parent_id : null, name : "Eukaryotes", depth : 2, tag : "eukaryotes", trait : "complex cellular structure" },
-      { id : 1, parent_id : 0, name : "Animals and Fungi", depth : 1, tag : "a+f", trait : null },
+      { id : 0, parent_id : null, name : "Eukaryotes", depth : 2, tag : "eukaryotes", trait : "cells with organelles" },
+      { id : 1, parent_id : 0, name : "Animals and Fungi", depth : 1, tag : "a+f", trait : "cells with chitin" },
       { id : 2, parent_id : 0, name : "Plants", depth : 0, tag : "plant" },
       { id : 3, parent_id : 1, name : "Fungi", depth : 0, tag : "fungus" },
       { id : 4, parent_id : 1, name : "Humans", depth : 0, tag : "human" }
-   ]   
+   ],
+   
+   dyk : ("<p>Scientists think that fungi (including mushrooms) are more closely " +
+          "related to animals than they are to plants. This means that fungi and " +
+          "animals have a more recent ancestor in common than fungi and plants. " +
+          "One suprising piece of evidence to support this hypothesis is that both " +
+          "fungi and animals are capable of generating proteins that can sense light.</p>")
 },
 
 {
@@ -60,11 +85,37 @@ const LEVELS = [
       { id : 2, parent_id : 1, name : "Scorpions", depth : 0, tag : "scorpion" },
       { id : 3, parent_id : 1, name : "Spiders", depth : 0, tag : "spider" },
       { id : 4, parent_id : 0, name : "Insects", depth : 0, tag : "butterfly" }
-   ]   
+   ],
+   
+   dyk : ("<p>Spiders, scorpions, and insects are all different kinds of <i>" +
+          "arthropods</i>. However, unlike insects, spiders and scorpions have " +
+          "eight legs instead of six. Spiders and scoprions also lack the wings " +
+          "and antennae of insects.</p>")
 },
 
 {
    name : "Level 5",
+   
+   subtitle : "Amniotes",
+   
+   taxa : [
+      { id : 0, parent_id : null, name : "Amniotes", depth : 3, tag : "amniotes", trait : "amniotic egg" },
+      { id : 1, parent_id : 0, name : "Diapsids", depth : 2, tag : "diapsids", trait : "lizard-like face" },
+      { id : 2, parent_id : 1, name : "Theropods", depth : 1, tag : "dinobirds", trait : "wishbone" },
+      { id : 3, parent_id : 2, name : "Birds", depth : 0, tag : "bird" },
+      { id : 4, parent_id : 2, name : "T. Rex", depth : 0, tag : "trex" },
+      { id : 5, parent_id : 1, name : "Lizards", depth : 0, tag : "lizard" },
+      { id : 6, parent_id : 0, name : "Bats", depth : 0, tag : "bat" }
+   ],
+   
+   dyk : ("<p>Modern birds and Tyrannosaurus rex share a more recent ancestor in common " +
+          "than birds and lizards and than tyrannosaurs and lizards.</p>")
+},
+
+{
+   name : "Level 6",
+   
+   subtitle : "Vertebrates and Invertebrates",
    
    taxa : [
       { id : 0, parent_id : null, name : "Animals", depth : 3, tag : "animals", trait : null },
@@ -77,30 +128,36 @@ const LEVELS = [
       { id : 7, parent_id : 3, name : "Giraffes", depth : 0, tag : "giraffe" },
       { id : 8, parent_id : 3, name : "Bats", depth : 0, tag : "bat" },
       { id : 9, parent_id : 2, name : "Spiders", depth : 0, tag : "spider" },
-      { id : 10, parent_id : 2, name : "Insects", depth : 0, tag : "butterfly" },
-   ]
+      { id : 10, parent_id : 2, name : "Insects", depth : 0, tag : "butterfly" }
+   ],
+   
+   dyk : null,
+   
+   help : "Order matters! Build small trees first and then put them all together."
 },
-
+/*
 {
-   name : "Level 6",
+   name : "Level 7",
    
    taxa : [
       { id : 0, parent_id : null, name : "Animals", depth : 4, tag : "animals", trait : null },
       { id : 1, parent_id : 0, name : "Vertebrates", depth : 3, tag : "vertebrates", trait : "internal skeleton" },
       { id : 2, parent_id : 0, name : "Arthropods", depth : 1, tag : "arthropods", trait : "exoskeleton" },
       { id : 3, parent_id : 1, name : "Amniotes", depth : 2, tag : "amniotes", trait : "amniotic egg" },
-      { id : 4, parent_id : 3, name : "Diapsids", depth : 1, tag : "diapsids", trait : "long lower arm bone" },
+      { id : 4, parent_id : 3, name : "Diapsids", depth : 1, tag : "diapsids", trait : "lizard-like face" },
       { id : 5, parent_id : 1, name : "Frogs", depth : 0, tag : "frog", hint : "Frogs are a type of <i>amphibian</i>. Amphibians belong to a group of animals called vertebrates." },
       { id : 6, parent_id : 3, name : "Bats", depth : 0, tag : "bat", hint: "Bats are a type of mammal. Mammals belong to a group of animals called <i>diapsids</i> that also includes birds and lizards."  },
       { id : 7, parent_id : 4, name : "Birds", depth : 0, tag : "bird", hint : "Birds and lizards belong to a group of animals called <i>diapsids</i>. Crocodiles and dinosaurs are also diapsids." },
       { id : 8, parent_id : 4, name : "Lizards", depth : 0, tag : "lizard", hint : "Lizards and Birds belong to a group of animals called <i>diapsids</i>. Crocodiles and dinosaurs are also diapsids." },
       { id : 9, parent_id : 2, name : "Crabs", depth : 0, tag : "crab", hint : "Crabs and spiders both belong to a group of animals called <i>arthropods</i>. Arthropods are invertibrate animals with exoskeletons."  },
       { id : 10, parent_id : 2, name : "Spiders", depth : 0, tag : "spider", hint : "Spiders and crabs both belong to a group of animals called <i>arthropods</i>. Arthropods are invertibrate animals with exoskeletons."  }
-   ]
+   ],
+   
+   dyk : null
 },
 
 {
-   name : "Bonus Level 7",
+   name : "Bonus Level 8",
    
    taxa : [
       { id : 0, parent_id : null, name : "Animals", depth : 5, tag : "animals", trait : null },
@@ -120,14 +177,25 @@ const LEVELS = [
       { id : 14, parent_id : 2, name : "Crabs", depth : 0, tag : "crab" },
       { id : 15, parent_id : 3, name : "Spiders", depth : 0, tag : "spider" },
       { id : 16, parent_id : 3, name : "Scorpions", depth : 0, tag : "scorpion" },
-   ]
+   ],
+   
+   dky : null
 }
+*/
 ];
 
 
 //===================================================================
 // Dialog control functions
 //===================================================================
+function isDialogOpen(name) {
+   var d = document.getElementById(name);
+   if (d) {
+      return d.style.visibility == "visible";
+   } else {
+      return false;
+   }
+}
 
 function hideDialog(name) {
    var d = document.getElementById(name);
@@ -135,11 +203,13 @@ function hideDialog(name) {
 }
 
 function hideAllDialogs() {
-   hideDialog("dialog-help");
+   hideDialog("dialog-help1");
+   hideDialog("dialog-help2");
    hideDialog("dialog-dyk");
    hideDialog("dialog-dyk");
    hideDialog("dialog-solution");
    hideDialog("dialog-levels");
+   hideDialog("dialog-credits");
    hideDialog("dialog-instructions");
 }
 
@@ -147,18 +217,42 @@ function showDialog(name, width) {
    hideAllDialogs();
    var d = document.getElementById(name);
    if (d) {
-      var w = window.innerWidth;
-      d.style.left = w/2 - width/2 + "px";
+      d.style.left = window.innerWidth/2 - width/2 + "px";
       d.style.visibility = "visible";
    }
 }
 
-function showHelp() {
-   showDialog("dialog-help", 464);
+function showHelp(n) {
+   showDialog("dialog-help" + n, 464);
 }
 
 function hideHelp() {
-   hideDialog("dialog-help");
+   hideDialog("dialog-help1");
+   hideDialog("dialog-help2");
+}
+
+function toggleHelp() {
+   if (isDialogOpen("dialog-help1") || isDialogOpen("dialog-help2")) {
+      hideHelp();
+   } else {
+      showHelp(1);
+   }
+}
+
+function showCredits() {
+   showDialog("dialog-credits", 564);
+}
+
+function hideCredits() {
+   hideDialog("dialog-credits");
+}
+
+function showInstructions() {
+   showDialog("dialog-instructions", 464);
+}
+
+function hideInstructions() {
+   hideDialog("dialog-instructions");
 }
 
 function showInstructions() {
@@ -170,7 +264,14 @@ function hideInstructions() {
 }
 
 function showDYK() {
-   showDialog("dialog-dyk", 564);
+   var level = LEVELS[getCurrentLevel()];
+   var div = document.getElementById("dyk-text");
+   if (div && level && level.dyk) {
+      div.innerHTML = level.dyk;
+      showDialog("dialog-dyk", 564);
+   } else {
+      nextLevel();
+   }
 }
 
 function hideDYK() {
@@ -184,6 +285,14 @@ function showLevels() {
 
 function hideLevels() {
    hideDialog("dialog-levels");
+}
+
+function toggleLevels() {
+   if (isDialogOpen("dialog-levels")) {
+      hideLevels();
+   } else {
+      showLevels();
+   }
 }
 
 function showSolution() {
@@ -214,13 +323,12 @@ function hideSolution() {
 
 function adjustLevelStars() {
    var l = getMaxLevel();
-   console.log(l);   
-   for (var i=1; i<=LEVELS.length; i++) {
+   for (var i=0; i<LEVELS.length; i++) {
       var line = document.getElementById("levels-line-" + i);
       if (line) {
          var stars = line.getElementsByTagName("img");
          for (var j=0; j<stars.length; j++) {
-            if (i <= l) {
+            if (i < l) {
                stars[j].src = "images/star.png";
             } else {
                stars[j].src = "images/star_blank.png";
@@ -229,7 +337,7 @@ function adjustLevelStars() {
          
          var a = line.getElementsByTagName("a");
          if (a && a.length > 0) {
-            a[0].className = (i <= l+1) ? "enabled" : "disabled";
+            a[0].className = (i <= l) ? "enabled" : "disabled";
          }
       }
    }
@@ -243,7 +351,7 @@ function adjustLevelStars() {
 function getCurrentLevel() {
    var s = gup("level");
    if (s.length > 0) {
-      return Math.floor(s) - 1;
+      return Math.floor(s);
    } else {
       return 0;
    }
@@ -251,8 +359,10 @@ function getCurrentLevel() {
 
 
 function gotoLevel(level) {
-   var l = getMaxLevel();
-   if (level <= l + 1) {
+   if (level >= LEVELS.length) {
+      window.location = "finish.html";
+   }
+   else if (level <= getMaxLevel()) {
       window.location = "game.html?level=" + level;
    }
    return false;
@@ -260,7 +370,7 @@ function gotoLevel(level) {
 
 
 function nextLevel() {
-   return gotoLevel(getCurrentLevel() + 2);
+   return gotoLevel(getCurrentLevel() + 1);
 }
 
 

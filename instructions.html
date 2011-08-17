@@ -23,28 +23,31 @@
          Can you build a tree to show how
          <b>birds</b>, <b>lizards</b>, and <b>plants</b> are related? 
          </p>
-         <div style="background-color: #39c; text-align: center; margin: 20px; border-radius: 10px; border: 2px solid white; padding: 8px;">
+         <div style="border-radius: 20px; background-color: #39c; padding: 12px; margin: 20px; text-align: center; border: 2px solid white;">
+
          <img id="img-clade1" src="images/bird.png" />
          <img id="img-clade2" src="images/lizard.png" />
          <img id="img-clade3" src="images/plant.png" />
          </div>
          <div style="text-align: center">
             <img src="images/back.png" onclick="window.location = 'index.html';" style="margin: 0 10px 0 10px;" />
-            <img src="images/next.png" onclick="showHelp();" style="margin: 0 10px 0 10px;" />
+            <img src="images/next.png" onclick="showHelp(1);" style="margin: 0 10px 0 10px;" />
          </div>
    </div>
-   
 
-   
+
    <!-- HELP DIALOG -->
-   <div id="dialog-help" class="dialog">
-      <img src="images/howtoplay.png"><br>
-      <img src="images/help/animation.gif" style="border: 2px solid white; margin: 10px 0 10px 0;"> <br>
-         <div style="text-align: center">
-            <img src="images/back.png" onclick="showInstructions();" style="margin: 0 10px 0 10px;" />
-            <img src="images/next.png" onclick="window.location = 'game.html?level=1';" style="margin: 0 10px 0 10px;" />
-         </div>
+   <div id="dialog-help1" class="dialog">
+      <div style="text-align: left;">
+         <img src="images/howtoplay.png">
+      </div>
+      <img src="images/help/animation1.gif" style="border: 2px solid white; margin: 10px 0 10px 0;">
+      <div style="text-align: center">
+         <img src="images/back.png" onclick="showInstructions();" style="margin: 0 10px 0 10px;" />
+         <img src="images/next.png" onclick="window.location = 'game.html';" style="margin: 0 10px 0 10px;" />
+      </div>
    </div>
+   
    
 </body>
 </html>

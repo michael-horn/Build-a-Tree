@@ -27,53 +27,114 @@
 <body onload="startup();">
    <img src="images/title-small.png" style="position: absolute" />
    <img src="images/restart.png" style="position: absolute; right: 18px; top: 38px;" onclick="log('press', 'Restart Button'); restart();"/>
-   <img src="images/levels.png" style="position: absolute; right: 18px; top: 95px;" onclick="log('press', 'Levels Button'); showLevels();" />
-   <img src="images/help.png" style="position: absolute; right: 18px; top: 152px;" onclick="log('press', 'Help Button'); showHelp();" />
+   <img src="images/levels.png" style="position: absolute; right: 18px; top: 95px;" onclick="log('press', 'Levels Button'); toggleLevels();" />
+   <img src="images/help.png" style="position: absolute; right: 18px; top: 152px;" onclick="log('press', 'Help Button'); toggleHelp();" />
    <img id="hint-image" src="images/info/lizard.png" style="position: absolute; left: 200px; top: 150px; visibility: hidden;" />
 
 
    <!-- HELP DIALOG -->
-   <div id="dialog-help" class="dialog">
-      <img src="images/howtoplay.png"><br>
-      <img src="images/help/animation.gif" style="border: 2px solid white; margin: 10px 0 10px 0;"> <br>
-      <img src="images/close.png" onclick="log('press', 'Close Button'); hideHelp();" />
+   <div id="dialog-help1" class="dialog">
+      <div style="text-align: left;">
+         <img src="images/howtoplay.png">
+         <h2>How to build a tree...</h2>
+      </div>
+      <img src="images/help/animation1.gif" style="border: 2px solid white; margin: 10px 0 10px 0;">
+      <div style="text-align: center">
+         <img src="images/back.png" onclick="log('press', 'Back Button'); hideHelp();" style="margin: 0 10px 0 10px;" />
+         <img src="images/next.png" onclick="log('press', 'Next Button'); showHelp(2);" style="margin: 0 10px 0 10px;" />
+      </div>
    </div>
    
+   
+   <!-- HELP DIALOG -->
+   <div id="dialog-help2" class="dialog">
+      <div style="text-align: left;">
+         <img src="images/howtoplay.png">
+         <h2>How to break a tree...</h2>
+      </div>
+      <img src="images/help/animation2.gif" style="border: 2px solid white; margin: 10px 0 10px 0;">
+      <div style="text-align: center">
+         <img src="images/back.png" onclick="log('press', 'Back Button'); showHelp(1);" style="margin: 0 10px 0 10px;" />
+         <img src="images/next.png" onclick="log('press', 'Next Button'); hideHelp();" style="margin: 0 10px 0 10px;" />
+      </div>
+   </div>
+   
+   
+   <!-- CREDITS DIALOG -->
+   <div id="dialog-credits" class="dialog">
+      <img src="images/title-small.png" /><br>
+      <p>
+         <h3>Credits</h3>
+         Build-a-Tree was designed and programmed by <b>Michael Horn</b> at
+         Northwestern University. This work is part of the Life on Earth Project
+         funded by the National Science Foundation.
+         <h3>Life on Earth Project Team</h3>
+         <ul>
+            <li><b>Chia Shen</b>, Harvard University</li>
+            <li><b>Judy Diamond</b>, University of Nebraska</li>
+            <li><b>E. Margaret Evans</b>, University of Michigan</li>
+            <li><b>Michael Horn</b>, Northwestern University</li>
+            <li><b>Florian Block</b>, Harvard University</li>
+            <li><b>Zeina Atrash Leong</b>, Northwestern University</li>
+            <li><b>Brenda Caldwell Phillips</b>, Harvard University</li>
+            <li><b>Sebastian Velez</b>, Harvard University</li>
+         </ul>
+      </p>
+      <p>
+      This work is supported by the National Science Foundation (grant #1010889).
+      Any opinions, findings and conclusions or recommendations expressed in this material
+      are those of the author(s) and do not necessarily reflect the views of the National
+      Science Foundation. <br>
+      </p>
+      <div style="text-align: center;">
+      <img src="images/close.png" onclick="log('press', 'Close Button'); hideCredits();" />
+      </div>
+   </div>
+      
+
    
    <!-- LEVEL SELECTOR -->
    <div id="dialog-levels" class="dialog">
       <img src="images/title-small.png" />
       <table>
+      <tr id="levels-line-0">
+         <td><a href="#" onclick="return gotoLevel(0);">Level 1</a></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td colspan="6"></td>
+      </tr>
       <tr id="levels-line-1">
-         <td><a href="#" onclick="return gotoLevel(1);">Level 1</a></td>
+         <td><a href="#" onclick="return gotoLevel(1);">Level 2</a></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td colspan="6"></td>
       </tr>
       <tr id="levels-line-2">
-         <td><a href="#" onclick="return gotoLevel(2);">Level 2</a></td>
+         <td><a href="#" onclick="return gotoLevel(2);">Level 3</a></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td colspan="6"></td>
       </tr>
       <tr id="levels-line-3">
-         <td><a href="#" onclick="return gotoLevel(3);">Level 3</a></td>
+         <td><a href="#" onclick="return gotoLevel(3);">Level 4</a></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td colspan="6"></td>
       </tr>
       <tr id="levels-line-4">
-         <td><a href="#" onclick="return gotoLevel(4);">Level 4</a></td>
+         <td><a href="#" onclick="return gotoLevel(4);">Level 5</a></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
-         <td colspan="6"></td>
+         <td><img src="images/star.png" class="level-star" /></td>
+         <td colspan="5"></td>
       </tr>
       <tr id="levels-line-5">
-         <td><a href="#" onclick="return gotoLevel(5);">Level 5</a></td>
+         <td><a href="#" onclick="return gotoLevel(5);">Level 6</a></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
@@ -82,8 +143,9 @@
          <td><img src="images/star.png" class="level-star" /></td>
          <td colspan="3"></td>
       </tr>
+      <!--
       <tr id="levels-line-6">
-         <td><a href="#" onclick="return gotoLevel(6);">Level 6</a></td>
+         <td><a href="#" onclick="return gotoLevel(6);">Level 7</a></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
@@ -93,7 +155,7 @@
          <td colspan="3"></td>
       </tr>
       <tr id="levels-line-7">
-         <td><a href="#" onclick="return gotoLevel(7);">Level 7</a></td>
+         <td><a href="#" onclick="return gotoLevel(7);">Level 8</a></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
@@ -104,10 +166,12 @@
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
       </tr>
+      -->
       </table>
       <br />
-         <a href="index.html">Start Over</a><br />
-         <a href="credits.html">Credits</a><br />
+         <a href="index.html">Start Over</a>
+         <a href="#" onclick="log('press', 'Credits'); showCredits();">Credits</a><br /><br />
+         <a href="#" onclick="window.location = 'login.html';">Participant Login</a><br /><br />
       <img src="images/close.png" onclick="log('press', 'Close Button'); hideLevels();" />
    </div>
 
@@ -115,17 +179,8 @@
    
    <!-- DID YOU KNOW -->
    <div id="dialog-dyk" class="dialog">
-      <img src="images/dyk.png" /> <br>
-      <p>
-Plants and animals are both eukaryotes (<i>ew-KARR-ee-ohts</i>), which means that they
-are complex multicellular organism. Plants and animals diverged (evolved into
-two different forms of life) around 1,400 million years ago.
-      </p>
-      <p>
-Birds and lizards diverged much more recently&#151;around 277
-million years ago. This means that birds and lizards had an ancestor in common
-more recently than animals and plants.
-      </p>
+      <img src="images/dyk.png" />
+      <div id="dyk-text"></div>
       <div style="text-align: center">
          <img src="images/back.png" onclick="log('press', 'Back Button'); hideDYK(); showSolution();" style="margin: 0 10px 0 10px;" />
          <img src="images/next.png" onclick="log('press', 'Next Button'); hideDYK(); nextLevel();" style="margin: 0 10px 0 10px;" />

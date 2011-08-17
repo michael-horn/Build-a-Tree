@@ -202,9 +202,21 @@ function Tree() {
 //--------------------------------------------------------------
    this.draw = function(g) {
       
+      var tips = [];
+      
       // layout the internal nodes
       for (var i=0; i<this.taxa.length; i++) {
          var clade = this.taxa[i];
+         
+         if (clade.hasChildren()) {
+            
+            // layout tips for this root
+            tips = [];
+            clade.getTips(tips);
+            for (var j=0; j<tips.length; j++) {
+               tips[j].treeIndexX = j;
+            }
+         }
          if (clade.isRoot() && clade.hasChildren()) {
             clade.computePosition();
          }
@@ -317,16 +329,6 @@ function Tree() {
             var a, b, force;
             var tips = [];
             clade.getTips(tips);
-   
-            // gravity / waterline
-            /*
-            var waterline = (canvas.height / 2) - (65 * clade.getDepth() / 2);
-
-            for (var j=0; j<tips.length; j++) {
-               a = tips[j];
-               a.force.fy += (waterline - a.cy) * 0.1;
-            }
-            */
             
             // spring forces
             for (var j=0; j<tips.length - 1; j++) {
@@ -379,15 +381,12 @@ function Tree() {
       
       for (var i=0; i<this.tips.length; i++) {
          var a = this.tips[i];
-         if (a.isAncestorDragging() || a.hasToken()) {       
-            for (var j=0; j<this.tips.length; j++) {
-               var b = this.tips[j];
+         if (a.isAncestorDragging() || a.hasToken()) {
+            
+            for (var j=0; j<this.taxa.length; j++) {
+               var b = this.taxa[j];
                if (a.overlaps(b)) {
-                  
-                  // this prevents reverse-order duplicates
-                  if (!b.isAncestorDragging() || j > i) {
-                     return { a : a, b : b };
-                  }
+                  return { a : a, b : b };
                }
             }
          }
@@ -638,6 +637,8 @@ function Tree() {
    this.createQuestionButton = function() {
       this.button = new Button(0, 0, 40, 40);
       this.button.visible = false;
+      this.button.firstpress = true;
+      
       addTouchable(this.button);
       var t = this;
       setTimeout(
@@ -646,7 +647,12 @@ function Tree() {
 
       this.button.action = function() {
          log("press", "Question Button");
-         setTimeout(function() { showSolutionBox(); }, 500);
+         if (this.firstpress) {
+            showSolutionBox();
+            this.firstpress = false;
+         } else {
+            toggleSolutionBox();
+         }
       }
       
       this.button.draw = function(g) {
