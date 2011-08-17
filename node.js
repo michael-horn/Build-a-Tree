@@ -255,6 +255,7 @@ function Node(id) {
    
    this.isDocked = function() { return false; }
    
+   this.computeDepth = function() { }
    
 //----------------------------------------------------------------------
 // TOUCH FUNCTIONS
