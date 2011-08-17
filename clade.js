@@ -60,13 +60,6 @@ function Clade(id) {
       }
    }
    
-   this.computeDepth = function() {
-      this.depth = 0;
-      for (var i=0; i<this.children.length; i++) {
-         this.depth = Math.max(this.depth, this.children[i].getDepth() + 1);
-      }
-   }
-   
    this.addChild = function(child) {
       if (child) {
          this.children.push(child);
@@ -86,6 +79,14 @@ function Clade(id) {
       }
    }
    
+   this.computeDepth = function() {
+      this.depth = 0;
+      for (var i=0; i<this.children.length; i++) {
+         var child = this.children[i];
+         child.computeDepth();
+         this.depth = Math.max(this.depth, this.children[i].getDepth() + 1);
+      }
+   }
    
 //----------------------------------------------------------------------
 // Remove a child from the list of children and collapse singleton trees
