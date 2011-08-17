@@ -21,11 +21,11 @@ const LEVELS = [
    subtitle : "Plants and Animals",
    
    taxa : [
-      { id : 0, parent_id : null, name : "Eukaryotes", depth : 2, tag : "eukaryotes", trait : "cells with organelles" },
-      { id : 1, parent_id : 0, name : "Animals", depth : 1, tag : "animals", trait : "digestive cavity" },
-      { id : 2, parent_id : 0, name : "Plants", depth : 0, tag : "plant" },
-      { id : 3, parent_id : 1, name : "Birds", depth : 0, tag : "bird" },
-      { id : 4, parent_id : 1, name : "Lizards", depth : 0, tag : "lizard" }
+      { id : 0, parent_id : null, name : "Eukaryotes", tag : "eukaryotes", trait : "cells with organelles" },
+      { id : 1, parent_id : 0, name : "Animals", tag : "animals", trait : "digestive cavity" },
+      { id : 2, parent_id : 0, name : "Plants", tag : "plant", tip : true },
+      { id : 3, parent_id : 1, name : "Birds", tag : "bird", tip : true },
+      { id : 4, parent_id : 1, name : "Lizards", tag : "lizard", tip : true }
    ],
    
    dyk : ("<p>Plants and animals are both eukaryotes (<i>you-KARR-ee-ohts</i>). " +
@@ -43,11 +43,11 @@ const LEVELS = [
    subtitle : "Bats, Birds, and People",
    
    taxa : [
-      { id : 0, parent_id : null, name : "Vertebrates", depth : 2, tag : "vertebrates", trait : "internal skeleton" },
-      { id : 1, parent_id : 0, name : "Mammals", depth : 1, tag : "mammals", trait : "hair" },
-      { id : 2, parent_id : 1, name : "Humans", depth : 0, tag : "human" },
-      { id : 3, parent_id : 0, name : "Birds", depth : 0, tag : "bird" },
-      { id : 4, parent_id : 1, name : "Bats", depth : 0, tag : "bat" }
+      { id : 0, parent_id : null, name : "Vertebrates", tag : "vertebrates", trait : "internal skeleton" },
+      { id : 1, parent_id : 0, name : "Mammals", tag : "mammals", trait : "hair" },
+      { id : 2, parent_id : 1, name : "Humans", tip : true, tag : "human" },
+      { id : 3, parent_id : 0, name : "Birds", tip : true, tag : "bird" },
+      { id : 4, parent_id : 1, name : "Bats", tip : true, tag : "bat" }
    ],
    
    dyk : ("<p>Bats, like humans, are placental mammals. Bats have hair, give " +
@@ -62,11 +62,11 @@ const LEVELS = [
    name : "Level 3", 
    
    taxa : [
-      { id : 0, parent_id : null, name : "Eukaryotes", depth : 2, tag : "eukaryotes", trait : "cells with organelles" },
-      { id : 1, parent_id : 0, name : "Animals and Fungi", depth : 1, tag : "a+f", trait : "cells with chitin" },
-      { id : 2, parent_id : 0, name : "Plants", depth : 0, tag : "plant" },
-      { id : 3, parent_id : 1, name : "Fungi", depth : 0, tag : "fungus" },
-      { id : 4, parent_id : 1, name : "Humans", depth : 0, tag : "human" }
+      { id : 0, parent_id : null, name : "Eukaryotes", tag : "eukaryotes", trait : "cells with organelles" },
+      { id : 1, parent_id : 0, name : "Animals and Fungi", tag : "a+f", trait : "cells with chitin" },
+      { id : 2, parent_id : 0, name : "Plants", tip : true, tag : "plant" },
+      { id : 3, parent_id : 1, name : "Fungi", tip : true, tag : "fungus" },
+      { id : 4, parent_id : 1, name : "Humans", tip : true, tag : "human" }
    ],
    
    dyk : ("<p>Scientists think that fungi (including mushrooms) are more closely " +
@@ -80,11 +80,11 @@ const LEVELS = [
    name : "Level 4", 
    
    taxa : [
-      { id : 0, parent_id : null, name : "Arthropods", depth : 2, tag : "arthropods", trait : "exoskeleton" },
-      { id : 1, parent_id : 0, name : "Arachnids", depth : 1, tag : "arachnids", trait : "eight legs" },
-      { id : 2, parent_id : 1, name : "Scorpions", depth : 0, tag : "scorpion" },
-      { id : 3, parent_id : 1, name : "Spiders", depth : 0, tag : "spider" },
-      { id : 4, parent_id : 0, name : "Insects", depth : 0, tag : "butterfly" }
+      { id : 0, parent_id : null, name : "Arthropods", tag : "arthropods", trait : "exoskeleton" },
+      { id : 1, parent_id : 0, name : "Arachnids", tag : "arachnids", trait : "eight legs" },
+      { id : 2, parent_id : 1, name : "Scorpions", tip : true, tag : "scorpion" },
+      { id : 3, parent_id : 1, name : "Spiders", tip : true, tag : "spider" },
+      { id : 4, parent_id : 0, name : "Insects", tip : true, tag : "butterfly" }
    ],
    
    dyk : ("<p>Spiders, scorpions, and insects are all different kinds of <i>" +
@@ -99,13 +99,13 @@ const LEVELS = [
    subtitle : "Amniotes",
    
    taxa : [
-      { id : 0, parent_id : null, name : "Amniotes", depth : 3, tag : "amniotes", trait : "amniotic egg" },
-      { id : 1, parent_id : 0, name : "Diapsids", depth : 2, tag : "diapsids", trait : "lizard-like face" },
-      { id : 2, parent_id : 1, name : "Theropods", depth : 1, tag : "dinobirds", trait : "wishbone" },
-      { id : 3, parent_id : 2, name : "Birds", depth : 0, tag : "bird" },
-      { id : 4, parent_id : 2, name : "T. Rex", depth : 0, tag : "trex" },
-      { id : 5, parent_id : 1, name : "Lizards", depth : 0, tag : "lizard" },
-      { id : 6, parent_id : 0, name : "Bats", depth : 0, tag : "bat" }
+      { id : 0, parent_id : null, name : "Amniotes", tag : "amniotes", trait : "amniotic egg" },
+      { id : 1, parent_id : 0, name : "Diapsids", tag : "diapsids", trait : "lizard-like face" },
+      { id : 2, parent_id : 1, name : "Theropods", tag : "dinobirds", trait : "wishbone" },
+      { id : 3, parent_id : 2, name : "Birds", tip : true, tag : "bird" },
+      { id : 4, parent_id : 2, name : "T. Rex", tip : true, tag : "trex" },
+      { id : 5, parent_id : 1, name : "Lizards", tip : true, tag : "lizard" },
+      { id : 6, parent_id : 0, name : "Bats", tip : true, tag : "bat" }
    ],
    
    dyk : ("<p>Modern birds and Tyrannosaurus rex share a more recent ancestor in common " +
@@ -118,17 +118,17 @@ const LEVELS = [
    subtitle : "Vertebrates and Invertebrates",
    
    taxa : [
-      { id : 0, parent_id : null, name : "Animals", depth : 3, tag : "animals", trait : null },
-      { id : 1, parent_id : 0, name : "Vertebrates", depth : 2, tag : "vertebrates", trait : "internal skeleton" },
-      { id : 2, parent_id : 0, name : "Arthropods", depth : 1, tag : "arthropods", trait : "exoskeleton" },
-      { id : 3, parent_id : 1, name : "Mammals", depth : 1, tag : "mammals", trait : "hair" },
-      { id : 4, parent_id : 1, name : "Theropods", depth : 1, tag : "dinobirds", trait : "wishbone" },
-      { id : 5, parent_id : 4, name : "Birds", depth : 0, tag : "bird" },
-      { id : 6, parent_id : 4, name : "T. Rex", depth : 0, tag : "trex" },
-      { id : 7, parent_id : 3, name : "Giraffes", depth : 0, tag : "giraffe" },
-      { id : 8, parent_id : 3, name : "Bats", depth : 0, tag : "bat" },
-      { id : 9, parent_id : 2, name : "Spiders", depth : 0, tag : "spider" },
-      { id : 10, parent_id : 2, name : "Insects", depth : 0, tag : "butterfly" }
+      { id : 0, parent_id : null, name : "Animals", tag : "animals", trait : null },
+      { id : 1, parent_id : 0, name : "Vertebrates", tag : "vertebrates", trait : "internal skeleton" },
+      { id : 2, parent_id : 0, name : "Arthropods", tag : "arthropods", trait : "exoskeleton" },
+      { id : 3, parent_id : 1, name : "Mammals", tag : "mammals", trait : "hair" },
+      { id : 4, parent_id : 1, name : "Theropods", tag : "dinobirds", trait : "wishbone" },
+      { id : 5, parent_id : 4, name : "Birds", tip : true, tag : "bird" },
+      { id : 6, parent_id : 4, name : "T. Rex", tip : true, tag : "trex" },
+      { id : 7, parent_id : 3, name : "Giraffes", tip : true, tag : "giraffe" },
+      { id : 8, parent_id : 3, name : "Bats", tip : true, tag : "bat" },
+      { id : 9, parent_id : 2, name : "Spiders", tip : true, tag : "spider" },
+      { id : 10, parent_id : 2, name : "Insects", tip : true, tag : "butterfly" }
    ],
    
    dyk : null,
@@ -140,17 +140,17 @@ const LEVELS = [
    name : "Level 7",
    
    taxa : [
-      { id : 0, parent_id : null, name : "Animals", depth : 4, tag : "animals", trait : null },
-      { id : 1, parent_id : 0, name : "Vertebrates", depth : 3, tag : "vertebrates", trait : "internal skeleton" },
-      { id : 2, parent_id : 0, name : "Arthropods", depth : 1, tag : "arthropods", trait : "exoskeleton" },
-      { id : 3, parent_id : 1, name : "Amniotes", depth : 2, tag : "amniotes", trait : "amniotic egg" },
-      { id : 4, parent_id : 3, name : "Diapsids", depth : 1, tag : "diapsids", trait : "lizard-like face" },
-      { id : 5, parent_id : 1, name : "Frogs", depth : 0, tag : "frog", hint : "Frogs are a type of <i>amphibian</i>. Amphibians belong to a group of animals called vertebrates." },
-      { id : 6, parent_id : 3, name : "Bats", depth : 0, tag : "bat", hint: "Bats are a type of mammal. Mammals belong to a group of animals called <i>diapsids</i> that also includes birds and lizards."  },
-      { id : 7, parent_id : 4, name : "Birds", depth : 0, tag : "bird", hint : "Birds and lizards belong to a group of animals called <i>diapsids</i>. Crocodiles and dinosaurs are also diapsids." },
-      { id : 8, parent_id : 4, name : "Lizards", depth : 0, tag : "lizard", hint : "Lizards and Birds belong to a group of animals called <i>diapsids</i>. Crocodiles and dinosaurs are also diapsids." },
-      { id : 9, parent_id : 2, name : "Crabs", depth : 0, tag : "crab", hint : "Crabs and spiders both belong to a group of animals called <i>arthropods</i>. Arthropods are invertibrate animals with exoskeletons."  },
-      { id : 10, parent_id : 2, name : "Spiders", depth : 0, tag : "spider", hint : "Spiders and crabs both belong to a group of animals called <i>arthropods</i>. Arthropods are invertibrate animals with exoskeletons."  }
+      { id : 0, parent_id : null, name : "Animals", tag : "animals", trait : null },
+      { id : 1, parent_id : 0, name : "Vertebrates", tag : "vertebrates", trait : "internal skeleton" },
+      { id : 2, parent_id : 0, name : "Arthropods", tag : "arthropods", trait : "exoskeleton" },
+      { id : 3, parent_id : 1, name : "Amniotes", tag : "amniotes", trait : "amniotic egg" },
+      { id : 4, parent_id : 3, name : "Diapsids", tag : "diapsids", trait : "lizard-like face" },
+      { id : 5, parent_id : 1, name : "Frogs", tip : true, tag : "frog", hint : "Frogs are a type of <i>amphibian</i>. Amphibians belong to a group of animals called vertebrates." },
+      { id : 6, parent_id : 3, name : "Bats", tip : true, tag : "bat", hint: "Bats are a type of mammal. Mammals belong to a group of animals called <i>diapsids</i> that also includes birds and lizards."  },
+      { id : 7, parent_id : 4, name : "Birds", tip : true, tag : "bird", hint : "Birds and lizards belong to a group of animals called <i>diapsids</i>. Crocodiles and dinosaurs are also diapsids." },
+      { id : 8, parent_id : 4, name : "Lizards", tip : true, tag : "lizard", hint : "Lizards and Birds belong to a group of animals called <i>diapsids</i>. Crocodiles and dinosaurs are also diapsids." },
+      { id : 9, parent_id : 2, name : "Crabs", tip : true, tag : "crab", hint : "Crabs and spiders both belong to a group of animals called <i>arthropods</i>. Arthropods are invertibrate animals with exoskeletons."  },
+      { id : 10, parent_id : 2, name : "Spiders", tip : true, tag : "spider", hint : "Spiders and crabs both belong to a group of animals called <i>arthropods</i>. Arthropods are invertibrate animals with exoskeletons."  }
    ],
    
    dyk : null
@@ -160,23 +160,23 @@ const LEVELS = [
    name : "Bonus Level 8",
    
    taxa : [
-      { id : 0, parent_id : null, name : "Animals", depth : 5, tag : "animals", trait : null },
-      { id : 1, parent_id : 0, name : "Vertebrates", depth : 4, tag : "vertebrates", trait : "internal skeleton" },
-      { id : 2, parent_id : 0, name : "Arthropods", depth : 2, tag : "arthropods", trait : "exoskeleton" },
-      { id : 3, parent_id : 2, name : "Arachnids", depth : 1, tag : "arachnids", trait : "eight legs" },
-      { id : 4, parent_id : 1, name : "Amniotes", depth : 3, tag : "amniotes", trait : "amniotic egg" },
-      { id : 5, parent_id : 4, name : "Mammals", depth : 1, tag : "mammals", trait : "hair" },
-      { id : 6, parent_id : 4, name : "Diapsids", depth : 2, tag : "diapsids", trait : "long lower arm bone" },
-      { id : 7, parent_id : 6, name : "Theropods", depth : 1, tag : "dinobirds", trait : "wishbone" },
-      { id : 8, parent_id : 1, name : "Frogs", depth : 0, tag : "frog" },
-      { id : 9, parent_id : 6, name : "Lizards", depth : 0, tag : "lizard" },
-      { id : 10, parent_id : 7, name : "Birds", depth : 0, tag : "bird" },
-      { id : 11, parent_id : 7, name : "T. Rex", depth : 0, tag : "trex" },
-      { id : 12, parent_id : 5, name : "Giraffes", depth : 0, tag : "giraffe" },
-      { id : 13, parent_id : 5, name : "Bats", depth : 0, tag : "bat" },
-      { id : 14, parent_id : 2, name : "Crabs", depth : 0, tag : "crab" },
-      { id : 15, parent_id : 3, name : "Spiders", depth : 0, tag : "spider" },
-      { id : 16, parent_id : 3, name : "Scorpions", depth : 0, tag : "scorpion" },
+      { id : 0, parent_id : null, name : "Animals", tag : "animals", trait : null },
+      { id : 1, parent_id : 0, name : "Vertebrates", tag : "vertebrates", trait : "internal skeleton" },
+      { id : 2, parent_id : 0, name : "Arthropods", tag : "arthropods", trait : "exoskeleton" },
+      { id : 3, parent_id : 2, name : "Arachnids", tag : "arachnids", trait : "eight legs" },
+      { id : 4, parent_id : 1, name : "Amniotes", tag : "amniotes", trait : "amniotic egg" },
+      { id : 5, parent_id : 4, name : "Mammals", tag : "mammals", trait : "hair" },
+      { id : 6, parent_id : 4, name : "Diapsids", tag : "diapsids", trait : "long lower arm bone" },
+      { id : 7, parent_id : 6, name : "Theropods", tag : "dinobirds", trait : "wishbone" },
+      { id : 8, parent_id : 1, name : "Frogs", tip : true, tag : "frog" },
+      { id : 9, parent_id : 6, name : "Lizards", tip : true, tag : "lizard" },
+      { id : 10, parent_id : 7, name : "Birds", tip : true, tag : "bird" },
+      { id : 11, parent_id : 7, name : "T. Rex", tip : true, tag : "trex" },
+      { id : 12, parent_id : 5, name : "Giraffes", tip : true, tag : "giraffe" },
+      { id : 13, parent_id : 5, name : "Bats", tip : true, tag : "bat" },
+      { id : 14, parent_id : 2, name : "Crabs", tip : true, tag : "crab" },
+      { id : 15, parent_id : 3, name : "Spiders", tip : true, tag : "spider" },
+      { id : 16, parent_id : 3, name : "Scorpions", tip : true, tag : "scorpion" },
    ],
    
    dky : null
