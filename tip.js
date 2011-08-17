@@ -28,6 +28,7 @@ function Tip(id) {
    this.velocity    = { vx : 0, vy : 0 };
    this.docked      = true;
    this.hint        = "";
+   this.depth       = 0;
    
    this.clone = function() {
       var copy = new Tip(this.getID());
