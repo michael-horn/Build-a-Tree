@@ -615,10 +615,11 @@ function Tree() {
          if (!this.visible) return;
          var cx = this.x + this.w/2;
          var cy = this.y + this.h/2;
-         g.strokeStyle = "white";
+         g.strokeStyle = Theme.FOREGROUND;
          g.fillStyle = (this.isDown() && this.isOver()) ?
-            "rgba(255, 255, 255, 0.4)" :
-            "rgba(255, 255, 255, 0.2)";
+            Theme.TRANS_LIGHT : Theme.TRANS_DARK;
+            //"rgba(255, 255, 255, 0.4)" :
+            //"rgba(255, 255, 255, 0.2)";
          g.lineWidth = 4;   
          g.beginPath();
          g.arc(cx, cy, 20, 0, Math.PI * 2, true);
@@ -629,7 +630,7 @@ function Tree() {
          g.lineTo(cx + 12, cy);
          g.lineTo(cx - 8, cy + 10);
          g.closePath();
-         g.fillStyle = "white"; 
+         g.fillStyle = Theme.FOREGROUND;
          g.fill();
       }
    }
@@ -660,17 +661,18 @@ function Tree() {
          if (!this.visible) return;
          var cx = this.x + this.w/2;
          var cy = this.y + this.h/2;
-         g.strokeStyle = "white";
+         g.strokeStyle = Theme.FOREGROUND;
          g.fillStyle = (this.isDown() && this.isOver()) ?
-            "rgba(255, 255, 255, 0.4)" :
-            "rgba(255, 255, 255, 0.2)";
+            Theme.TRANS_LIGHT : Theme.TRANS_DARK; 
+            //"rgba(255, 255, 255, 0.4)" :
+            //"rgba(255, 255, 255, 0.2)";
          g.lineWidth = 4;   
          g.beginPath();
          g.arc(cx, cy, 20, 0, Math.PI * 2, true);
          g.fill();
          g.stroke();
          g.beginPath();
-         g.fillStyle = "white";
+         g.fillStyle = Theme.FOREGROUND;
          g.textAlign = "center";
          g.textBaseline = "middle";
          g.font = "bold 22pt Tahoma, Arial, sans-serif";
