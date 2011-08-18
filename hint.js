@@ -221,18 +221,18 @@ function Hint() {
       var cy = this.getCenterY();
       g.drawImage(this.image, cx - 45, cy - 45);
       if (this.highlight || this.down) {
-         g.fillStyle = "rgba(255, 255, 255, 0.3)";
+         g.fillStyle = Theme.TRANS_DARK;
          g.beginPath();
          g.arc(cx, cy, 40, 0, Math.PI * 2, true);
          g.fill();
       }
       if (this.down) {
-         g.fillStyle = "white";
+         g.fillStyle = Theme.FOREGROUND;
          g.font = "12pt Tahoma, Arial, sans-serif";
          g.textAlign = "right";
          g.textBaseline = "middle";
          g.fillText("Drag Circle Here", cx - 50, cy - 20);
-         g.strokeStyle = "white";
+         g.strokeStyle = Theme.FOREGROUND;
          g.lineWidth = 3;
          g.beginPath();
          g.moveTo(cx - 80, cy);
