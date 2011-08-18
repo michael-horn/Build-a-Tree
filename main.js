@@ -22,10 +22,6 @@ var hint;
 
 var visuals = [];  // array of non-touchable visible objects to draw
 
-var GREEN = "#33CC33";
-var PURPLE = "#993399";
-var ORANGE = "#FF6633";
-
 var GREEN_DOCK = document.createElement("img");
 var PURPLE_DOCK = document.createElement("img");
 var ORANGE_DOCK = document.createElement("img");
@@ -172,19 +168,19 @@ function moveToDock(clade, index) {
    // PURPLE
    if (i == 0) {
       clade.setCenter(w - 40, h/2 + off);
-      clade.setColor(PURPLE);
+      clade.setColor(Theme.PURPLE);
    }
    
    // GREEN
    else if (i == 1) {
       clade.setCenter(40, h/2 + off);
-      clade.setColor(GREEN);
+      clade.setColor(Theme.GREEN);
    }
    
    // ORANGE
    else {
       clade.setCenter(w/2 + off, h - 40);
-      clade.setColor(ORANGE);
+      clade.setColor(Theme.ORANGE);
    }
 }
 
@@ -461,15 +457,15 @@ function showSolution() {
    // draw the solution tree
    var c = document.getElementById("science-tree");
    var g = c.getContext('2d');
-   g.fillStyle = "white";
-   g.strokeStyle = "white";
+   g.fillStyle = Theme.FOREGROUND;
+   g.strokeStyle = Theme.FOREGROUND;
    solution.drawSmallTree(g, 0, 0, c.width, c.height);
    
    // draw the players' tree
    c = document.getElementById("your-tree");
    g = c.getContext('2d');
-   g.fillStyle = "white";
-   g.strokeStyle = "white";
+   g.fillStyle = Theme.FOREGROUND;
+   g.strokeStyle = Theme.FOREGROUND;
    tree.layoutSmallTree();
    tree.drawSmallTree(g, 0, 0, c.width, c.height);
 
