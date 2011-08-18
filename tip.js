@@ -101,7 +101,7 @@ function Tip(id) {
 // Draws the name of the tip
 //----------------------------------------------------------------------
    this.drawHighlight = function(g) {
-      g.fillStyle = "white";
+      g.fillStyle = Theme.FOREGROUND;
       g.textAlign = "center";
       g.textBaseline = "bottom";
       g.font = "14pt Tahoma, Arial, sans-serif";
@@ -113,6 +113,7 @@ function Tip(id) {
       
       var pinned = this.getRoot().isPinned();
       
+      // Token highlight
       if (this.hasToken() && !this.hasParent()) {
          g.beginPath();
          g.fillStyle = "rgba(255, 255, 255, 0.1)";
@@ -140,7 +141,8 @@ function Tip(id) {
             lt = Math.max(8 - ((Math.abs(wl - this.getCenterY()) / 100) * 8), 1);
          }
          g.lineWidth = lt;
-         g.strokeStyle = this.getParent().isCorrect()? "white" : "#6AB7DC";
+         g.strokeStyle = this.getParent().isCorrect()?
+            Theme.FOREGROUND : Theme.FADED; 
          g.lineCap = "round";
          g.beginPath();
          g.moveTo(this.getCenterX(), this.getCenterY() + 2);
@@ -149,7 +151,7 @@ function Tip(id) {
       }
       
       if (!this.hasToken()) {
-         g.fillStyle = "white";
+         g.fillStyle = Theme.FOREGROUND;
          g.beginPath();
          g.arc(this.cx, this.cy, this.w/2 - 12, 0, Math.PI * 2, true);
          g.fill();
