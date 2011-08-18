@@ -357,19 +357,20 @@ function Clade(id) {
          y1 = tips[i].getCenterY();
          g.lineTo(x1, y1);
       }
-      g.strokeStyle = "rgba(255, 255, 255, 0.3)";
+      g.strokeStyle = Theme.TRANS_DARK; 
       g.lineWidth = 68;
       g.lineCap = "round";
       g.stroke();
-      g.fillStyle = "white";
+      g.fillStyle = Theme.FOREGROUND;
       g.textAlign = "center";
       g.textBaseline = "bottom";
       g.font = "14pt Tahoma, Arial, sans-serif";
       g.beginPath();
       g.fillText(this.name, (x0 + x1) / 2, (y0 + y1) / 2 - 43);
-      
+
+      /*      
       if (this.isDragging()) {
-         g.fillStyle = "white";
+         g.fillStyle = Theme.FOREGROUND;
          g.beginPath();
          g.font = "11pt Tahoma, Arial, sans-serif";
          g.beginPath();
@@ -380,6 +381,7 @@ function Clade(id) {
          g.fillText("Ancestor of", this.getCenterX(), this.getCenterY() + y);
          g.fillText(this.name, this.getCenterX(), this.getCenterY() + y + 15);
       }
+      */
    }
    
    
@@ -422,7 +424,7 @@ function Clade(id) {
       if (!this.hasChildren()) return;
       
       g.lineCap = "round";
-      g.strokeStyle = this.isCorrect()? "white" : "#6AB7DC";
+      g.strokeStyle = this.isCorrect()? Theme.FOREGROUND : Theme.FADED;
 
       
       //--------------------------------
@@ -456,22 +458,24 @@ function Clade(id) {
       //--------------------------------
       // Handle for roots
       //--------------------------------
+      /*
       if (this.isRoot() && this.isCorrect() && !tree.isComplete()) {
-         g.fillStyle = this.isCorrect()? "white" : "#6AB7DC";
+         g.fillStyle = this.isCorrect()? Theme.FOREGROUND : Theme.FADED;
          g.beginPath();
          g.arc(this.getCenterX(), this.getCenterY() + 50, 11, 0, Math.PI * 2, true);
          g.fill();
-         g.fillStyle = "#6AB7DC";
+         g.fillStyle = Theme.FADED;
          g.beginPath();
          g.arc(this.getCenterX(), this.getCenterY() + 50, 8, 0, Math.PI * 2, true);
          g.fill();
          if (this.isDragging()) {
-            g.fillStyle = "white";
+            g.fillStyle = Theme.FOREGROUND;
             g.beginPath();
             g.arc(this.getCenterX(), this.getCenterY() + 50, 4, 0, Math.PI * 2, true);
             g.fill();
          }
       }
+      */
       
       //--------------------------------
       // Oval around tips
@@ -495,9 +499,9 @@ function Clade(id) {
             g.beginPath();
             g.moveTo(this.cx - 10, ty);
             g.lineTo(this.cx + 10, ty);
-            g.strokeStyle = "white";
+            g.strokeStyle = Theme.FOREGROUND;
             g.stroke();
-            g.fillStyle = "rgba(255, 255, 255, 0.7)";
+            g.fillStyle = Theme.TRANS_LIGHT;
             g.textAlign = "left";
             g.textBaseline = "middle";
             g.font = "11pt Arial, sans-serif";
@@ -581,7 +585,6 @@ function Clade(id) {
 
    
    this.containsTouch = function(tp) {
-      console.log("contains touch");
       var x = this.getX();
       var y = this.getY();
       var w = this.w;
