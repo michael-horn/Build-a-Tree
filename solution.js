@@ -58,17 +58,16 @@ function SolutionBox(solution) {
       
       
       if (this.down) {
-         g.fillStyle = "#64B7E4"; 
+         g.fillStyle = Theme.TRANS_MEDIUM; //#64B7E4"; 
       } else {
-         g.fillStyle = "#5AADDA";
+         g.fillStyle = Theme.TRANS_DARK; //"#5AADDA";
       }
-      g.lineWidth = 4;
-      g.strokeStyle = "white";
+      g.lineWidth = 2;
+      g.strokeStyle = Theme.FOREGROUND;
       g.stroke();
       g.fill();
-      g.fillStyle = "white";
+      g.fillStyle = Theme.FOREGROUND;
       solution.drawSmallTree(g, tx, ty, this.tw, this.th);
-      g.fillStyle = "white";
       g.textAlign = "center";
       g.textBaseline = "bottom";
       g.font = "12pt Tahoma, Arial, sans-serif";
@@ -86,7 +85,7 @@ function SolutionBox(solution) {
       var ty = sy + sh - 14;
       var dy = this.open? 5 : -5;
       g.beginPath();
-      g.fillStyle = "white";
+      g.fillStyle = Theme.FOREGROUND;
       g.moveTo(tx, ty - dy);
       g.lineTo(tx - 6, ty + dy);
       g.lineTo(tx + 6, ty + dy);
