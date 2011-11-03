@@ -1,9 +1,21 @@
-Add "did you know" boxes on certain surprising joins.
+
 * New bird silhouette
 
 * iPod testing
 
 * Sound effects
+
+* Stretch bug in level 8
+
+* Draw arrow to solution in level 1??
+
+* Visually responsive buttons
+
+* Fungus trats are useless
+
+* Have completed tree float to center of screen?
+
+* Silver and gold stars for first trys?
 
 TIDAL Lab Logo
 NSF Logo
