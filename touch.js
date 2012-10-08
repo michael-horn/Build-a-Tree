@@ -157,9 +157,9 @@ function mouseMove(evt) {
 //-----------------------------------------------------------------
 function touchDown(evt) {
    resetMasterTimer();
-	for (var i=0; i<evt.changedTouches.length; i++) {
+   for (var i=0; i<evt.changedTouches.length; i++) {
+      var t = evt.changedTouches[i];
       if (t.down) {
-         var t = evt.changedTouches[i];
          var pt = { x : t.pageX, y : t.pageY };
          var o = findTouchTarget(pt);
          if (o) {
@@ -248,15 +248,12 @@ function processTouches(data) {
 
 
 function sendEvent(ename, touchMouse) {
-   if (touchMouse.finger) {
-      var tx = touchMouse.pageX;
-      var ty = touchMouse.pageY;
-      var evt = document.createEvent("MouseEvents");
-      evt.initMouseEvent()
-      evt.initMouseEvent(ename, true, true, window, 1, tx, ty, tx, ty, false, false, false, false, 0, null);
-      var el = document.elementFromPoint(tx, ty);
-      if (el) {
-         el.dispatchEvent(evt);
-      }
+   var tx = touchMouse.pageX;
+   var ty = touchMouse.pageY;
+   var evt = document.createEvent("MouseEvents");
+   evt.initMouseEvent(ename, true, true, window, 1, tx, ty, tx, ty, false, false, false, false, 0, null);
+   var el = document.elementFromPoint(tx, ty);
+   if (el) {
+      el.dispatchEvent(evt);
    }
 }
