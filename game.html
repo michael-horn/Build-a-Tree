@@ -12,6 +12,7 @@
    <script src="levels.js"></script>
    <script src="button.js"></script>
    <script src="atext.js"></script>
+   <script src="help.js"></script>
    <script src="star.js"></script>
    <script src="tween.js"></script>
    <script src="node.js"></script>
@@ -31,7 +32,6 @@
    <img src="images/levels.png" style="position: absolute; right: 18px; top: 95px;" onclick="log('press', 'Levels Button'); toggleLevels();" />
    <img src="images/help.png" style="position: absolute; right: 18px; top: 152px;" onclick="log('press', 'Help Button'); toggleHelp();" />
    <img id="hint-image" src="images/info/lizard.png" style="position: absolute; left: 200px; top: 150px; visibility: hidden;" />
-
 
    <!-- HELP DIALOG -->
    <div id="dialog-help1" class="dialog">
@@ -72,7 +72,7 @@
          <h3>Life on Earth Project Team</h3>
          <ul>
             <li><b>Chia Shen</b>, Harvard University</li>
-            <li><b>Judy Diamond</b>, University of Nebraska</li>
+            <li><b>Judy Diamond</b>, University of Nebraska State Museum</li>
             <li><b>E. Margaret Evans</b>, University of Michigan</li>
             <li><b>Michael Horn</b>, Northwestern University</li>
             <li><b>Florian Block</b>, Harvard University</li>
@@ -144,7 +144,6 @@
          <td><img src="images/star.png" class="level-star" /></td>
          <td colspan="3"></td>
       </tr>
-      <!--
       <tr id="levels-line-6">
          <td><a href="#" onclick="return gotoLevel(6);">Level 7</a></td>
          <td><img src="images/star.png" class="level-star" /></td>
@@ -167,12 +166,10 @@
          <td><img src="images/star.png" class="level-star" /></td>
          <td><img src="images/star.png" class="level-star" /></td>
       </tr>
-      -->
       </table>
       <br />
-         <a href="index.html">Start Over</a>
-         <a href="#" onclick="log('press', 'Credits'); showCredits();">Credits</a><br /><br />
-         <a href="#" onclick="window.location = 'login.html';">Participant Login</a><br /><br />
+      <a href="#" onclick="window.location = 'index.html'; return false;">Start Over</a>
+      <a href="#" onclick="log('press', 'Credits'); showCredits();">Credits</a><br /><br />
       <img src="images/close.png" onclick="log('press', 'Close Button'); hideLevels();" />
    </div>
 
@@ -194,7 +191,7 @@
    <div id="dialog-solution" class="dialog">
       <img src="images/cleared.png" />
 
-         <h2>Does your tree show the same relationships as the scientist tree? </h2>
+         <div>Does your tree show the same relationships as the scientist tree?</div>
          <table>
             <tr>
                <td><canvas id="science-tree" width="250" height="200"></canvas></td>
