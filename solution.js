@@ -27,7 +27,7 @@ function SolutionBox(solution) {
    this.delta = { x : 0, y : 0 };
    this.tw = 55 + 30 * solution.getTipCount();
    this.th = 75 + solution.getRoot().getDepth() * 17;
-   this.w = Math.max(350, this.tw);
+   this.w = Math.max(500, this.tw);
    this.h = 80 + this.th;
    this.x = canvas.width / 2 - this.w / 2;
    this.y = 30 - this.h;
