@@ -39,9 +39,11 @@ footer {
    text-align: center;
    color: white;
    font-family: arial, helvetical, sans-serif;
-   font-size: 12px;
+   font-size: 13px;
    margin-left: 50px;
    margin-right: 50px;
+   margin-bottom: 10px;
+   line-height: 130%;
 }
 
 #level-name {
@@ -78,6 +80,19 @@ footer {
    box-shadow: 5px 5px 5px #333;
    -moz-border-radius: 20px;
    border-radius: 20px;
+   letter-spacing: 110%;
+   line-height: 120%;
+}
+
+.dialog-button {
+}
+
+
+#title {
+   position: inherit;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 130px;
 }
 
 #dialog-help1 {
@@ -104,6 +119,7 @@ footer {
    width: 500px;
    font-size: 14px;
    font-weight: normal;
+   line-height: 130%;
 }
 
 #dialog-levels td {
