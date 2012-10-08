@@ -25,9 +25,10 @@ var restart_timer;
 
 function resetMasterTimer() {
 // COMMENT to disable restart timer
-//   clearTimeout(restart_timer);
-//   restart_timer = setTimeout( masterRestart, 30000 );   
+   clearTimeout(restart_timer);
+   restart_timer = setTimeout( masterRestart, 60000 );   
 }
+
 
 function masterRestart() {
    window.location = "index.html";
@@ -38,6 +39,7 @@ function addTouchable(t) {
    touchables.unshift(t);
 }
 
+
 function removeTouchable(t) {
    var nt = [];
    for (var i=0; i<touchables.length; i++) {
@@ -47,6 +49,7 @@ function removeTouchable(t) {
    }
    touchables = nt;
 }
+
 
 function findTouchTarget(tp) {
    for (var i=0; i<touchables.length; i++) {
@@ -81,6 +84,7 @@ function defineEventHandlers(canvas) {
 		evt.preventDefault();
 	}
    
+   // Attempt to connect to the microsoft surface input stream...
    if ("WebSocket" in window) {
       var socket = new WebSocket("ws://localhost:405");
       socket.onopen    = function(evt) { console.log("connected to surface."); }
@@ -90,13 +94,16 @@ function defineEventHandlers(canvas) {
    }
 }
 
+
 function isIPad() {
 	return (navigator.userAgent.indexOf("iPad") != -1);
 }
 
+
 function isIPhone() {
 	return (navigator.userAgent.indexOf("iPhone") != -1);
 }
+
 
 function keyPress(evt) {
    switch (evt.which) {
@@ -151,13 +158,15 @@ function mouseMove(evt) {
 function touchDown(evt) {
    resetMasterTimer();
 	for (var i=0; i<evt.changedTouches.length; i++) {
-      var t = evt.changedTouches[i];
-      var pt = { x : t.pageX, y : t.pageY };
-      var o = findTouchTarget(pt);
-      if (o) {
-         var id = t.identifier;
-         touch_bindings[id] = o;
-         o.touchDown(pt);
+      if (t.down) {
+         var t = evt.changedTouches[i];
+         var pt = { x : t.pageX, y : t.pageY };
+         var o = findTouchTarget(pt);
+         if (o) {
+            var id = t.identifier;
+            touch_bindings[id] = o;
+            o.touchDown(pt);
+         }
       }
 	}
 }
@@ -165,11 +174,13 @@ function touchDown(evt) {
 function touchUp(evt) {
    for (var i=0; i<evt.changedTouches.length; i++) {
       var t = evt.changedTouches[i];
-      var pt = { x : t.pageX, y : t.pageY };
-      var o = touch_bindings[t.identifier];
-      if (o) {
-         o.touchUp();
-         touch_bindings[t.identifier] = null;
+      if (t.up) {
+         var pt = { x : t.pageX, y : t.pageY };
+         var o = touch_bindings[t.identifier];
+         if (o) {
+            o.touchUp();
+            touch_bindings[t.identifier] = null;
+         }
       }
    }
    if (evt.touches.length == 0) {
@@ -182,10 +193,12 @@ function touchDrag(evt) {
    
    for (var i=0; i<evt.changedTouches.length; i++) {
       var t = evt.changedTouches[i];
-      var pt = { x : t.pageX, y : t.pageY };
-      var o = touch_bindings[t.identifier];
-      if (o) {
-         o.touchDrag(pt);   
+      if (t.drag) {
+         var pt = { x : t.pageX, y : t.pageY };
+         var o = touch_bindings[t.identifier];
+         if (o) {
+            o.touchDrag(pt);   
+         }
       }
    }
 }
