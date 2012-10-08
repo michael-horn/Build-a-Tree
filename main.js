@@ -135,7 +135,7 @@ function restart() {
       var fhelp = new FancyHelp(level.fhelp.src);
       fhelp.setDelay(3300);
       if (level.fhelp.align == "left") {
-         fhelp.setLeft(110);
+         fhelp.setCenterX(275);
       } else {
          fhelp.setCenterX(w/2);
       }
