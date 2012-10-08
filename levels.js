@@ -34,7 +34,7 @@ const LEVELS = [
           "around 1,400 million years ago. Birds and lizards diverged much more " +
           "recently&#151;around 277 million years ago.</p>"),
    
-   help : ("Drag circles together to build a tree.")
+   fhelp : { src : "tip1", align : "left" }
 },
 
 {
@@ -55,7 +55,7 @@ const LEVELS = [
           "and birds look similar in many ways, bats are more closely related " +
           "to humans because they share a more recent ancestor in common.</p>"),
    
-   help : ("Things that look alike aren't always closely related!")
+   fhelp : { src : "tip2", align : "center" }
 },
 
 {
@@ -73,7 +73,9 @@ const LEVELS = [
           "related to animals than they are to plants. This means that fungi and " +
           "animals have a more recent ancestor in common than fungi and plants. " +
           "One suprising piece of evidence to support this hypothesis is that both " +
-          "fungi and animals are capable of generating proteins that can sense light.</p>")
+          "fungi and animals are capable of generating proteins that can sense light.</p>"),
+   
+   fhelp : { src : "tip3", align : "center" }
 },
 
 {
@@ -131,13 +133,13 @@ const LEVELS = [
       { id : 10, parent_id : 2, name : "Insects", tip : true, tag : "butterfly" }
    ],
    
-   dyk : null,
-   
-   help : "Order matters! Build small trees first and then put them all together."
+   fhelp : { src : "tip6", align : "center" }
 },
-/*
+
 {
    name : "Level 7",
+   
+   subtitle : "What about Amphibians?",
    
    taxa : [
       { id : 0, parent_id : null, name : "Animals", tag : "animals", trait : null },
@@ -166,7 +168,7 @@ const LEVELS = [
       { id : 3, parent_id : 2, name : "Arachnids", tag : "arachnids", trait : "eight legs" },
       { id : 4, parent_id : 1, name : "Amniotes", tag : "amniotes", trait : "amniotic egg" },
       { id : 5, parent_id : 4, name : "Mammals", tag : "mammals", trait : "hair" },
-      { id : 6, parent_id : 4, name : "Diapsids", tag : "diapsids", trait : "long lower arm bone" },
+      { id : 6, parent_id : 4, name : "Diapsids", tag : "diapsids", trait : "lizard-like face" },
       { id : 7, parent_id : 6, name : "Theropods", tag : "dinobirds", trait : "wishbone" },
       { id : 8, parent_id : 1, name : "Frogs", tip : true, tag : "frog" },
       { id : 9, parent_id : 6, name : "Lizards", tip : true, tag : "lizard" },
@@ -181,5 +183,5 @@ const LEVELS = [
    
    dky : null
 }
-*/
+
 ];
