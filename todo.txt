@@ -1,24 +1,29 @@
 
+* Fix dialog clicks
+
+* A new level between 6 and 7 that introduces amphibians without invertebrates.
+
+* A new open ended level before level 8
+
+* Optimize canvas redraws
+
+* Help button shows hint for that level?
+
 * New bird silhouette
 
-* iPod testing
+* Info boxes shouldn't have traits any more! Just picture with caption.
 
 * Sound effects
 
 * Stretch bug in level 8
 
-* Draw arrow to solution in level 1??
-
 * Visually responsive buttons
 
-* Fungus trats are useless
+* Fungus traits are useless
 
 * Have completed tree float to center of screen?
 
 * Silver and gold stars for first trys?
-
-TIDAL Lab Logo
-NSF Logo
 
 Don't repaint for zero movement (animate should return a value)
 

@@ -109,9 +109,9 @@ function restart() {
    
    var lname = new AnimatedText();
    lname.setText(level.name);
-   lname.useShadow(true);
+   lname.useShadow(false);
    lname.setDelay(200);
-   lname.setDuration(2000);
+   lname.setDuration(3000);
    lname.setCenter(w/2, h/2 - 40);
    lname.setFontSize(60);
    lname.setFontWeight("bold");
@@ -121,9 +121,9 @@ function restart() {
    if (level.subtitle) {
       lname = new AnimatedText();
       lname.setText(level.subtitle);
-      lname.useShadow(true);
+      lname.useShadow(false);
       lname.setDelay(200);
-      lname.setDuration(2000);
+      lname.setDuration(3000);
       lname.setCenter(w/2, h/2 + 10);
       lname.setFontSize("24");
       lname.setFontWeight("bold");
@@ -131,15 +131,16 @@ function restart() {
       lname.startFadeIn();
    }
    
-   if (level.help) {
-      var help = new AnimatedText();
-      help.setText(level.help);
-      help.setDelay(2300);
-      help.setDuration(20000);
-      help.setCenter(w/2, h - 150);
-      help.setFontSize(24);
-      help.setTextColor(255, 255, 255);
-      help.startFadeIn();
+   if (level.fhelp) {
+      var fhelp = new FancyHelp(level.fhelp.src);
+      fhelp.setDelay(3300);
+      if (level.fhelp.align == "left") {
+         fhelp.setLeft(110);
+      } else {
+         fhelp.setCenterX(w/2);
+      }
+      fhelp.setCenterY(h/2);
+      fhelp.startAnimation();
    }
 }
 

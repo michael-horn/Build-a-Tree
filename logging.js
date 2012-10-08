@@ -33,6 +33,10 @@ function supportsWebSql() {
 
 
 function initLogDatabase() {
+   log_db = null;
+   
+   // Uncomment to enable logging
+   /*
    if (supportsWebSql() && supportsSessionStorage()) {
       log_db = window.openDatabase("BATLog", "1.0", "interaction log", 5*1024*1024);
    }
@@ -47,6 +51,7 @@ function initLogDatabase() {
                        'target TEXT);');
       });
    }
+   */
 }
 
 

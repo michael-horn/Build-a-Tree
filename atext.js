@@ -91,8 +91,8 @@ function AnimatedText() {
    this.startFadeIn = function() {
       this.tween.clearControlPoints();
       this.tween.addControlPoint(0, 0);
-      this.tween.addControlPoint(0.7, 0.1);
-      this.tween.addControlPoint(0.7, 0.9);
+      this.tween.addControlPoint(0.85, 0.2);
+      this.tween.addControlPoint(0.85, 0.8);
       this.tween.addControlPoint(0, 1);
       this.tween.setFunction(TWEEN_SINE2);
       var atext = this;
