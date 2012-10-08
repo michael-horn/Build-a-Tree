@@ -64,7 +64,7 @@ footer {
 
 .dialog {
    position: absolute;
-   top: 120px;
+   top: 180px;
    left: 200px;
    width: 560px;
    padding: 20px 30px 20px 30px;
@@ -92,7 +92,7 @@ footer {
    position: inherit;
    margin-left: auto;
    margin-right: auto;
-   margin-top: 130px;
+   margin-top: 300px;
 }
 
 #dialog-help1 {
