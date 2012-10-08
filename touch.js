@@ -252,7 +252,8 @@ function sendEvent(ename, touchMouse) {
       var tx = touchMouse.pageX;
       var ty = touchMouse.pageY;
       var evt = document.createEvent("MouseEvents");
-      evt.initMouseEvent(ename, true, true, window, tx, ty, tx, ty, false, false, false, false, 0, null);
+      evt.initMouseEvent()
+      evt.initMouseEvent(ename, true, true, window, 1, tx, ty, tx, ty, false, false, false, false, 0, null);
       var el = document.elementFromPoint(tx, ty);
       if (el) {
          el.dispatchEvent(evt);
