@@ -24,11 +24,12 @@ function FancyHelp(src) {
    this.tween.setDuration(1000);
    this.image = document.createElement("img");
    this.image.src = "images/" + src + ".png";
+   this.visible = false;
    
    var fhelp = this;
    this.tween.setEndCallback(function() { fhelp.tweenDone(); });
    this.tween.setStartCallback(function() { fhelp.tweenStart(); });
-
+   addVisual(this);
    
    this.isForeground = function() {
       return false;
@@ -82,7 +83,7 @@ function FancyHelp(src) {
    }
    
    this.tweenStart = function() {
-      addVisual(this);
+      this.visible = true;
    }
    
    this.tweenVal = function(val) {
@@ -91,13 +92,16 @@ function FancyHelp(src) {
    }
    
    this.tweenDone = function() {
+      this.visible = false;
       removeVisual(this);
    }
    
 
    this.draw = function(g) {
-      var iw = this.image.width;
-      var ih = this.image.height;
-      g.drawImage(this.image, this.cx - iw/2 + this.deltaX, this.cy - ih/2 + this.deltaY);
+      if (this.visible) {
+         var iw = this.image.width;
+         var ih = this.image.height;
+         g.drawImage(this.image, this.cx - iw/2 + this.deltaX, this.cy - ih/2 + this.deltaY);
+      }
    }
 }

@@ -6,6 +6,7 @@ function AnimatedText() {
    this.text = "";
    this.family = "Arial, sans-serif";
    this.weight = "";
+   this.visible = false;
    this.color = { r : 255, g : 255, b : 255 };
    this.ocolor = { r : 255, g : 0, b : 0 };
    this.alpha = 1;
@@ -17,6 +18,7 @@ function AnimatedText() {
    var atext = this;
    this.tween.setEndCallback(function() { atext.tweenDone(); });
    this.tween.setStartCallback(function() { atext.tweenStart(); });
+   addVisual(this);
    
    // required function for visuals
    this.isForeground = function() {
@@ -113,7 +115,7 @@ function AnimatedText() {
    }
    
    this.tweenStart = function() {
-      addVisual(this);
+      this.visible = true;
    }
    
    this.tweenAlpha = function(val) {
@@ -125,10 +127,12 @@ function AnimatedText() {
    }
    
    this.tweenDone = function() {
+      this.visible = false;
       removeVisual(this);
    }
    
    this.draw = function(g) {
+      if (!this.visible) return;
       g.save();
       if (this.shadow) {
          g.shadowOffsetX = 1;
