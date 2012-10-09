@@ -115,11 +115,32 @@ const LEVELS = [
    ],
    
    dyk : ("<p>Modern birds and Tyrannosaurus rex share a more recent ancestor in common " +
-          "than birds and lizards and than tyrannosaurs and lizards.</p>")
+          "than tyrannosaurs and lizards.</p>")
 },
 
 {
    name : "Level 6",
+   
+   subtitle : "What about amphibians?",
+   
+   taxa : [
+      { id : 0, parent_id : null, name : "Vertebrates", tag : "vertebrates", trait : "internal skeleton" },
+      { id : 1, parent_id : 0, name : "Amniotes", tag : "amniotes", trait : "amniotic egg" },
+      { id : 2, parent_id : 1, name : "Diapsids", tag : "diapsids", trait : "lizard-like face" },
+      { id : 3, parent_id : 2, name : "Theropods", tag : "dinobirds", trait : "wishbone" },
+      { id : 4, parent_id : 3, name : "Birds", tip : true, tag : "bird" },
+      { id : 5, parent_id : 3, name : "T. Rex", tip : true, tag : "trex" },
+      { id : 6, parent_id : 2, name : "Lizards", tip : true, tag : "lizard" },
+      { id : 7, parent_id : 1, name : "Humans", tip : true, tag : "human" },
+      { id : 8, parent_id : 0, name : "Frogs", tip : true, tag : "frog" }
+   ],
+   
+   dyk : ("<p>Frogs are a type of amphibian. Unlike amniotes (such as mammals, reptiles, birds), " +
+          "amphibians must return to the water to lay eggs and reproduce.</p>")
+},
+
+{
+   name : "Level 7",
    
    subtitle : "Vertebrates and Invertebrates",
    
@@ -137,13 +158,13 @@ const LEVELS = [
       { id : 10, parent_id : 2, name : "Insects", tip : true, tag : "butterfly" }
    ],
    
-   fhelp : { src : "tip6", align : "center" }
+   fhelp : { src : "tip7", align : "center" }
 },
 
 {
-   name : "Level 7",
+   name : "Level 8",
    
-   subtitle : "What about Amphibians?",
+   subtitle : "Getting harder...",
    
    taxa : [
       { id : 0, parent_id : null, name : "Animals", tag : "animals", trait : null },
@@ -151,19 +172,21 @@ const LEVELS = [
       { id : 2, parent_id : 0, name : "Arthropods", tag : "arthropods", trait : "exoskeleton" },
       { id : 3, parent_id : 1, name : "Amniotes", tag : "amniotes", trait : "amniotic egg" },
       { id : 4, parent_id : 3, name : "Diapsids", tag : "diapsids", trait : "lizard-like face" },
-      { id : 5, parent_id : 1, name : "Frogs", tip : true, tag : "frog", hint : "Frogs are a type of <i>amphibian</i>. Amphibians belong to a group of animals called vertebrates." },
-      { id : 6, parent_id : 3, name : "Bats", tip : true, tag : "bat", hint: "Bats are a type of mammal. Mammals belong to a group of animals called <i>diapsids</i> that also includes birds and lizards."  },
-      { id : 7, parent_id : 4, name : "Birds", tip : true, tag : "bird", hint : "Birds and lizards belong to a group of animals called <i>diapsids</i>. Crocodiles and dinosaurs are also diapsids." },
-      { id : 8, parent_id : 4, name : "Lizards", tip : true, tag : "lizard", hint : "Lizards and Birds belong to a group of animals called <i>diapsids</i>. Crocodiles and dinosaurs are also diapsids." },
-      { id : 9, parent_id : 2, name : "Crabs", tip : true, tag : "crab", hint : "Crabs and spiders both belong to a group of animals called <i>arthropods</i>. Arthropods are invertibrate animals with exoskeletons."  },
-      { id : 10, parent_id : 2, name : "Spiders", tip : true, tag : "spider", hint : "Spiders and crabs both belong to a group of animals called <i>arthropods</i>. Arthropods are invertibrate animals with exoskeletons."  }
+      { id : 5, parent_id : 2, name : "Arachnids", tag : "arachnids", trait : "eight legs" },
+      { id : 6, parent_id : 1, name : "Frogs", tip : true, tag : "frog", hint : "Frogs are a type of <i>amphibian</i>. Amphibians belong to a group of animals called vertebrates." },
+      { id : 7, parent_id : 3, name : "Bats", tip : true, tag : "bat", hint: "Bats are a type of mammal. Mammals belong to a group of animals called <i>diapsids</i> that also includes birds and lizards."  },
+      { id : 8, parent_id : 4, name : "Birds", tip : true, tag : "bird", hint : "Birds and lizards belong to a group of animals called <i>diapsids</i>. Crocodiles and dinosaurs are also diapsids." },
+      { id : 9, parent_id : 4, name : "Lizards", tip : true, tag : "lizard", hint : "Lizards and Birds belong to a group of animals called <i>diapsids</i>. Crocodiles and dinosaurs are also diapsids." },
+      { id : 10, parent_id : 2, name : "Crabs", tip : true, tag : "crab", hint : "Crabs and spiders both belong to a group of animals called <i>arthropods</i>. Arthropods are invertibrate animals with exoskeletons."  },
+      { id : 11, parent_id : 5, name : "Spiders", tip : true, tag : "spider", hint : "Spiders and crabs both belong to a group of animals called <i>arthropods</i>. Arthropods are invertibrate animals with exoskeletons."  },
+      { id : 12, parent_id : 5, name : "Scorpions", tip : true, tag : "scorpion", hint : "Spiders and crabs both belong to a group of animals called <i>arthropods</i>. Arthropods are invertibrate animals with exoskeletons."  }
    ],
    
-   dyk : null
+   fhelp : { src : "tip8", align : "center" }
 },
 
 {
-   name : "Bonus Level 8",
+   name : "Bonus Level 9",
    
    subtitle : "Insanely Hard!",
    
