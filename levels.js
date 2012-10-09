@@ -59,7 +59,9 @@ const LEVELS = [
 },
 
 {
-   name : "Level 3", 
+   name : "Level 3",
+   
+   subtitle : "People, Fungi, and Plants",
    
    taxa : [
       { id : 0, parent_id : null, name : "Eukaryotes", tag : "eukaryotes", trait : "cells with organelles" },
@@ -80,6 +82,8 @@ const LEVELS = [
 
 {
    name : "Level 4", 
+   
+   subtitle : "Arthropods",
    
    taxa : [
       { id : 0, parent_id : null, name : "Arthropods", tag : "arthropods", trait : "exoskeleton" },
@@ -160,6 +164,8 @@ const LEVELS = [
 
 {
    name : "Bonus Level 8",
+   
+   subtitle : "Insanely Hard!",
    
    taxa : [
       { id : 0, parent_id : null, name : "Animals", tag : "animals", trait : null },
