@@ -21,7 +21,7 @@ const LEVELS = [
    subtitle : "Plants and Animals",
    
    taxa : [
-      { id : 0, parent_id : null, name : "Eukaryotes", tag : "eukaryotes", trait : "cells with organelles" },
+      { id : 0, parent_id : null, name : "Eukaryotes", tag : "eukaryotes", trait : "cells with nuclei" },
       { id : 1, parent_id : 0, name : "Animals", tag : "animals", trait : "digestive cavity" },
       { id : 2, parent_id : 0, name : "Plants", tag : "plant", tip : true },
       { id : 3, parent_id : 1, name : "Birds", tag : "bird", tip : true },
@@ -44,7 +44,7 @@ const LEVELS = [
    
    taxa : [
       { id : 0, parent_id : null, name : "Vertebrates", tag : "vertebrates", trait : "internal skeleton" },
-      { id : 1, parent_id : 0, name : "Mammals", tag : "mammals", trait : "hair" },
+      { id : 1, parent_id : 0, name : "Mammals", tag : "mammals", trait : "mammary glands" },
       { id : 2, parent_id : 1, name : "Humans", tip : true, tag : "human" },
       { id : 3, parent_id : 0, name : "Birds", tip : true, tag : "bird" },
       { id : 4, parent_id : 1, name : "Bats", tip : true, tag : "bat" }
@@ -58,13 +58,14 @@ const LEVELS = [
    fhelp : { src : "tip2", align : "center" }
 },
 
+/*
 {
    name : "Level 3",
    
    subtitle : "People, Fungi, and Plants",
    
    taxa : [
-      { id : 0, parent_id : null, name : "Eukaryotes", tag : "eukaryotes", trait : "cells with organelles" },
+      { id : 0, parent_id : null, name : "Eukaryotes", tag : "eukaryotes", trait : "cells with nuclei" },
       { id : 1, parent_id : 0, name : "Animals and Fungi", tag : "a+f", trait : "cells with chitin" },
       { id : 2, parent_id : 0, name : "Plants", tip : true, tag : "plant" },
       { id : 3, parent_id : 1, name : "Fungi", tip : true, tag : "fungus" },
@@ -79,9 +80,9 @@ const LEVELS = [
    
    fhelp : { src : "tip3", align : "center" }
 },
-
+*/
 {
-   name : "Level 4", 
+   name : "Level 3", 
    
    subtitle : "Arthropods",
    
@@ -100,7 +101,7 @@ const LEVELS = [
 },
 
 {
-   name : "Level 5",
+   name : "Level 4",
    
    subtitle : "Amniotes",
    
@@ -114,17 +115,17 @@ const LEVELS = [
       { id : 6, parent_id : 0, name : "Bats", tip : true, tag : "bat" }
    ],
    
-   dyk : ("<p>Modern birds and Tyrannosaurus rex share a more recent ancestor in common " +
+   dyk : ("<p>Modern birds and Tyrannosaurus rex share a more recent ancestor " +
           "than tyrannosaurs and lizards.</p>")
 },
 
 {
-   name : "Level 6",
+   name : "Level 5",
    
    subtitle : "What about amphibians?",
    
    taxa : [
-      { id : 0, parent_id : null, name : "Vertebrates", tag : "vertebrates", trait : "internal skeleton" },
+      { id : 0, parent_id : null, name : "Tetrapods", tag : "tetrapods", trait : "four-limbed vertebrates" },
       { id : 1, parent_id : 0, name : "Amniotes", tag : "amniotes", trait : "amniotic egg" },
       { id : 2, parent_id : 1, name : "Diapsids", tag : "diapsids", trait : "lizard-like face" },
       { id : 3, parent_id : 2, name : "Theropods", tag : "dinobirds", trait : "wishbone" },
@@ -140,7 +141,7 @@ const LEVELS = [
 },
 
 {
-   name : "Level 7",
+   name : "Level 6",
    
    subtitle : "Vertebrates and Invertebrates",
    
@@ -148,7 +149,7 @@ const LEVELS = [
       { id : 0, parent_id : null, name : "Animals", tag : "animals", trait : null },
       { id : 1, parent_id : 0, name : "Vertebrates", tag : "vertebrates", trait : "internal skeleton" },
       { id : 2, parent_id : 0, name : "Arthropods", tag : "arthropods", trait : "exoskeleton" },
-      { id : 3, parent_id : 1, name : "Mammals", tag : "mammals", trait : "hair" },
+      { id : 3, parent_id : 1, name : "Mammals", tag : "mammals", trait : "mammary glands" },
       { id : 4, parent_id : 1, name : "Theropods", tag : "dinobirds", trait : "wishbone" },
       { id : 5, parent_id : 4, name : "Birds", tip : true, tag : "bird" },
       { id : 6, parent_id : 4, name : "T. Rex", tip : true, tag : "trex" },
@@ -162,7 +163,7 @@ const LEVELS = [
 },
 
 {
-   name : "Level 8",
+   name : "Level 7",
    
    subtitle : "Getting harder...",
    
@@ -186,7 +187,7 @@ const LEVELS = [
 },
 
 {
-   name : "Bonus Level 9",
+   name : "Bonus Level 8",
    
    subtitle : "Insanely Hard!",
    
@@ -196,7 +197,7 @@ const LEVELS = [
       { id : 2, parent_id : 0, name : "Arthropods", tag : "arthropods", trait : "exoskeleton" },
       { id : 3, parent_id : 2, name : "Arachnids", tag : "arachnids", trait : "eight legs" },
       { id : 4, parent_id : 1, name : "Amniotes", tag : "amniotes", trait : "amniotic egg" },
-      { id : 5, parent_id : 4, name : "Mammals", tag : "mammals", trait : "hair" },
+      { id : 5, parent_id : 4, name : "Mammals", tag : "mammals", trait : "mammary glands" },
       { id : 6, parent_id : 4, name : "Diapsids", tag : "diapsids", trait : "lizard-like face" },
       { id : 7, parent_id : 6, name : "Theropods", tag : "dinobirds", trait : "wishbone" },
       { id : 8, parent_id : 1, name : "Frogs", tip : true, tag : "frog" },
