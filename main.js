@@ -414,14 +414,6 @@ function hideInstructions() {
    hideDialog("dialog-instructions");
 }
 
-function showInstructions() {
-   showDialog("dialog-instructions", 464);
-}
-
-function hideInstructions() {
-   hideDialog("dialog-instructions");
-}
-
 function showDYK() {
    var level = LEVELS[getCurrentLevel()];
    var div = document.getElementById("dyk-text");
