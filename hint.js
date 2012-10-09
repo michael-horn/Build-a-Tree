@@ -30,7 +30,7 @@ var HINTS = {
       name : "Cynopterus brachyotis",
       cname : "Short Nosed Fruit Bat",
       location : "Singapore",
-      image : "images/info/bat.png",
+      image : "images/hints/bat.jpg",
       author : "Ria Tan",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
@@ -43,7 +43,7 @@ var HINTS = {
       name : "Sterna hirundo", 
       cname : "Common Tern",
       location : "",
-      image : "images/info/bird.png",
+      image : "images/hints/bird.jpg",
       author : "Luciano Giussani (flickr: giuss95)",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
@@ -53,9 +53,9 @@ var HINTS = {
    butterfly :
    {
       name : "Papillio machaon",
-      cname : "Common Yellow Swallowtail (butterfly)",
+      cname : "Common Yellow Swallowtail",
       location : "Kriti, Greece",
-      image : "images/info/butterfly.png",
+      image : "images/hints/butterfly.jpg",
       author : "Stavros Markopoulos (flickr: macropoulos)",
       cright : "cc-by-nc",
       text : "Bats are a type of mammal."
@@ -67,7 +67,7 @@ var HINTS = {
       name : "Callinectes bocourti",
       cname : "Blunt-tooth swimming crab",
       location : "Guatemala",
-      image : "images/info/crab.png",
+      image : "images/hints/crab.jpg",
       author : "Thomas (Guatemala) (flickr)",
       cright : "cc-by-nc",
       text : "Bats are a type of mammal."
@@ -79,7 +79,7 @@ var HINTS = {
       name : "Agalychnis callidryas",
       cname : "Red Eyed Tree Frog",
       location : "Costa Rica",
-      image : "images/info/frog.png",
+      image : "images/hints/frog.jpg",
       author : "kibuyu (flickr)",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
@@ -91,7 +91,7 @@ var HINTS = {
       name : "Cortinarius hemitrichus",
       cname : "Mushroom",
       location : "Russia",
-      image : "images/info/fungus.png",
+      image : "images/hints/fungus.jpg",
       author : "Tatiana Bulyonkova (flickr: ressaure)",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
@@ -103,7 +103,7 @@ var HINTS = {
       name : "Giraffa camelopardalis",
       cname : "Giraffe",
       location : "Kenya",
-      image : "images/info/giraffe.png",
+      image : "images/hints/giraffe.jpg",
       author : "kibuyu (flickr)",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
@@ -112,9 +112,9 @@ var HINTS = {
    human :
    {
       name : "Homo sapiens",
-      cname : "Human (Jonathan Losos)",
+      cname : "Human",
       location : "",
-      image : "images/info/human.png",
+      image : "images/hints/human.jpg",
       author : "",
       cright : "cc-blank",
       text : "Bats are a type of mammal."
@@ -126,7 +126,7 @@ var HINTS = {
       name : "Anolis carolinensis",
       cname : "Green Anole",
       location : "North Carolina, USA",
-      image : "images/info/lizard.png",
+      image : "images/hints/lizard.jpg",
       author : "e_monk (flickr)",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
@@ -135,10 +135,11 @@ var HINTS = {
    // http://www.flickr.com/photos/52421717@N00/4719233894/
    plant :
    {
-      name : "Echinacea pallida",
-      cname : "Pale Purple Coneflower",
+      
+      name : "Asclepias Tuberosa", 
+      cname : "Butterfly Milkweed",
       location : "Wisconsin, USA",
-      image : "images/info/plant.png",
+      image : "images/hints/plant.jpg",
       author : "Peter Gorman (flickr: pchgorman)",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
@@ -150,7 +151,7 @@ var HINTS = {
       name : "Leiurus quinquestriatus",
       cname : "Deathstalker Scorpion",
       location : "Maryland, USA",
-      image : "images/info/scorpion.png",
+      image : "images/hints/scorpion.jpg",
       author : "Matt Reinbold (flickr: Furryscaly)",
       cright : "cc-by-sa",
       text : "Bats are a type of mammal."
@@ -161,7 +162,7 @@ var HINTS = {
       name : "Carcharhinus amblyrhynchos",
       cname : "Grey reef shark",
       location : "",
-      image : "images/info/shark.png",
+      image : "images/hints/shark.jpg",
       author : "Fbattail (Wikimedia Commons)",
       cright : "cc-by-sa",
       text : "Bats are a type of mammal."
@@ -173,7 +174,7 @@ var HINTS = {
       name : "Phidippus mystaceus",
       cname : "Jumping Spider",
       location : "Oklahoma, USA",
-      image : "images/info/spider.png",
+      image : "images/hints/spider.jpg",
       author : "Thomas Shahan",
       cright : "cc-by",
       text : "Bats are a type of mammal."
@@ -181,12 +182,12 @@ var HINTS = {
    
    trex :
    {
-      name : "",
+      name : "T. rex",
       cname : "Tyrannosaurus Rex",
-      location : "Field Museum of Natural History, Chicago, Illinois",
-      image : "images/info/trex.png",
-      author : "",
-      cright : "cc-blank", 
+      location : "Carnegie Museum of Natural History, Pittsburgh",
+      image : "images/hints/trex.jpg",
+      author : "Scott Robert Anselmo",
+      cright : "cc-by-sa", 
       text : "Bats are a type of mammal."
    }
 }
@@ -258,8 +259,7 @@ function Hint() {
    }
 
    this.hideHint = function() {
-      var d = document.getElementById("hint-image");
-      d.style.visibility = "hidden";
+      hideDialog("dialog-hint");
       this.current = null;
       log("hide", "Hint");
    }
@@ -270,14 +270,22 @@ function Hint() {
          var h = HINTS[taxon.getTag()];
          var d = document.getElementById("hint-image");
          if (d) {
-            var w = canvas.width;
-            var l = w/2 - 537/2;
-            d.style.left = l + "px";
             d.src = h.image;
-            d.style.visibility = "visible";
          }
+         d = document.getElementById("hint-author");
+         if (d) {
+            d.innerHTML = "Photo by: " + h.author + ". Some rights reserved.";
+         }
+         d = document.getElementById("hint-title");
+         if (d) {
+            d.innerHTML = h.name + " (" + h.cname + ")";
+         }
+         d = document.getElementById("hint-text");
+         if (d) {
+            d.innerHTML = h.text;
+         }
+         showDialog("dialog-hint", 1000);
          log("show", "Hint " + taxon.getTreeString());  
-
       }
    }
    
