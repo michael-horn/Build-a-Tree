@@ -1,5 +1,6 @@
+* Pop docks
 
-* Fix dialog clicks
+* New text for info boxes
 
 * A new level between 6 and 7 that introduces amphibians without invertebrates.
 
@@ -7,19 +8,11 @@
 
 * Optimize canvas redraws
 
-* Help button shows hint for that level?
-
-* New bird silhouette
-
-* Info boxes shouldn't have traits any more! Just picture with caption.
-
 * Sound effects
 
 * Stretch bug in level 8
 
 * Visually responsive buttons
-
-* Fungus traits are useless
 
 * Have completed tree float to center of screen?
 
