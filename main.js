@@ -368,6 +368,7 @@ function hideAllDialogs() {
    hideDialog("dialog-levels");
    hideDialog("dialog-credits");
    hideDialog("dialog-instructions");
+   hideDialog("dialog-hint");
 }
 
 function showDialog(name, width) {
