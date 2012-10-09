@@ -31,7 +31,7 @@ var HINTS = {
       cname : "Townsend's big-eared bat", 
       location : "United States",
       image : "images/hints/bat.jpg",
-      author : "Public Domain",
+      author : "Photo: Wikipedia (public domain)",
       cright : "public domain",
       text : "Bats are a type of mammal."
    },
@@ -44,7 +44,7 @@ var HINTS = {
       cname : "Common Tern",
       location : "",
       image : "images/hints/bird.jpg",
-      author : "Luciano Giussani (flickr: giuss95)",
+      author : "Photo by: Luciano Giussani (flickr: giuss95). Some rights reserved.",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
    },
@@ -56,7 +56,7 @@ var HINTS = {
       cname : "Common Yellow Swallowtail",
       location : "Kriti, Greece",
       image : "images/hints/butterfly.jpg",
-      author : "Stavros Markopoulos (flickr: macropoulos)",
+      author : "Photo by: Stavros Markopoulos (flickr: macropoulos). Some rights reserved.",
       cright : "cc-by-nc",
       text : "Bats are a type of mammal."
    },
@@ -68,7 +68,7 @@ var HINTS = {
       cname : "Blunt-tooth swimming crab",
       location : "Guatemala",
       image : "images/hints/crab.jpg",
-      author : "Thomas (Guatemala) (flickr)",
+      author : "Photo by: Thomas (Guatemala) (flickr). Some rights reserved.",
       cright : "cc-by-nc",
       text : "Bats are a type of mammal."
    },
@@ -80,7 +80,7 @@ var HINTS = {
       cname : "Australian Green Tree Frog",
       location : "Australia",
       image : "images/hints/frog.jpg",
-      author : "Evan (wikipedia: LiquidGhoul)",
+      author : "Photo from Wikipedia by LiquidGhoul. Public domain.",
       cright : "public domain",
       text : "Bats are a type of mammal."
    },
@@ -92,7 +92,7 @@ var HINTS = {
       cname : "Mushroom",
       location : "Russia",
       image : "images/hints/fungus.jpg",
-      author : "Tatiana Bulyonkova (flickr: ressaure)",
+      author : "Photo by: Tatiana Bulyonkova (flickr: ressaure). Some rights reserved.",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
    },
@@ -104,7 +104,7 @@ var HINTS = {
       cname : "Giraffe",
       location : "Kenya",
       image : "images/hints/giraffe.jpg",
-      author : "kibuyu (flickr)",
+      author : "Photo by: kibuyu (flickr). Some rights reserved.",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
    },
@@ -115,7 +115,7 @@ var HINTS = {
       cname : "Human",
       location : "",
       image : "images/hints/human.jpg",
-      author : "",
+      author : "Jonathan Losos, Harvard University",
       cright : "cc-blank",
       text : "Bats are a type of mammal."
    },
@@ -127,7 +127,7 @@ var HINTS = {
       cname : "Green Anole",
       location : "North Carolina, USA",
       image : "images/hints/lizard.jpg",
-      author : "e_monk (flickr)",
+      author : "Photo by: e_monk (flickr). Some rights reserved.",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
    },
@@ -140,7 +140,7 @@ var HINTS = {
       cname : "Butterfly Milkweed",
       location : "Wisconsin, USA",
       image : "images/hints/plant.jpg",
-      author : "Peter Gorman (flickr: pchgorman)",
+      author : "Photo by: Peter Gorman (flickr: pchgorman). Some rights reserved.",
       cright : "cc-by-nc-sa",
       text : "Bats are a type of mammal."
    },
@@ -152,7 +152,7 @@ var HINTS = {
       cname : "Asian forest scorpion",
       location : "Thailand",
       image : "images/hints/scorpion.jpg",
-      author : "Chris Huh",
+      author : "Photo by: Chris Huh. Some rights reserved.",
       cright : "cc-by-sa",
       text : "Bats are a type of mammal."
    },
@@ -163,7 +163,7 @@ var HINTS = {
       cname : "Grey reef shark",
       location : "",
       image : "images/hints/shark.jpg",
-      author : "Fbattail (Wikimedia Commons)",
+      author : "Photo by: Fbattail (Wikimedia Commons). Some rights reserved.",
       cright : "cc-by-sa",
       text : "Bats are a type of mammal."
    },
@@ -175,7 +175,7 @@ var HINTS = {
       cname : "Jumping Spider",
       location : "Oklahoma, USA",
       image : "images/hints/spider.jpg",
-      author : "Thomas Shahan",
+      author : "Photo by: Thomas Shahan. Some rights reserved.",
       cright : "cc-by",
       text : "Bats are a type of mammal."
    },
@@ -186,7 +186,7 @@ var HINTS = {
       cname : "Tyrannosaurus Rex",
       location : "Carnegie Museum of Natural History, Pittsburgh",
       image : "images/hints/trex.jpg",
-      author : "Scott Robert Anselmo",
+      author : "Photo by: Scott Robert Anselmo. Some rights reserved.",
       cright : "cc-by-sa", 
       text : "Bats are a type of mammal."
    }
@@ -274,7 +274,7 @@ function Hint() {
          }
          d = document.getElementById("hint-author");
          if (d) {
-            d.innerHTML = "Photo by: " + h.author + ". Some rights reserved.";
+            d.innerHTML = h.author;
          }
          d = document.getElementById("hint-title");
          if (d) {
