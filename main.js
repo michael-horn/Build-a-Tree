@@ -66,6 +66,7 @@ function restart() {
    preview = null;
    
    touchables = [];
+   visuals = [];
    addTouchable(hint);
    
    var clade;
