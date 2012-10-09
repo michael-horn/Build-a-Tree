@@ -24,15 +24,15 @@
 
 var HINTS = {
    
-   // http://www.flickr.com/photos/wildsingapore/5093331528/sizes/o/in/photostream/
+   // Source: Wikimedia
    bat :
    {
-      name : "Cynopterus brachyotis",
-      cname : "Short Nosed Fruit Bat",
-      location : "Singapore",
+      name : "Corynorhinus townsendii", 
+      cname : "Townsend's big-eared bat", 
+      location : "United States",
       image : "images/hints/bat.jpg",
-      author : "Ria Tan",
-      cright : "cc-by-nc-sa",
+      author : "Public Domain",
+      cright : "public domain",
       text : "Bats are a type of mammal."
    },
    
@@ -76,12 +76,12 @@ var HINTS = {
    // http://www.flickr.com/photos/davidbygott/2784898252/
    frog : 
    {
-      name : "Agalychnis callidryas",
-      cname : "Red Eyed Tree Frog",
-      location : "Costa Rica",
+      name : "Litoria caerulea",
+      cname : "Australian Green Tree Frog",
+      location : "Australia",
       image : "images/hints/frog.jpg",
-      author : "kibuyu (flickr)",
-      cright : "cc-by-nc-sa",
+      author : "Evan (wikipedia: LiquidGhoul)",
+      cright : "public domain",
       text : "Bats are a type of mammal."
    },
    
@@ -145,14 +145,14 @@ var HINTS = {
       text : "Bats are a type of mammal."
    },
    
-   // http://www.flickr.com/photos/furryscalyman/356870862
+   // http://en.wikipedia.org/wiki/File:Asian_forest_scorpion_in_Khao_Yai_National_Park.JPG
    scorpion :
    {
-      name : "Leiurus quinquestriatus",
-      cname : "Deathstalker Scorpion",
-      location : "Maryland, USA",
+      name : "Heterometrus laoticus",
+      cname : "Asian forest scorpion",
+      location : "Thailand",
       image : "images/hints/scorpion.jpg",
-      author : "Matt Reinbold (flickr: Furryscaly)",
+      author : "Chris Huh",
       cright : "cc-by-sa",
       text : "Bats are a type of mammal."
    },
