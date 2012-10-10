@@ -51,7 +51,7 @@ var HINTS = {
       image : "images/hints/bird.jpg",
       author : "Photo by: Luciano Giussani (flickr: giuss95). Some rights reserved.",
       cright : "cc-by-nc-sa",
-      text : "Bats are a type of mammal."
+      text : ""
    },
    
    // http://www.flickr.com/photos/markop/267659159/
@@ -94,11 +94,12 @@ var HINTS = {
       cright : "public domain",
       text : ("Did you know that there are over 4,800 different species of frogs " +
               "and toads in the world? This picture shows an Australian green tree " +
-              "frog. This frog can scream when it's in danger to scare off predators. " +
+              "frog. This frog secretes antibiotic and anti-viral fluids to help protect " +
+              "its skin from infections. <br/>" +
               "Frogs and toads make up the largest group of amphibians. Amphibians " +
               "reproduce by laying eggs in water. This is one of the traits that make " +
               "amphibians different from amniotes (including mammals, reptiles, birds, " +
-              "and turtles). Amniotes have eggs with protective membranes that opened " +
+              "and turtles). Amniotes have eggs with protective membranes that first opened " +
               "the possibility for animals to reproduce on dry land.")
    },
    
@@ -174,8 +175,7 @@ var HINTS = {
       text : ("Did you know that scorpions have eight legs? They belong to a class " +
               "of animals called arachnids that also includes spiders and ticks. " +
               "Unlike insects, arachnids have no antennae and no wings. They do, " +
-              "however, have additional appendages called pedipalps and chelicerae. " +
-              "A scorpion's claws are pedipalps." +
+              "however, have two additional pairs appendages.<br />" +
               "Scorpions are a type of arthropod. Arthropods are invertebrate animals " +
               "with external skeletons (exoskeletons) and jointed limbs. Insects, " +
               "spiders, scorpions, and crustaceans are all different kinds of arthropods.")
