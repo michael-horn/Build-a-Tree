@@ -33,7 +33,12 @@ var HINTS = {
       image : "images/hints/bat.jpg",
       author : "Photo: Wikipedia (public domain)",
       cright : "public domain",
-      text : "Bats are a type of mammal."
+      text : ("Did you know that there are over 1,200 species of bats in the world? " +
+              "Bats are the only mammals capable of sustained flight. This picture " +
+              "shows a Townsend's Big-Eared Bat. These bats live in the United " +
+              "States, Canada, and Mexico. They eat moths, flies, and other small " +
+              "insects. Bats, like humans, are placental mammals. They have hair, " +
+              "give birth to live babies, and nurse their young.")
    },
    
 
@@ -58,7 +63,12 @@ var HINTS = {
       image : "images/hints/butterfly.jpg",
       author : "Photo by: Stavros Markopoulos (flickr: macropoulos). Some rights reserved.",
       cright : "cc-by-nc",
-      text : "Bats are a type of mammal."
+      text : ("Did you know that there are over 140,000 different species of butterflies " +
+             "and moths in the world? This picture shows a Common Yellow Swallowtail " +
+             "butterfly as a caterpillar. Butterflies are a type of arthropod. " +
+             "Arthropods are invertebrate animals with external skeletons (exoskeletons) " +
+             "and jointed limbs. Insects, spiders, scorpions, and crustaceans are all " +
+             "different kinds of arthropods.")
    },
    
    // http://www.flickr.com/photos/thomas_schrei/3206000509/
@@ -70,7 +80,7 @@ var HINTS = {
       image : "images/hints/crab.jpg",
       author : "Photo by: Thomas (Guatemala) (flickr). Some rights reserved.",
       cright : "cc-by-nc",
-      text : "Bats are a type of mammal."
+      text : ""
    },
    
    // http://www.flickr.com/photos/davidbygott/2784898252/
@@ -82,7 +92,14 @@ var HINTS = {
       image : "images/hints/frog.jpg",
       author : "Photo from Wikipedia by LiquidGhoul. Public domain.",
       cright : "public domain",
-      text : "Bats are a type of mammal."
+      text : ("Did you know that there are over 4,800 different species of frogs " +
+              "and toads in the world? This picture shows an Australian green tree " +
+              "frog. This frog can scream when it's in danger to scare off predators. " +
+              "Frogs and toads make up the largest group of amphibians. Amphibians " +
+              "reproduce by laying eggs in water. This is one of the traits that make " +
+              "amphibians different from amniotes (including mammals, reptiles, birds, " +
+              "and turtles). Amniotes have eggs with protective membranes that opened " +
+              "the possibility for animals to reproduce on dry land.")
    },
    
    // http://www.flickr.com/photos/ressaure/5471096350/
@@ -94,7 +111,7 @@ var HINTS = {
       image : "images/hints/fungus.jpg",
       author : "Photo by: Tatiana Bulyonkova (flickr: ressaure). Some rights reserved.",
       cright : "cc-by-nc-sa",
-      text : "Bats are a type of mammal."
+      text : ""
    },
    
    // http://www.flickr.com/photos/davidbygott/4036635643/
@@ -106,7 +123,7 @@ var HINTS = {
       image : "images/hints/giraffe.jpg",
       author : "Photo by: kibuyu (flickr). Some rights reserved.",
       cright : "cc-by-nc-sa",
-      text : "Bats are a type of mammal."
+      text : ""
    },
    
    human :
@@ -117,7 +134,7 @@ var HINTS = {
       image : "images/hints/human.jpg",
       author : "Jonathan Losos, Harvard University",
       cright : "cc-blank",
-      text : "Bats are a type of mammal."
+      text : ""
    },
    
    // http://www.flickr.com/photos/e_monk/4815901200/
@@ -129,7 +146,7 @@ var HINTS = {
       image : "images/hints/lizard.jpg",
       author : "Photo by: e_monk (flickr). Some rights reserved.",
       cright : "cc-by-nc-sa",
-      text : "Bats are a type of mammal."
+      text : ""
    },
    
    // http://www.flickr.com/photos/52421717@N00/4719233894/
@@ -142,7 +159,7 @@ var HINTS = {
       image : "images/hints/plant.jpg",
       author : "Photo by: Peter Gorman (flickr: pchgorman). Some rights reserved.",
       cright : "cc-by-nc-sa",
-      text : "Bats are a type of mammal."
+      text : "Green plants are multicellular organisms that use photosynthesis to turn sunlight into energy. Scientists think that green algae may have appeared on land over 1 billion years ago. Since that time plants have diversified into over 300,000 different species. Plants and animals diverged (evolved into two different forms of life) around 1,400 million years ago."
    },
    
    // http://en.wikipedia.org/wiki/File:Asian_forest_scorpion_in_Khao_Yai_National_Park.JPG
@@ -154,7 +171,14 @@ var HINTS = {
       image : "images/hints/scorpion.jpg",
       author : "Photo by: Chris Huh. Some rights reserved.",
       cright : "cc-by-sa",
-      text : "Bats are a type of mammal."
+      text : ("Did you know that scorpions have eight legs? They belong to a class " +
+              "of animals called arachnids that also includes spiders and ticks. " +
+              "Unlike insects, arachnids have no antennae and no wings. They do, " +
+              "however, have additional appendages called pedipalps and chelicerae. " +
+              "A scorpion's claws are pedipalps." +
+              "Scorpions are a type of arthropod. Arthropods are invertebrate animals " +
+              "with external skeletons (exoskeletons) and jointed limbs. Insects, " +
+              "spiders, scorpions, and crustaceans are all different kinds of arthropods.")
    },
    
    shark :
@@ -165,7 +189,7 @@ var HINTS = {
       image : "images/hints/shark.jpg",
       author : "Photo by: Fbattail (Wikimedia Commons). Some rights reserved.",
       cright : "cc-by-sa",
-      text : "Bats are a type of mammal."
+      text : ""
    },
    
    // http://www.flickr.com/photos/opoterser/5108328833/
@@ -177,7 +201,12 @@ var HINTS = {
       image : "images/hints/spider.jpg",
       author : "Photo by: Thomas Shahan. Some rights reserved.",
       cright : "cc-by",
-      text : "Bats are a type of mammal."
+      text : ("Did you know that there are over 40,000 different species of spiders in the world? <br/>" +
+              "This picture shows a type of jumping spider. It has eight eyes and excellent vision. " +
+              "Rather than catching food in a web, this spider stalks its prey and pounces on it. " + 
+              "Spiders are a type of arthropod. Arthropods are invertebrate animals with external " +
+              "skeletons (exoskeletons) and jointed limbs. Insects, spiders, scorpions, and crustaceans " +
+              "are all different kinds of arthropods.")
    },
    
    trex :
@@ -188,7 +217,7 @@ var HINTS = {
       image : "images/hints/trex.jpg",
       author : "Photo by: Scott Robert Anselmo. Some rights reserved.",
       cright : "cc-by-sa", 
-      text : "Bats are a type of mammal."
+      text : ""
    }
 }
 
