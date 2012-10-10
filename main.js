@@ -447,7 +447,7 @@ function toggleLevels() {
 }
 
 function showSolution() {
-   setMaxLevel(getCurrentLevel() + 1);
+   markLevelComplete(getCurrentLevel());
    
    // draw the solution tree
    var c = document.getElementById("science-tree");
@@ -473,22 +473,20 @@ function hideSolution() {
 }
 
 function adjustLevelStars() {
-   var l = getMaxLevel();
    for (var i=0; i<LEVELS.length; i++) {
       var line = document.getElementById("levels-line-" + i);
       if (line) {
          var stars = line.getElementsByTagName("img");
          for (var j=0; j<stars.length; j++) {
-            if (i < l) {
+            if (isLevelComplete(i)) {
                stars[j].src = "images/star.png";
             } else {
                stars[j].src = "images/star_blank.png";
             }
          }
-         
          var a = line.getElementsByTagName("a");
          if (a && a.length > 0) {
-            a[0].className = (i <= l) ? "enabled" : "disabled";
+            a[0].className = "enabled"; // enable all level links
          }
       }
    }
@@ -521,7 +519,8 @@ function gotoLevel(level) {
    if (level >= LEVELS.length) {
       window.location = "finish.html";
    }
-   else if (level <= getMaxLevel()) {
+//   else if (level <= getMaxLevel()) {
+   else {
       window.location = "game.html?level=" + level;
    }
    return false;
@@ -533,28 +532,28 @@ function nextLevel() {
 }
 
 
-function getMaxLevel() {
+function clearLevelHistory() {
    if (supportsSessionStorage()) {
-      return Math.floor(sessionStorage.getItem("max-level"));
-   } else {
-      return getCurrentLevel();
-   }
-}
-
-
-function setMaxLevel(l) {
-   if (supportsSessionStorage()) {
-      if (l > getMaxLevel()) {
-         sessionStorage.setItem("max-level", l);
+      for (var i=0; i<LEVELS.length; i++) {
+         sessionStorage.setItem("completed-level-" + i, "false");
       }
+      sessionStorage.setItem("max-level", 0);
    }
 }
 
 
-function resetMaxLevel() {
+function markLevelComplete(l) {
    if (supportsSessionStorage()) {
-      sessionStorage.setItem("max-level", 0); 
+      sessionStorage.setItem("completed-level-" + l, "true");
    }
+}
+
+
+function isLevelComplete(l) {
+   if (supportsSessionStorage()) {
+      return sessionStorage.getItem("completed-level-" + l) == "true";
+   }
+   return false;
 }
 
 
