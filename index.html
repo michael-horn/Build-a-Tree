@@ -10,12 +10,13 @@
    <script src="touch.js"></script>
    <script src="main.js"></script>
    <script src="logging.js"></script>
+   <script src="levels.js"></script>
    
    <script type="text/javascript">
       initLogDatabase();
       log("start", "Game");
       function startGame() {
-         resetMaxLevel();
+         clearLevelHistory();
          window.location = "game.html";
          return false;
       }
