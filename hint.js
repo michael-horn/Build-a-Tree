@@ -27,80 +27,62 @@ var HINTS = {
    // Source: Wikimedia
    bat :
    {
-      name : "Corynorhinus townsendii", 
+      name : "Bats: Mammal or Bird?",
       cname : "Townsend's big-eared bat", 
       location : "United States",
       image : "images/hints/bat.jpg",
       author : "Photo: Wikipedia (public domain)",
       cright : "public domain",
-      text : ("Did you know that there are over 1,200 species of bats in the world? " +
-              "Bats are the only mammals capable of sustained flight. This picture " +
-              "shows a Townsend's Big-Eared Bat. These bats live in the United " +
-              "States, Canada, and Mexico. They eat moths, flies, and other small " +
-              "insects. Bats, like humans, are placental mammals. They have hair, " +
-              "give birth to live babies, and nurse their young.")
+      text : "Even though they can fly, bats are mammals not birds. They have hair, give birth to live babies, and nurse their young."
    },
    
 
    // http://www.flickr.com/photos/giuss95/5635428035/
    bird :
    {
-      name : "Sterna hirundo", 
+      name : "Birds", 
       cname : "Common Tern",
       location : "",
       image : "images/hints/bird.jpg",
       author : "Photo by: Luciano Giussani (flickr: giuss95). Some rights reserved.",
       cright : "cc-by-nc-sa",
-      text : ""
+      text : "Birds are dinosaurs that have evolved feathers and the ability to fly. Some birds later became flightless, but most modern birds use their feathers for flight."
    },
    
    // http://www.flickr.com/photos/markop/267659159/
    butterfly :
    {
-      name : "Papillio machaon",
+      name : "Butterflies",
       cname : "Common Yellow Swallowtail",
       location : "Kriti, Greece",
       image : "images/hints/butterfly.jpg",
       author : "Photo by: Stavros Markopoulos (flickr: macropoulos). Some rights reserved.",
       cright : "cc-by-nc",
-      text : ("Did you know that there are over 140,000 different species of butterflies " +
-             "and moths in the world? This picture shows a Common Yellow Swallowtail " +
-             "butterfly as a caterpillar. Butterflies are a type of arthropod. " +
-             "Arthropods are invertebrate animals with external skeletons (exoskeletons) " +
-             "and jointed limbs. Insects, spiders, scorpions, and crustaceans are all " +
-             "different kinds of arthropods.")
+      text : "Butterflies are arthropods. Like all other arthropods they have a hard structure called an exoskeleton that protects and supports their bodies. Unlike spiders and scorpions, butterflies are insects."
    },
    
    // http://www.flickr.com/photos/thomas_schrei/3206000509/
    crab : 
    {
-      name : "Callinectes bocourti",
+      name : "What are Crabs?",
       cname : "Blunt-tooth swimming crab",
       location : "Guatemala",
       image : "images/hints/crab.jpg",
       author : "Photo by: Thomas (Guatemala) (flickr). Some rights reserved.",
       cright : "cc-by-nc",
-      text : ""
+      text : "Crabs are arthropods. Like insects, spiders, and scorpions, they have have a hard structure called an exoskeleton that protects and supports their bodies."
    },
    
    // http://www.flickr.com/photos/davidbygott/2784898252/
    frog : 
    {
-      name : "Litoria caerulea",
+      name : "Frogs",
       cname : "Australian Green Tree Frog",
       location : "Australia",
       image : "images/hints/frog.jpg",
       author : "Photo from Wikipedia by LiquidGhoul. Public domain.",
       cright : "public domain",
-      text : ("Did you know that there are over 4,800 different species of frogs " +
-              "and toads in the world? This picture shows an Australian green tree " +
-              "frog. This frog secretes antibiotic and anti-viral fluids to help protect " +
-              "its skin from infections. <br/>" +
-              "Frogs and toads make up the largest group of amphibians. Amphibians " +
-              "reproduce by laying eggs in water. This is one of the traits that make " +
-              "amphibians different from amniotes (including mammals, reptiles, birds, " +
-              "and turtles). Amniotes have eggs with protective membranes that first opened " +
-              "the possibility for animals to reproduce on dry land.")
+      text : "Baby frogs hatch in water and breathe with gills. As adults, they breathe air and move onto the land. Unlike reptiles and mammals, frog eggs lack an amniotic sac. This ties them to water for reproduction."
    },
    
    // http://www.flickr.com/photos/ressaure/5471096350/
@@ -118,67 +100,62 @@ var HINTS = {
    // http://www.flickr.com/photos/davidbygott/4036635643/
    giraffe :
    {
-      name : "Giraffa camelopardalis",
+      name : "Giraffes",
       cname : "Giraffe",
       location : "Kenya",
       image : "images/hints/giraffe.jpg",
       author : "Photo by: kibuyu (flickr). Some rights reserved.",
       cright : "cc-by-nc-sa",
-      text : ""
+      text : "Giraffes are mammals. All mammals feed their young through mammary glands. They also have hair, an adaptation for warmth and skin protection."
    },
    
    human :
    {
-      name : "Homo sapiens",
+      name : "Humans",
       cname : "Human",
       location : "",
       image : "images/hints/human.jpg",
       author : "Jonathan Losos, Harvard University",
       cright : "cc-blank",
-      text : ""
+      text : "Did you know humans are related to all other life on earth? Humans are mammals like giraffes and bats. All mammals feed their young through mammary. glands They also have hair, an adaptation for warmth and skin protection."
+"
    },
    
    // http://www.flickr.com/photos/e_monk/4815901200/
    lizard :
    {
-      name : "Anolis carolinensis",
+      name : "Lizards",
       cname : "Green Anole",
       location : "North Carolina, USA",
       image : "images/hints/lizard.jpg",
       author : "Photo by: e_monk (flickr). Some rights reserved.",
       cright : "cc-by-nc-sa",
-      text : ""
+      text : "Lizards are reptiles. They have scales covering their bodies. Lizards have holes on each side of the skull like birds and dinosaurs."
    },
    
    // http://www.flickr.com/photos/52421717@N00/4719233894/
    plant :
    {
       
-      name : "Asclepias Tuberosa", 
+      name : "Green Plants", 
       cname : "Butterfly Milkweed",
       location : "Wisconsin, USA",
       image : "images/hints/plant.jpg",
       author : "Photo by: Peter Gorman (flickr: pchgorman). Some rights reserved.",
       cright : "cc-by-nc-sa",
-      text : "Green plants are multicellular organisms that use photosynthesis to turn sunlight into energy. Scientists think that green algae may have appeared on land over 1 billion years ago. Since that time plants have diversified into over 300,000 different species. Plants and animals diverged (evolved into two different forms of life) around 1,400 million years ago."
+      text : "Green plants turn sunlight into energy through the process of photosynthesis. Plants and animals shared an ancestor many, many millions of years ago."
    },
    
    // http://en.wikipedia.org/wiki/File:Asian_forest_scorpion_in_Khao_Yai_National_Park.JPG
    scorpion :
    {
-      name : "Heterometrus laoticus",
+      name : "What are Scorpions?",
       cname : "Asian forest scorpion",
       location : "Thailand",
       image : "images/hints/scorpion.jpg",
       author : "Photo by: Chris Huh. Some rights reserved.",
       cright : "cc-by-sa",
-      text : ("Did you know that scorpions have eight legs? They belong to a class " +
-              "of animals called arachnids that also includes spiders and ticks. " +
-              "Unlike insects, arachnids have no antennae and no wings. They do, " +
-              "however, have two additional pairs appendages.<br />" +
-              "Scorpions are a type of arthropod. Arthropods are invertebrate animals " +
-              "with external skeletons (exoskeletons) and jointed limbs. Insects, " +
-              "spiders, scorpions, and crustaceans are all different kinds of arthropods.")
+      text: "Scorpions are arthropods. Like all other arthropods they have a hard structure called an exoskeleton that protects and supports their bodies. Scorpions also have eight legs like spiders.",
    },
    
    shark :
@@ -195,29 +172,24 @@ var HINTS = {
    // http://www.flickr.com/photos/opoterser/5108328833/
    spider :
    {
-      name : "Phidippus mystaceus",
+      name : "What are Spiders?",
       cname : "Jumping Spider",
       location : "Oklahoma, USA",
       image : "images/hints/spider.jpg",
       author : "Photo by: Thomas Shahan. Some rights reserved.",
       cright : "cc-by",
-      text : ("Did you know that there are over 40,000 different species of spiders in the world? <br/>" +
-              "This picture shows a type of jumping spider. It has eight eyes and excellent vision. " +
-              "Rather than catching food in a web, this spider stalks its prey and pounces on it. " + 
-              "Spiders are a type of arthropod. Arthropods are invertebrate animals with external " +
-              "skeletons (exoskeletons) and jointed limbs. Insects, spiders, scorpions, and crustaceans " +
-              "are all different kinds of arthropods.")
+      text : "What makes a spider a spider? Spiders have eight jointed legs and a hard structure called an exoskeleton that protects and supports their bodies. Spiders are not insects, but they are related to other arthropods like insects, scorpions, and crabs."
    },
    
    trex :
    {
-      name : "T. rex",
+      name : "T. rex: Bird or lizard?",
       cname : "Tyrannosaurus Rex",
       location : "Carnegie Museum of Natural History, Pittsburgh",
       image : "images/hints/trex.jpg",
       author : "Photo by: Scott Robert Anselmo. Some rights reserved.",
       cright : "cc-by-sa", 
-      text : ""
+      text : "Tyrannosaurus rex is more closely related to birds than to lizards. Birds and tyrannosaurs both have a wishbone and walk on two legs."
    }
 }
 
@@ -307,7 +279,7 @@ function Hint() {
          }
          d = document.getElementById("hint-title");
          if (d) {
-            d.innerHTML = h.name + " (" + h.cname + ")";
+            d.innerHTML = h.name;
          }
          d = document.getElementById("hint-text");
          if (d) {
