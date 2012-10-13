@@ -407,7 +407,7 @@ function toggleHelp() {
 }
 
 function showCredits() {
-   showDialog("dialog-credits", 564);
+   showDialog("dialog-credits", 714);
 }
 
 function hideCredits() {
