@@ -2,7 +2,7 @@
 
 body {
    background-color: #3399cc;
-   background-image: url('images/texture.png'); 
+   background-image: url('images/texture2.png'); 
    overflow: hidden;
    font-family: tahoma, arial, sans-serif;
    margin: 0px;
@@ -70,8 +70,8 @@ footer {
    width: 560px;
    padding: 20px 30px 20px 30px;
    border: 2px solid #333;
-   /* background-color: #151; */
-   background-color: #169;
+   background-color: #151;
+   /* background-color: #169; */
    font-family: sans-serif;
    font-size: 18px;
    color: white;
