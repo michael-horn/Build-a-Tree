@@ -346,6 +346,8 @@ function Clade(id) {
 // Draws oval around all tips with the name of the clade above
 //----------------------------------------------------------------------
    this.drawHighlight = function(g) {
+      
+      /*
       var tips = [];
       this.getTips(tips);
       g.beginPath();
@@ -367,6 +369,7 @@ function Clade(id) {
       g.font = "14pt Tahoma, Arial, sans-serif";
       g.beginPath();
       g.fillText(this.name, (x0 + x1) / 2, (y0 + y1) / 2 - 43);
+      */
 
       /*      
       if (this.isDragging()) {
