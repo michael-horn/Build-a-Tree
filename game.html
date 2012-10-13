@@ -33,18 +33,14 @@
    <img src="images/help.png" style="position: absolute; right: 18px; top: 152px;" onclick="log('press', 'Help Button'); toggleHelp();" />
    <!-- img id="hint-image" src="images/info/lizard.png" style="position: absolute; left: 200px; top: 80px; visibility: hidden;" / -->
 
+   
    <!-- HINT DALOG -->
    <div id="dialog-hint" class="dialog">
-      <div id="hint-title" style="text-align: center; font-size: 16px; font-weight: normal; margin-bottom: 3px;">
-         Lizard
-      </div>
-      <img id="hint-image" src="images/hints/lizard.jpg" style="border: 1px black solid;" />
-      <div id="hint-author" style="text-align: center; font-size: 12px; font-weight: normal;">
-         Photo by: Marian (some rights reserved)
-      </div>
-      <div id="hint-text" style="text-align: center; font-size: 14px;" font-weight: normal; margin-top: 10px;">
-         
-      </div>
+      <div id="hint-title">Lizard</div>
+      <img id="hint-image" src="images/hints/lizard.jpg" />
+      <div id="hint-author">Photo by Charles</div>
+      <div id="hint-text">Lizards are diapsids</div>
+      <img src="images/close.png" onclick="return hideHint();" />
    </div>
    
    
