@@ -381,6 +381,14 @@ function showDialog(name, width) {
    }
 }
 
+function showHint() {
+   showDialog("dialog-hint", 1030);
+}
+
+function hideHint() {
+   hideDialog("dialog-hint");
+}
+
 function showHelp(n) {
    showDialog("dialog-help" + n, 464);
 }
