@@ -8,36 +8,31 @@
    <link rel="stylesheet" href="default.css" />
    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
    <script src="touch.js"></script>
+   <script src="main.js"></script>
    <script src="logging.js"></script>
    <script src="levels.js"></script>
    
    <script type="text/javascript">
       initLogDatabase();
+      log("start", "Game");
       function startGame() {
-         log("start", "Game");
          clearLevelHistory();
-         window.location = "instructions.html";
+         window.location = "game.html";
          return false;
       }
    </script>
 </head>
 <body onload="defineEventHandlers(null);">
-<div style="text-align: center; margin-top: 160px;">
-   <a href="index.html" onclick="return startGame();"><img src="images/title.png" style="border: 0px;"/></a><br>
-   <h2 style="margin-top: 0px; margin-bottom: 55px; letter-spacing: 0.1em;">
-      Congratulations! You've finished the game. 
-   </h2>
-   <a href="index.html" onclick="return startGame();" class="big-link" style="padding: 90px;">Play Again!</a><br>
-   <!--
-   <div style="margin-top: 90px;">
-      <img src="images/splash.png">
-   </div>
-   -->
+<div class="dialog" id="title" style="text-align: center;">
+   <img src="images/title.png" style="border: 0px;"/><br>
+   <h2 style="margin-top: 0px; margin-bottom: 55px; letter-spacing: 0.1em;">Congratulations! You've finished the game.<br/> Play again?</h2>
+   <img src="images/play.png" alt="play" class="dialog-button" onclick="return startGame();">
 </div>
-
 <footer>
-   This work is supported by the National Science Foundation (grant #1010889).
-   Any opinions, findings and conclusions or recommendations expressed in this material
+   This exhibit was created by the Life on Earth Project with Northwestern University, Harvard University,
+   University of Michigan, and University of Nebraska State Museum. <br />
+   This work is supported by the National Science Foundation under grant DRL-1010889.
+   Any opinions, findings and conclusions or recommendations expressed in this material <br />
    are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
 </footer>
 </body>
