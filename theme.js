@@ -17,7 +17,7 @@ var Theme = {
    
    FOREGROUND : "white",
    //FADED  : "#6AB7DC",
-   FADED : "73aa7b",
+   FADED : "#686",
    TRANS_LIGHT  : "rgba(255, 255, 255, 0.7)",
    TRANS_MEDIUM : "rgba(255, 255, 255, 0.5)",
    TRANS_DARK   : "rgba(255, 255, 255, 0.3)",
