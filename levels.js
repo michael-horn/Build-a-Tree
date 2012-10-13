@@ -184,8 +184,8 @@ const LEVELS = [
    ],
    
    fhelp : { src : "tip8", align : "center" }
-},
-
+}
+/*
 {
    name : "Bonus Level 8",
    
@@ -213,5 +213,5 @@ const LEVELS = [
    
    dky : null
 }
-
+*/
 ];
