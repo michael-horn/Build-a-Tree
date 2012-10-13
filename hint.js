@@ -118,7 +118,6 @@ var HINTS = {
       author : "Jonathan Losos, Harvard University",
       cright : "cc-blank",
       text : "Did you know humans are related to all other life on earth? Humans are mammals like giraffes and bats. All mammals feed their young through mammary. glands They also have hair, an adaptation for warmth and skin protection."
-"
    },
    
    // http://www.flickr.com/photos/e_monk/4815901200/
