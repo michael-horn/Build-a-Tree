@@ -205,7 +205,6 @@ function animate() {
    var h = hint.getHighlight();
    hint.setHighlight(false);
    tree.animate();
-   updateTokens();
    
    if (h && !hint.getHighlight()) {
       hint.hideHint();
@@ -400,7 +399,7 @@ function toggleHelp() {
 }
 
 function showCredits() {
-   showDialog("dialog-credits", 714);
+   showDialog("dialog-credits", 920);
 }
 
 function hideCredits() {
