@@ -67,7 +67,7 @@ footer {
 
 .dialog {
    position: absolute;
-   top: 180px;
+   top: 90px;
    left: 200px;
    width: 560px;
    padding: 20px 30px 20px 30px;
@@ -141,6 +141,40 @@ button {
 }
 #play-button:active { background-position: 3px 3px; }
 
+#close-button {
+   background: url("images/close.png") 0 0 no-repeat;
+   width: 165px;
+   height: 68px;
+}
+#close-button:active { background-position: 3px 3px; }
+
+#credits-button {
+   background: url("images/close.png") 0 0 no-repeat;
+   width: 165px;
+   height: 68px;
+}
+#credits-button:active { background-position: 3px 3px; }
+
+#restart-button {
+   background: url("images/restart.png") 0 0 no-repeat;
+   width: 56px;
+   height: 56px;
+   position: absolute;
+   right: 18px;
+   top: 38px;
+}
+#restart-button:active { background-position: 3px 3px; }
+
+#levels-button {
+   background: url("images/levels.png") 0 0 no-repeat;
+   width: 56px;
+   height: 56px;
+   position: absolute;
+   right: 18px;
+   top: 95px;
+}
+#levels-button:active { background-position: 3px 3px; }
+
 
 #dialog-hint {
    visibility: hidden;
@@ -173,11 +207,13 @@ button {
 
 #dialog-credits {
    visibility: hidden;
-   width: 650px;
+   width: 850px;
    font-size: 14px;
    font-weight: normal;
    line-height: 130%;
    top: 80px;
+   font-weight: 200;
+   font-size: 12px;
 }
 
 #dialog-levels td {
