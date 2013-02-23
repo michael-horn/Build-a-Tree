@@ -106,10 +106,11 @@ function SolutionBox(solution) {
    }
    
    this.openBox = function() {
-      if (!this.open) {
+      if (!this.open && !this.tween.isRunning()) {
          this.tween.clearControlPoints();
          this.tween.setStart(this.y);
          this.tween.setEnd(0);
+         //this.tween.onend = function() { this.open = true; }
          this.open = true;
          this.tween.play();
          log("show", "Solution");
@@ -117,10 +118,11 @@ function SolutionBox(solution) {
    }
    
    this.closeBox = function() {
-      if (this.open) {
+      if (this.open && !this.tween.isRunning()) {
          this.tween.clearControlPoints();
          this.tween.setStart(this.y);
          this.tween.setEnd(30 - this.h);
+         //this.tween.onend = function() { this.open = false; }
          this.open = false;
          this.tween.play();
          log("hide", "Solution");
