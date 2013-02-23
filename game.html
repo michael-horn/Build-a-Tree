@@ -2,8 +2,9 @@
 <html> <!-- manifest="cache.manifest" -->
 <head>
    <title>Build-a-Tree</title>
+   <meta charset="utf-8">
    <meta name="apple-mobile-web-app-capable" content="yes" />
-   <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       
    <link rel="stylesheet" href="default.css" />
    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
@@ -28,10 +29,8 @@
 </head>
 <body onload="startup();">
    <img src="images/title-small.png" style="position: absolute" />
-   <img src="images/restart.png" style="position: absolute; right: 18px; top: 38px;" onclick="log('press', 'Restart Button'); restart();"/>
-   <img src="images/levels.png" style="position: absolute; right: 18px; top: 95px;" onclick="log('press', 'Levels Button'); toggleLevels();" />
-   <img src="images/help.png" style="position: absolute; right: 18px; top: 152px;" onclick="log('press', 'Help Button'); toggleHelp();" />
-   <!-- img id="hint-image" src="images/info/lizard.png" style="position: absolute; left: 200px; top: 80px; visibility: hidden;" / -->
+   <img src="images/restart.png" style="position: absolute; right: 18px; top: 38px;" onclick="restart();"/>
+   <img src="images/levels.png" style="position: absolute; right: 18px; top: 95px;" onclick="toggleLevels();" />
 
    
    <!-- HINT DALOG -->
@@ -41,34 +40,6 @@
       <div id="hint-author">Photo by Charles</div>
       <div id="hint-text">Lizards are diapsids</div>
       <img src="images/close.png" onclick="return hideHint();" />
-   </div>
-   
-   
-   <!-- HELP DIALOG -->
-   <div id="dialog-help1" class="dialog">
-      <div style="text-align: left;">
-         <img src="images/howtoplay.png">
-         <h2>How to build a tree...</h2>
-      </div>
-      <img src="images/help/animation1.gif" style="border: 2px solid white; margin: 10px 0 10px 0;">
-      <div style="text-align: center">
-         <img src="images/back.png" onclick="log('press', 'Back Button'); hideHelp();" style="margin: 0 10px 0 10px;" />
-         <img src="images/next.png" onclick="log('press', 'Next Button'); showHelp(2);" style="margin: 0 10px 0 10px;" />
-      </div>
-   </div>
-   
-   
-   <!-- HELP DIALOG -->
-   <div id="dialog-help2" class="dialog">
-      <div style="text-align: left;">
-         <img src="images/howtoplay.png">
-         <h2>How to break a tree...</h2>
-      </div>
-      <img src="images/help/animation2.gif" style="border: 2px solid white; margin: 10px 0 10px 0;">
-      <div style="text-align: center">
-         <img src="images/back.png" onclick="log('press', 'Back Button'); showHelp(1);" style="margin: 0 10px 0 10px;" />
-         <img src="images/next.png" onclick="log('press', 'Next Button'); hideHelp();" style="margin: 0 10px 0 10px;" />
-      </div>
    </div>
    
    
