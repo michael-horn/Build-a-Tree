@@ -209,8 +209,8 @@
       <img src="images/dyk.png" />
       <div id="dyk-text"></div>
       <div style="text-align: center">
-         <img src="images/back.png" onclick="log('press', 'Back Button'); hideDYK(); showSolution();" style="margin: 0 10px 0 10px;" />
-         <img src="images/next.png" onclick="log('press', 'Next Button'); hideDYK(); nextLevel();" style="margin: 0 10px 0 10px;" />
+         <button class="back-button" onclick="hideDYK(); showSolution();"></button>
+         <button class="next-button" onclick="hideDYK(); nextLevel();"></button>
       </div>
    </div>
 
@@ -220,26 +220,27 @@
    <div id="dialog-solution" class="dialog">
       <img src="images/cleared.png" />
 
-         <div>Does your tree show the same relationships as the scientist tree?</div>
+         
          <table>
             <tr>
-               <td><canvas id="science-tree" width="250" height="200"></canvas></td>
-               <td><canvas id="your-tree" width="250" height="200"></canvas></td>
+               <td><canvas id="your-tree" width="250" height="200"></canvas>
+                   <img src="images/success-tick.png" style="position: absolute; left: 230px; top: 270px;" />
+               </td>
+               <td><img src="images/success-stars.png" /></td>
             </tr>
             <tr>
-               <td>Scientist Tree</td>
-               <td>Your Tree</td>
+               <td>You found a correct solution!</td>
+               <td></td>
             </tr>
          </table>
          <br>
 
       <div style="text-align: center">
-         <img src="images/back.png" onclick="log('press', 'Back Button'); hideSolution();" style="margin: 0 10px 0 10px;" />
-         <img src="images/next.png" onclick="log('press', 'Next Button'); hideSolution(); showDYK();" style="margin: 0 10px 0 10px;" />
+         <button class="back-button" onclick="hideSolution();"></button>
+         <button class="next-button" onclick="hideSolution(); showDYK();"></button>
       </div>
    </div>
-
-
+   
 
    <!-- MAIN CANVAS -->   
    <canvas id="world"></canvas>
