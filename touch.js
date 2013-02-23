@@ -25,8 +25,8 @@ var restart_timer;
 
 function resetMasterTimer() {
 // COMMENT to disable restart timer
-   clearTimeout(restart_timer);
-   restart_timer = setTimeout( masterRestart, 60000 );   
+   //clearTimeout(restart_timer);
+   //restart_timer = setTimeout( masterRestart, 60000 );   
 }
 
 
@@ -67,15 +67,12 @@ function findTouchTarget(tp) {
 //-----------------------------------------------------------------
 function defineEventHandlers(canvas) {
    if (canvas) {
-      if (isIPad() || isIPhone()) {
-         canvas.ontouchstart = touchDown;
-         canvas.ontouchmove = touchDrag;
-         canvas.ontouchend = touchUp;
-      } else {
-         canvas.onmouseup = mouseUp;
-         canvas.onmousemove = mouseMove;
-         canvas.onmousedown = mouseDown;
-      }
+      canvas.ontouchstart = touchDown;
+      canvas.ontouchmove = touchDrag;
+      canvas.ontouchend = touchUp;
+      canvas.onmouseup = mouseUp;
+      canvas.onmousemove = mouseMove;
+      canvas.onmousedown = mouseDown;
    }
    document.onkeypress = keyPress;
    
@@ -83,15 +80,6 @@ function defineEventHandlers(canvas) {
 	document.ontouchmove = function(evt) {
 		evt.preventDefault();
 	}
-   
-   // Attempt to connect to the microsoft surface input stream...
-   if ("WebSocket" in window) {
-      var socket = new WebSocket("ws://localhost:405");
-      socket.onopen    = function(evt) { console.log("connected to surface."); }
-      socket.onmessage = function(evt) { processTouches(evt.data); }
-      socket.onerror   = function(evt) { console.log("error in surface connection"); }
-      socket.onclose   = function(evt) { console.log("surface connection closed."); }
-   }
 }
 
 
@@ -159,14 +147,12 @@ function touchDown(evt) {
    resetMasterTimer();
    for (var i=0; i<evt.changedTouches.length; i++) {
       var t = evt.changedTouches[i];
-      if (t.down) {
-         var pt = { x : t.pageX, y : t.pageY };
-         var o = findTouchTarget(pt);
-         if (o) {
-            var id = t.identifier;
-            touch_bindings[id] = o;
-            o.touchDown(pt);
-         }
+      var pt = { x : t.pageX, y : t.pageY };
+      var o = findTouchTarget(pt);
+      if (o) {
+         var id = t.identifier;
+         touch_bindings[id] = o;
+         o.touchDown(pt);
       }
 	}
 }
@@ -174,13 +160,11 @@ function touchDown(evt) {
 function touchUp(evt) {
    for (var i=0; i<evt.changedTouches.length; i++) {
       var t = evt.changedTouches[i];
-      if (t.up) {
-         var pt = { x : t.pageX, y : t.pageY };
-         var o = touch_bindings[t.identifier];
-         if (o) {
-            o.touchUp();
-            touch_bindings[t.identifier] = null;
-         }
+      var pt = { x : t.pageX, y : t.pageY };
+      var o = touch_bindings[t.identifier];
+      if (o) {
+         o.touchUp();
+         touch_bindings[t.identifier] = null;
       }
    }
    if (evt.touches.length == 0) {
@@ -193,67 +177,10 @@ function touchDrag(evt) {
    
    for (var i=0; i<evt.changedTouches.length; i++) {
       var t = evt.changedTouches[i];
-      if (t.drag) {
-         var pt = { x : t.pageX, y : t.pageY };
-         var o = touch_bindings[t.identifier];
-         if (o) {
-            o.touchDrag(pt);   
-         }
+      var pt = { x : t.pageX, y : t.pageY };
+      var o = touch_bindings[t.identifier];
+      if (o) {
+         o.touchDrag(pt);   
       }
-   }
-}
-
-
-//-----------------------------------------------------------------
-// Microsoft Surface Touch Interface
-//-----------------------------------------------------------------
-var pframe = null;
-
-function processTouches(data) {
-   var frame = eval("(" + data + ")" );
-   if (!frame || !frame.touches) return;
-   
-   var changed = [];
-   var down = false;
-   var drag = false;
-   var up = false;
-   
-   for (var i=0; i<frame.touches.length; i++) {
-      var t = frame.touches[i];
-      
-      if (t.down) {
-         changed.push(t);
-         down = true;
-      }
-      else if (t.drag) {
-         changed.push(t);
-         drag = true;
-      }
-      else if (t.up) {
-         changed.push(t);
-         up = true;
-         sendEvent("click", t);
-      }
-   }
-   frame.changedTouches = changed;
-   
-   if (down) touchDown(frame);
-
-   if (drag) touchDrag(frame);
-   
-   if (up) touchUp(frame);
-   
-   pframe = frame;
-}
-
-
-function sendEvent(ename, touchMouse) {
-   var tx = touchMouse.pageX;
-   var ty = touchMouse.pageY;
-   var evt = document.createEvent("MouseEvents");
-   evt.initMouseEvent(ename, true, true, window, 1, tx, ty, tx, ty, false, false, false, false, 0, null);
-   var el = document.elementFromPoint(tx, ty);
-   if (el) {
-      el.dispatchEvent(evt);
    }
 }
