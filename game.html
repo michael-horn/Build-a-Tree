@@ -24,14 +24,12 @@
    <script src="hint.js"></script>
    <script src="solution.js"></script>
    <script src="logging.js"></script>
-   <script src="tangible.js"></script>
    <script src="main.js"></script>
 </head>
 <body onload="startup();">
    <img src="images/title-small.png" style="position: absolute" />
-   <img src="images/restart.png" style="position: absolute; right: 18px; top: 38px;" onclick="restart();"/>
-   <img src="images/levels.png" style="position: absolute; right: 18px; top: 95px;" onclick="toggleLevels();" />
-
+   <button id="restart-button" onclick="restart();"></button>
+   <button id="levels-button" onclick="toggleLevels();"></button>
    
    <!-- HINT DALOG -->
    <div id="dialog-hint" class="dialog">
@@ -46,6 +44,8 @@
    <!-- CREDITS DIALOG -->
    <div id="dialog-credits" class="dialog">
       <img src="images/title-small.png" /><br>
+      <button id="credits-button" style="position: absolute; right: 20px; top: 20px" onclick="hideCredits();"></button>
+
       <p>
          <h3>Credits</h3>
          <p>
@@ -69,24 +69,21 @@
          <table>
             <tr>
                <td style="padding-right: 20px; vertical-align: top;">Chia Shen</td>
-               <td>School of Engineering and Applied Sciences<br />Harvard University</td>
+               <td>School of Engineering and Applied Sciences, Harvard University</td>
             </tr>
             <tr>
                <td style="vertical-align: top;">Judy Diamond</td>
-               <td>University of Nebraska State Museum<br />
-                   University of Nebraska &#151; Lincoln
+               <td>University of Nebraska State Museum, University of Nebraska &#151; Lincoln
                </td>
             </tr>
             <tr>
                <td style="vertical-align: top;">E. Margaret Evans</td>
-               <td>Center for Human Growth and Development<br/>
-                   University of Michigan
+               <td>Center for Human Growth and Development, University of Michigan
                </td>
             </tr>
             <tr>
                <td style="vertical-align: top;">Michael S. Horn</td>
-               <td>Learning Sciences and Computer Science<br/>
-                   Northwestern University
+               <td>Learning Sciences and Computer Science, Northwestern University
                </td>
             </tr>
             <tr>
@@ -108,8 +105,7 @@
          <table>
             <tr>
                <td style="vertical-align: top;">Visit our web site<br/>
-               lifeonearth.seas.harvard.edu <br />
-               <img style="width: 95px; height: 95px; padding-top: 10px; padding-left: 10px;" src="images/qr_lifeonearth.png" />
+               <a href="http://lifeonearth.seas.harvard.edu">lifeonearth.seas.harvard.edu</a> <br />
                </td>
                <td style="vertical-align: top; padding-right: 10px; padding-left: 18px;"><img style="width: 60px; height: 60px;" src="images/twitter.png"></td>
                <td style="vertical-align: top;">Follow us on Twitter<br />
@@ -123,12 +119,8 @@
                    DeepTreeExhibit
                </td>
             </tr>
-            
          </table>
       </p>
-      <div style="text-align: center;">
-      <img src="images/close.png" onclick="log('press', 'Close Button'); hideCredits();" />
-      </div>
    </div>
       
 
@@ -207,7 +199,7 @@
       <br />
       <a href="#" onclick="window.location = 'index.html'; return false;">Start Over</a>
       <a href="#" onclick="log('press', 'Credits'); showCredits();">Credits</a><br /><br />
-      <img src="images/close.png" onclick="log('press', 'Close Button'); hideLevels();" />
+      <button id="close-button" onclick="hideLevels();"></button>
    </div>
 
 
