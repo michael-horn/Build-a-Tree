@@ -28,7 +28,6 @@ var ORANGE_DOCK = document.createElement("img");
 
 
 function startup() {
-   initLogDatabase();
    canvas = document.getElementById("world");
    context = canvas.getContext('2d');
    canvas.width = window.innerWidth;
@@ -49,7 +48,7 @@ function startup() {
 
    setInterval(tick, 30);
    defineEventHandlers(canvas);
-   resetMasterTimer();
+   //resetMasterTimer();
 }
 
 
@@ -58,7 +57,6 @@ function restart() {
    var h = canvas.height;
    var level = LEVELS[getCurrentLevel()];
    
-   log("start", level.name);
    hideSolution();
    
    tree.clear();
@@ -145,12 +143,6 @@ function restart() {
    }
 }
 
-function playSound(name) {
-   var audio = document.getElementById("sound-" + name);
-   if (audio) {
-      audio.play();
-   }
-}
 
 function moveToDock(clade, index) {
    var cx, cy;
@@ -185,6 +177,7 @@ function moveToDock(clade, index) {
       clade.setColor(Theme.ORANGE);
    }
 }
+
 
 function resize(evt) {
    canvas.width = window.innerWidth;
@@ -325,13 +318,13 @@ function draw() {
    
    // Solution box
    solution_box.draw(g);
-
-   
 }
+
 
 function addVisual(visual) {
    visuals.push(visual);
 }
+
 
 function removeVisual(visual) {
    for (var i=0; i<visuals.length; i++) {
@@ -541,27 +534,20 @@ function nextLevel() {
 
 
 function clearLevelHistory() {
-   if (supportsSessionStorage()) {
-      for (var i=0; i<LEVELS.length; i++) {
-         sessionStorage.setItem("completed-level-" + i, "false");
-      }
-      sessionStorage.setItem("max-level", 0);
+   for (var i=0; i<LEVELS.length; i++) {
+      sessionStorage.setItem("completed-level-" + i, "false");
    }
+   sessionStorage.setItem("max-level", 0);
 }
 
 
 function markLevelComplete(l) {
-   if (supportsSessionStorage()) {
-      sessionStorage.setItem("completed-level-" + l, "true");
-   }
+   sessionStorage.setItem("completed-level-" + l, "true");
 }
 
 
 function isLevelComplete(l) {
-   if (supportsSessionStorage()) {
-      return sessionStorage.getItem("completed-level-" + l) == "true";
-   }
-   return false;
+   return sessionStorage.getItem("completed-level-" + l) == "true";
 }
 
 
