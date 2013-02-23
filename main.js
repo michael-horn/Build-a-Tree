@@ -449,13 +449,6 @@ function toggleLevels() {
 function showSolution() {
    markLevelComplete(getCurrentLevel());
    
-   // draw the solution tree
-   var c = document.getElementById("science-tree");
-   var g = c.getContext('2d');
-   g.fillStyle = Theme.FOREGROUND;
-   g.strokeStyle = Theme.FOREGROUND;
-   solution.drawSmallTree(g, 0, 0, c.width, c.height);
-   
    // draw the players' tree
    c = document.getElementById("your-tree");
    g = c.getContext('2d');
