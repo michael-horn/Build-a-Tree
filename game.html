@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html> <!-- manifest="cache.manifest" -->
+<html manifest="cache.manifest">
 <head>
    <title>Build-a-Tree</title>
    <meta charset="utf-8">
@@ -27,26 +27,32 @@
    <script src="main.js"></script>
 </head>
 <body onload="startup();">
-   <img src="images/title-small.png" style="position: absolute" />
+   
+
+   <!-- MAIN CANVAS -->   
+   <canvas id="world"></canvas>
+   
+   <img src="images/title-small.png" style="position: absolute; left: 0px; top: 0px;" />
    <button id="restart-button" onclick="restart();"></button>
    <button id="levels-button" onclick="toggleLevels();"></button>
+
    
    <!-- HINT DALOG -->
-   <div id="dialog-hint" class="dialog">
+   <div id="dialog-hint">
       <div id="hint-title">Lizard</div>
-      <img id="hint-image" src="images/hints/lizard.jpg" />
+      <img id="hint-image" src="images/hints/snail.jpg" />
       <div id="hint-author">Photo by Charles</div>
       <div id="hint-text">Lizards are diapsids</div>
-      <img src="images/close.png" onclick="return hideHint();" />
+      <button class="close-button" style="position: absolute; right: 5px; bottom: 40px" onclick="hideHint();"></button>
    </div>
-   
+
    
    <!-- CREDITS DIALOG -->
-   <div id="dialog-credits" class="dialog">
+   <div id="dialog-credits">
       <img src="images/title-small.png" /><br>
-      <button id="credits-button" style="position: absolute; right: 20px; top: 20px" onclick="hideCredits();"></button>
+      <button class="close-button" style="position: absolute; right: 20px; bottom: 20px" onclick="hideCredits();"></button>
 
-      <p>
+      <div style="padding: 20px;">
          <h3>Credits</h3>
          <p>
          Build-a-Tree was designed and programmed by <b>Michael Horn</b> and the
@@ -120,9 +126,8 @@
                </td>
             </tr>
          </table>
-      </p>
+      </div>
    </div>
-      
 
    
    <!-- LEVEL SELECTOR -->
@@ -181,6 +186,7 @@
          <td><img src="images/star.png" class="level-star" /></td>
          <td colspan="3"></td>
       </tr>
+
    <!--
       <tr id="levels-line-7">
          <td><a href="#" onclick="return gotoLevel(7);">Level 8</a></td>
@@ -199,9 +205,8 @@
       <br />
       <a href="#" onclick="window.location = 'index.html'; return false;">Start Over</a>
       <a href="#" onclick="log('press', 'Credits'); showCredits();">Credits</a><br /><br />
-      <button id="close-button" onclick="hideLevels();"></button>
+      <button class="close-button" onclick="hideLevels();"></button>
    </div>
-
 
    
    <!-- DID YOU KNOW -->
@@ -214,17 +219,19 @@
       </div>
    </div>
 
-
    
    <!-- LEVEL CLEARED -->
    <div id="dialog-solution" class="dialog">
-      <img src="images/cleared.png" />
+      <img src="images/cleared.png" /> <br />
+      <canvas id="your-tree" width="250" height="200"></canvas><br />
+      You found a correct solution!
+      <img src="images/success-tick.png" style="position: absolute; left: 255px; top: 240px;" />
 
-         
+<!--         
+      
          <table>
-            <tr>
-               <td><canvas id="your-tree" width="250" height="200"></canvas>
-                   <img src="images/success-tick.png" style="position: absolute; left: 230px; top: 270px;" />
+               <td>
+                   
                </td>
                <td><img src="images/success-stars.png" /></td>
             </tr>
@@ -234,18 +241,12 @@
             </tr>
          </table>
          <br>
-
+-->
       <div style="text-align: center">
          <button class="back-button" onclick="hideSolution();"></button>
          <button class="next-button" onclick="hideSolution(); showDYK();"></button>
       </div>
    </div>
-   
-
-   <!-- MAIN CANVAS -->   
-   <canvas id="world"></canvas>
-   
-   
    
 </body>
 </html>
