@@ -202,13 +202,7 @@ function tick() {
 
 
 function animate() {
-   var h = hint.getHighlight();
-   hint.setHighlight(false);
    tree.animate();
-   
-   if (h && !hint.getHighlight()) {
-      hint.hideHint();
-   }
 }
 
 
@@ -373,12 +367,8 @@ function showDialog(name, width) {
    }
 }
 
-function showHint() {
-   showDialog("dialog-hint", 1030);
-}
-
 function hideHint() {
-   hideDialog("dialog-hint");
+   hint.hideHint();
 }
 
 function showHelp(n) {
@@ -399,7 +389,11 @@ function toggleHelp() {
 }
 
 function showCredits() {
-   showDialog("dialog-credits", 920);
+   hideAllDialogs();
+   var d = document.getElementById("dialog-credits");
+   if (d) {
+      d.style.visibility = "visible";
+   }
 }
 
 function hideCredits() {
@@ -458,7 +452,7 @@ function showSolution() {
    tree.drawSmallTree(g, 0, 0, c.width, c.height);
 
    // show the dialog
-   showDialog("dialog-solution", 624);
+   showDialog("dialog-solution", 564);
 }
 
 function hideSolution() {
