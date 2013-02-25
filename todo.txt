@@ -1,3 +1,8 @@
+Offscreen tips on orientation rotate?
+
+Cache manifest
+
+
 * Pop docks
 
 * New text for info boxes
@@ -11,8 +16,6 @@
 * Sound effects
 
 * Stretch bug in level 8
-
-* Visually responsive buttons
 
 * Have completed tree float to center of screen?
 
