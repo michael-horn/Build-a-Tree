@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# revision 236
+# revision 237
 
 CACHE:
 apple-touch-icon.png
@@ -59,7 +59,10 @@ images/plant.png
 images/play.png
 images/plus.png
 images/purple-dock.png
+images/qr_lifeonearth.png
 images/restart.png
+images/scissors_closed.png
+images/scissors_open.png
 images/scorpion.png
 images/shark.png
 images/snail.png
@@ -71,6 +74,7 @@ images/success-stars.png
 images/success-tick.png
 images/texture.png
 images/texture2.png
+images/texture3.png
 images/tip1.png
 images/tip2.png
 images/tip3.png
