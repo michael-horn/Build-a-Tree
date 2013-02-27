@@ -448,6 +448,7 @@ function showSolution() {
    g = c.getContext('2d');
    g.fillStyle = Theme.FOREGROUND;
    g.strokeStyle = Theme.FOREGROUND;
+   g.clearRect(0, 0, c.width, c.height);
    tree.layoutSmallTree();
    tree.drawSmallTree(g, 0, 0, c.width, c.height);
 
@@ -493,9 +494,8 @@ function toggleSolutionBox() {
 //===================================================================
 
 function getCurrentLevel() {
-   var s = gup("level");
-   if (s.length > 0) {
-      return Math.floor(s);
+   if (sessionStorage.getItem("level")) {
+      return Math.floor(sessionStorage.getItem("level"));
    } else {
       return 0;
    }
@@ -505,10 +505,11 @@ function getCurrentLevel() {
 function gotoLevel(level) {
    if (level >= LEVELS.length) {
       window.location = "finish.html";
-   }
-//   else if (level <= getMaxLevel()) {
-   else {
-      window.location = "game.html?level=" + level;
+   } else {
+      sessionStorage.setItem("level", level);
+      hideAllDialogs();
+      restart();
+      //window.location = "game.html?level=" + level;
    }
    return false;
 }
@@ -523,7 +524,7 @@ function clearLevelHistory() {
    for (var i=0; i<LEVELS.length; i++) {
       sessionStorage.setItem("completed-level-" + i, "false");
    }
-   sessionStorage.setItem("max-level", 0);
+   sessionStorage.setItem("level", 0);
 }
 
 
