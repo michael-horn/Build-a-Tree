@@ -96,7 +96,7 @@ const LEVELS = [
    
    dyk : ("<p>Spiders, scorpions, and insects are all different kinds of <i>" +
           "arthropods</i>. However, unlike insects, spiders and scorpions have " +
-          "eight legs instead of six. Spiders and scoprions also lack the wings " +
+          "eight legs instead of six. Spiders and scorpions also lack the wings " +
           "and antennae of insects.</p>")
 },
 
