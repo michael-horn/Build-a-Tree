@@ -28,7 +28,6 @@ var ORANGE_DOCK = document.createElement("img");
 
 
 function startup() {
-   initLogDatabase();
    canvas = document.getElementById("world");
    context = canvas.getContext('2d');
    canvas.width = window.innerWidth;
@@ -49,7 +48,7 @@ function startup() {
 
    setInterval(tick, 30);
    defineEventHandlers(canvas);
-   resetMasterTimer();
+   //resetMasterTimer();
 }
 
 
@@ -58,7 +57,6 @@ function restart() {
    var h = canvas.height;
    var level = LEVELS[getCurrentLevel()];
    
-   log("start", level.name);
    hideSolution();
    
    tree.clear();
@@ -145,12 +143,6 @@ function restart() {
    }
 }
 
-function playSound(name) {
-   var audio = document.getElementById("sound-" + name);
-   if (audio) {
-      audio.play();
-   }
-}
 
 function moveToDock(clade, index) {
    var cx, cy;
@@ -186,6 +178,7 @@ function moveToDock(clade, index) {
    }
 }
 
+
 function resize(evt) {
    canvas.width = window.innerWidth;
    canvas.height = window.innerHeight;
@@ -209,14 +202,7 @@ function tick() {
 
 
 function animate() {
-   var h = hint.getHighlight();
-   hint.setHighlight(false);
    tree.animate();
-   updateTokens();
-   
-   if (h && !hint.getHighlight()) {
-      hint.hideHint();
-   }
 }
 
 
@@ -325,13 +311,13 @@ function draw() {
    
    // Solution box
    solution_box.draw(g);
-
-   
 }
+
 
 function addVisual(visual) {
    visuals.push(visual);
 }
+
 
 function removeVisual(visual) {
    for (var i=0; i<visuals.length; i++) {
@@ -381,12 +367,8 @@ function showDialog(name, width) {
    }
 }
 
-function showHint() {
-   showDialog("dialog-hint", 1030);
-}
-
 function hideHint() {
-   hideDialog("dialog-hint");
+   hint.hideHint();
 }
 
 function showHelp(n) {
@@ -407,7 +389,11 @@ function toggleHelp() {
 }
 
 function showCredits() {
-   showDialog("dialog-credits", 714);
+   hideAllDialogs();
+   var d = document.getElementById("dialog-credits");
+   if (d) {
+      d.style.visibility = "visible";
+   }
 }
 
 function hideCredits() {
@@ -457,23 +443,17 @@ function toggleLevels() {
 function showSolution() {
    markLevelComplete(getCurrentLevel());
    
-   // draw the solution tree
-   var c = document.getElementById("science-tree");
-   var g = c.getContext('2d');
-   g.fillStyle = Theme.FOREGROUND;
-   g.strokeStyle = Theme.FOREGROUND;
-   solution.drawSmallTree(g, 0, 0, c.width, c.height);
-   
    // draw the players' tree
    c = document.getElementById("your-tree");
    g = c.getContext('2d');
    g.fillStyle = Theme.FOREGROUND;
    g.strokeStyle = Theme.FOREGROUND;
+   g.clearRect(0, 0, c.width, c.height);
    tree.layoutSmallTree();
    tree.drawSmallTree(g, 0, 0, c.width, c.height);
 
    // show the dialog
-   showDialog("dialog-solution", 624);
+   showDialog("dialog-solution", 564);
 }
 
 function hideSolution() {
@@ -514,9 +494,8 @@ function toggleSolutionBox() {
 //===================================================================
 
 function getCurrentLevel() {
-   var s = gup("level");
-   if (s.length > 0) {
-      return Math.floor(s);
+   if (sessionStorage.getItem("level")) {
+      return Math.floor(sessionStorage.getItem("level"));
    } else {
       return 0;
    }
@@ -526,10 +505,11 @@ function getCurrentLevel() {
 function gotoLevel(level) {
    if (level >= LEVELS.length) {
       window.location = "finish.html";
-   }
-//   else if (level <= getMaxLevel()) {
-   else {
-      window.location = "game.html?level=" + level;
+   } else {
+      sessionStorage.setItem("level", level);
+      hideAllDialogs();
+      restart();
+      //window.location = "game.html?level=" + level;
    }
    return false;
 }
@@ -541,27 +521,20 @@ function nextLevel() {
 
 
 function clearLevelHistory() {
-   if (supportsSessionStorage()) {
-      for (var i=0; i<LEVELS.length; i++) {
-         sessionStorage.setItem("completed-level-" + i, "false");
-      }
-      sessionStorage.setItem("max-level", 0);
+   for (var i=0; i<LEVELS.length; i++) {
+      sessionStorage.setItem("completed-level-" + i, "false");
    }
+   sessionStorage.setItem("level", 0);
 }
 
 
 function markLevelComplete(l) {
-   if (supportsSessionStorage()) {
-      sessionStorage.setItem("completed-level-" + l, "true");
-   }
+   sessionStorage.setItem("completed-level-" + l, "true");
 }
 
 
 function isLevelComplete(l) {
-   if (supportsSessionStorage()) {
-      return sessionStorage.getItem("completed-level-" + l) == "true";
-   }
-   return false;
+   return sessionStorage.getItem("completed-level-" + l) == "true";
 }
 
 
