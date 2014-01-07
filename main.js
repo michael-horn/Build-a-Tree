@@ -48,7 +48,7 @@ function startup() {
 
    setInterval(tick, 30);
    defineEventHandlers(canvas);
-   //resetMasterTimer();
+   resetMasterTimer();
 }
 
 
