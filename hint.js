@@ -259,13 +259,9 @@ function Hint() {
    }
 
    this.hideHint = function() {
-      this.current = null;
       hideDialog("dialog-hint");
-      var d = document.getElementById("hint-image");
-      if (d) {
-         d.onload = function() { };
-         d.src = "images/hints/snail.jpg";
-      }
+      this.current = null;
+      log("hide", "Hint");
    }
    
    this.showHint = function(taxon) {
@@ -274,11 +270,6 @@ function Hint() {
          var h = HINTS[taxon.getTag()];
          var d = document.getElementById("hint-image");
          if (d) {
-            d.onload = function() {
-               var d = document.getElementById("dialog-hint");
-               if (d) d.style.visibility = "visible";
-               taxon.move(-80, -80);
-            };
             d.src = h.image;
          }
          d = document.getElementById("hint-author");
@@ -293,6 +284,8 @@ function Hint() {
          if (d) {
             d.innerHTML = h.text;
          }
+         showDialog("dialog-hint", 1000);
+         log("show", "Hint " + taxon.getTreeString());  
       }
    }
    
