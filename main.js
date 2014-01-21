@@ -28,6 +28,7 @@ var ORANGE_DOCK = document.createElement("img");
 
 
 function startup() {
+   initLogDatabase();
    canvas = document.getElementById("world");
    context = canvas.getContext('2d');
    canvas.width = window.innerWidth;
@@ -52,11 +53,71 @@ function startup() {
 }
 
 
+function startupSplash() {
+   canvas = document.getElementById("world");
+   context = canvas.getContext('2d');
+   canvas.width = window.innerWidth;
+   canvas.height = window.innerHeight;
+   
+   window.onresize = resizeSplash;
+   
+   d = document.getElementById("title");
+   if (d) {
+      d.style.left = window.innerWidth/2 - 560/2 + "px";
+   }
+   
+   var splashTaxa = [];
+   for (var i=0; i<LEVELS.length; i++){
+      var level = LEVELS[i];
+      for (var j=0; j<level.taxa.length; j++) {
+         if (level.taxa[j].tip && !arrayContains(splashTaxa, level.taxa[j].tag))
+         splashTaxa.push(level.taxa[j].tag);
+      }
+   }
+   
+   for (var i=0; i<splashTaxa.length; i++) {
+      var tipSplash = new TipSplash(splashTaxa[i]);
+      tipSplash.initializeValues();
+      var colorIndex = i % 3;
+   
+      // PURPLE
+      if (colorIndex == 0) {
+         tipSplash.setColor(Theme.PURPLE);
+      }
+
+      // GREEN
+      else if (colorIndex == 1) {
+         tipSplash.setColor(Theme.GREEN);
+      }
+
+      // ORANGE
+      else {
+         tipSplash.setColor(Theme.ORANGE);
+      }
+      visuals.push(tipSplash);
+   }
+   
+   setInterval(tickSplash, 30);
+   defineEventHandlers(null);
+}
+
+function arrayContains(a, obj) {
+  var i = a.length;
+  while (i--) {
+    if (a[i] === obj) {
+      return true;
+    }
+  }
+  return false;
+}
+
+
 function restart() {
    var w = canvas.width;
    var h = canvas.height;
    var level = LEVELS[getCurrentLevel()];
    
+   log("start", level.name);
    hideSolution();
    
    tree.clear();
@@ -143,6 +204,12 @@ function restart() {
    }
 }
 
+function playSound(name) {
+   var audio = document.getElementById("sound-" + name);
+   if (audio) {
+      audio.play();
+   }
+}
 
 function moveToDock(clade, index) {
    var cx, cy;
@@ -178,7 +245,6 @@ function moveToDock(clade, index) {
    }
 }
 
-
 function resize(evt) {
    canvas.width = window.innerWidth;
    canvas.height = window.innerHeight;
@@ -194,6 +260,11 @@ function resize(evt) {
    }
 }
 
+function resizeSplash(evt) {
+   canvas.width = window.innerWidth;
+   canvas.height = window.innerHeight;
+}
+
 
 function tick() {
    animate();
@@ -201,8 +272,43 @@ function tick() {
 }
 
 
+function tickSplash() {
+   animateSplash();
+   drawSplash();
+}
+
+
+function animateSplash() {
+    for (var i=0; i<visuals.length; i++) {
+      visuals[i].animate();
+   }
+}
+
+function drawSplash() {
+   var g = context;
+   var w = canvas.width;
+   var h = canvas.height;
+   var r = 15;
+   var level = LEVELS[getCurrentLevel()];
+   g.clearRect(0, 0, w, h);
+   
+   // Draw background visuals
+   for (var i=0; i<visuals.length; i++) {
+      visuals[i].draw(g);
+   }
+   //g.fillStyle="rgba(255, 0, 0, 0.5)";
+   //g.fillRect(0, 0, w, h);
+}
+
 function animate() {
+   var h = hint.getHighlight();
+   hint.setHighlight(false);
    tree.animate();
+   updateTokens();
+   
+   if (h && !hint.getHighlight()) {
+      hint.hideHint();
+   }
 }
 
 
@@ -311,13 +417,13 @@ function draw() {
    
    // Solution box
    solution_box.draw(g);
-}
 
+   
+}
 
 function addVisual(visual) {
    visuals.push(visual);
 }
-
 
 function removeVisual(visual) {
    for (var i=0; i<visuals.length; i++) {
@@ -367,8 +473,12 @@ function showDialog(name, width) {
    }
 }
 
+function showHint() {
+   showDialog("dialog-hint", 1030);
+}
+
 function hideHint() {
-   hint.hideHint();
+   hideDialog("dialog-hint");
 }
 
 function showHelp(n) {
@@ -389,11 +499,7 @@ function toggleHelp() {
 }
 
 function showCredits() {
-   hideAllDialogs();
-   var d = document.getElementById("dialog-credits");
-   if (d) {
-      d.style.visibility = "visible";
-   }
+   showDialog("dialog-credits", 714);
 }
 
 function hideCredits() {
@@ -443,17 +549,23 @@ function toggleLevels() {
 function showSolution() {
    markLevelComplete(getCurrentLevel());
    
+   // draw the solution tree
+   //var c = document.getElementById("science-tree");
+   //var g = c.getContext('2d');
+   //g.fillStyle = Theme.FOREGROUND;
+   //g.strokeStyle = Theme.FOREGROUND;
+   //solution.drawSmallTree(g, 0, 0, c.width, c.height);
+   
    // draw the players' tree
    c = document.getElementById("your-tree");
    g = c.getContext('2d');
    g.fillStyle = Theme.FOREGROUND;
    g.strokeStyle = Theme.FOREGROUND;
-   g.clearRect(0, 0, c.width, c.height);
    tree.layoutSmallTree();
    tree.drawSmallTree(g, 0, 0, c.width, c.height);
 
    // show the dialog
-   showDialog("dialog-solution", 564);
+   showDialog("dialog-solution", 624);
 }
 
 function hideSolution() {
@@ -494,8 +606,9 @@ function toggleSolutionBox() {
 //===================================================================
 
 function getCurrentLevel() {
-   if (sessionStorage.getItem("level")) {
-      return Math.floor(sessionStorage.getItem("level"));
+   var s = gup("level");
+   if (s.length > 0) {
+      return Math.floor(s);
    } else {
       return 0;
    }
@@ -505,11 +618,10 @@ function getCurrentLevel() {
 function gotoLevel(level) {
    if (level >= LEVELS.length) {
       window.location = "finish.html";
-   } else {
-      sessionStorage.setItem("level", level);
-      hideAllDialogs();
-      restart();
-      //window.location = "game.html?level=" + level;
+   }
+//   else if (level <= getMaxLevel()) {
+   else {
+      window.location = "game.html?level=" + level;
    }
    return false;
 }
@@ -521,20 +633,27 @@ function nextLevel() {
 
 
 function clearLevelHistory() {
-   for (var i=0; i<LEVELS.length; i++) {
-      sessionStorage.setItem("completed-level-" + i, "false");
+   if (supportsSessionStorage()) {
+      for (var i=0; i<LEVELS.length; i++) {
+         sessionStorage.setItem("completed-level-" + i, "false");
+      }
+      sessionStorage.setItem("max-level", 0);
    }
-   sessionStorage.setItem("level", 0);
 }
 
 
 function markLevelComplete(l) {
-   sessionStorage.setItem("completed-level-" + l, "true");
+   if (supportsSessionStorage()) {
+      sessionStorage.setItem("completed-level-" + l, "true");
+   }
 }
 
 
 function isLevelComplete(l) {
-   return sessionStorage.getItem("completed-level-" + l) == "true";
+   if (supportsSessionStorage()) {
+      return sessionStorage.getItem("completed-level-" + l) == "true";
+   }
+   return false;
 }
 
 
