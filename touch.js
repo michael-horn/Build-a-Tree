@@ -159,12 +159,14 @@ function touchDown(evt) {
    resetMasterTimer();
    for (var i=0; i<evt.changedTouches.length; i++) {
       var t = evt.changedTouches[i];
-      var pt = { x : t.pageX, y : t.pageY };
-      var o = findTouchTarget(pt);
-      if (o) {
-         var id = t.identifier;
-         touch_bindings[id] = o;
-         o.touchDown(pt);
+      if (t.down) {
+         var pt = { x : t.pageX, y : t.pageY };
+         var o = findTouchTarget(pt);
+         if (o) {
+            var id = t.identifier;
+            touch_bindings[id] = o;
+            o.touchDown(pt);
+         }
       }
 	}
 }
@@ -172,11 +174,13 @@ function touchDown(evt) {
 function touchUp(evt) {
    for (var i=0; i<evt.changedTouches.length; i++) {
       var t = evt.changedTouches[i];
-      var pt = { x : t.pageX, y : t.pageY };
-      var o = touch_bindings[t.identifier];
-      if (o) {
-         o.touchUp();
-         touch_bindings[t.identifier] = null;
+      if (t.up) {
+         var pt = { x : t.pageX, y : t.pageY };
+         var o = touch_bindings[t.identifier];
+         if (o) {
+            o.touchUp();
+            touch_bindings[t.identifier] = null;
+         }
       }
    }
    if (evt.touches.length == 0) {
@@ -189,10 +193,12 @@ function touchDrag(evt) {
    
    for (var i=0; i<evt.changedTouches.length; i++) {
       var t = evt.changedTouches[i];
-      var pt = { x : t.pageX, y : t.pageY };
-      var o = touch_bindings[t.identifier];
-      if (o) {
-         o.touchDrag(pt);   
+      if (t.drag) {
+         var pt = { x : t.pageX, y : t.pageY };
+         var o = touch_bindings[t.identifier];
+         if (o) {
+            o.touchDrag(pt);   
+         }
       }
    }
 }
