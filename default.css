@@ -1,28 +1,18 @@
-@charset "utf-8";
-
-* { 
-   -webkit-user-select: none; 
-   -webkit-tap-highlight-color: rgba(0,0,0,0);    
-}
-
+* { -webkit-user-select: none; }
 
 body {
-   background-color: #333;
+   /* background-color: #3399cc; */
    background-image: url('images/texture2.png');
    overflow: hidden;
-   font-family: 'Helvetica Neue', arial, sans-serif;
-   font-weight: 300;
+   font-family: tahoma, arial, sans-serif;
    margin: 0px;
    padding: 0px;
-   overflow-y: hidden;
-   overflow-x: hidden;
 }
 
 h2 {
    color: white;
    font-size: 18px;
    text-shadow: 1px 1px 2px #333;
-   font-weight: 300;
 }
 
 a {
@@ -45,22 +35,16 @@ td, tr, img { margin: 0px; padding: 0px; }
 footer {
    position: absolute;
    bottom: 8px;
-   left: 0px;
    display: block;
    text-align: center;
    color: white;
-   font-weight: 200;
+   font-family: arial, helvetical, sans-serif;
    font-size: 13px;
    width: 100%;
+   margin-left: 50px;
+   margin-right: 50px;
    margin-bottom: 10px;
    line-height: 130%;
-   letter-spacing: 0.05em;
-}
-
-#world {
-   position: absolute;
-   left: 0px;
-   top: 0px;
 }
 
 #level-name {
@@ -81,7 +65,7 @@ footer {
 
 .dialog {
    position: absolute;
-   top: 90px;
+   top: 180px;
    left: 200px;
    width: 560px;
    padding: 20px 30px 20px 30px;
@@ -99,17 +83,17 @@ footer {
    -moz-border-radius: 20px;
    border-radius: 20px;
    line-height: 130%;
-   letter-spacing: 0.3pt;
+   letter-spacing: 0.6pt;
 }
 
 #hint-title {
+   font-family: arial, sans-serif;
    text-align: center;
    font-size: 25px;
    font-weight: normal;
    margin-bottom: 10px;
    letter-spacing: 1pt;
    text-shadow: none;
-   color: #ccc;
 }
 
 #hint-image {
@@ -120,123 +104,39 @@ footer {
    text-align: center;
    font-size: 10px;
    font-weight: normal;
-   color: #ccc;
+   position: relative;
+   top: -8px;
+   color: white;
    text-shadow: none;
+   letter-spacing: 1pt;
 }
 
 #hint-text {
    text-align: left;
    font-size: 18px;
-   margin: 10px 140px 10px 140px;
-   font-weight: 200;
+   margin: 10px 25px 10px 25px;
+   font-weight: normal;
    text-shadow: none;
-   text-align: justify; 
-   color: #ccc;
-   letter-spacing: 0.05em;
+   letter-spacing: 1px;
+   font-family: sans-serif;
 }
 
 #title {
-   position: inherit;
+   /*position: inherit;*/
    margin-left: auto;
    margin-right: auto;
    margin-top: 100px;
 }
 
-button {
-   outline: none;
-   border: none;
-}
-
-
-#play-button {
-   background: url("images/play.png") 0 0 no-repeat;
-   width: 161px;
-   height: 68px;
-}
-#play-button:active { background-position: 3px 3px; }
-
-.back-button {
-   background: url("images/back.png") 0 0 no-repeat;
-   width: 165px;
-   height: 68px;
-}
-.back-button:active { background-position: 3px 3px; }
-
-.next-button {
-   background: url("images/next.png") 0 0 no-repeat;
-   width: 165px;
-   height: 68px;
-}
-.next-button:active { background-position: 3px 3px; }
-
-.close-button {
-   background: url("images/close.png") 0 0 no-repeat;
-   width: 165px;
-   height: 68px;
-}
-.close-button:active { background-position: 3px 3px; }
-
-#credits-button {
-   background: url("images/close.png") 0 0 no-repeat;
-   width: 165px;
-   height: 68px;
-}
-#credits-button:active { background-position: 3px 3px; }
-
-#restart-button {
-   background: url("images/restart.png") 0 0 no-repeat;
-   width: 56px;
-   height: 56px;
-   position: absolute;
-   right: 18px;
-   top: 38px;
-}
-#restart-button:active { background-position: 3px 3px; }
-
-#levels-button {
-   background: url("images/levels.png") 0 0 no-repeat;
-   width: 56px;
-   height: 56px;
-   position: absolute;
-   right: 18px;
-   top: 95px;
-}
-#levels-button:active { background-position: 3px 3px; }
-
-
 #dialog-hint {
-   color: white;
-   position: absolute;
    visibility: hidden;
-   background-color: #333;
-   width: 100%;
-   height: 100%;
-   margin: 0px;
-   padding: 10px 0px 20px 0px;
+   width: 1000px;
+   padding: 10px 10px 20px 10px;
    -moz-border-radius: 0px;
    border-radius: 0px;
-   top: 0px;
-   left: 0px;
+   top: 80px;
    text-align: center;
 }
-
-
-#dialog-credits {
-   color: white;
-   position: absolute;
-   visibility: hidden;
-   background-color: #333;
-   width: 100%;
-   height: 100%;
-   margin: 0px;
-   padding: 0px;
-   font-weight: 200;
-   line-height: 120%;
-   top: 0px;
-   left: 0px;
-   font-size: 12px;
-}
-
 
 #dialog-help1 {
    visibility: hidden;
@@ -257,6 +157,14 @@ button {
    text-align: center;
 }
 
+#dialog-credits {
+   visibility: hidden;
+   width: 650px;
+   font-size: 14px;
+   font-weight: normal;
+   line-height: 130%;
+   top: 80px;
+}
 
 #dialog-levels td {
    padding-top: 12px;
@@ -276,10 +184,6 @@ button {
 }
 
 #dialog-solution {
-   background-image: url('images/success-stars.png');
-   background-position: 310px 70px;
-   background-repeat: no-repeat;
-   width: 500px;
    visibility: hidden;
 }
 
