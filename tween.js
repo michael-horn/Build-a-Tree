@@ -27,7 +27,7 @@ function Tween() {
    this.duration = 0;            // duration of tween in ticks (30ms)
    this.count    = 0;            // current tick count
    this.func     = TWEEN_LINEAR; // interpolation function
-   this.running  = false;        // paused or not
+   this.running  = true;         // paused or not
    this.repeat   = 1;            // repeat count
    
    this.ontick   = function(value) { };  // action callback
@@ -223,7 +223,6 @@ function Tween() {
          }
          
          if (!this.isTweening()) {
-            this.running = false;
             this.onend();
          } else {
             var tween = this;
