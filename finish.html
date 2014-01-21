@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html manifest="cache.manifest">
+<html> <!-- manifest="cache.manifest" -->
 <head>
    <title>Build-a-Tree</title>
-   <meta charset="utf-8">
    <meta name="apple-mobile-web-app-capable" content="yes" />
-   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+   <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
       
    <link rel="stylesheet" href="default.css" />
    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-   
    <script src="touch.js"></script>
    <script src="main.js"></script>
+   <script src="logging.js"></script>
    <script src="levels.js"></script>
    
    <script type="text/javascript">
+      initLogDatabase();
+      log("start", "Game");
       function startGame() {
          clearLevelHistory();
          window.location = "game.html";
@@ -24,11 +25,15 @@
 <body onload="defineEventHandlers(null);">
 <div class="dialog" id="title" style="text-align: center;">
    <img src="images/title.png" style="border: 0px;"/><br>
-   <h2 style="margin-top: 0px; margin-bottom: 25px;">Congratulations! You've finished the game.<br/> Play again?</h2>
-   <button id="play-button" onclick="return startGame();"></button>
+   <h2 style="margin-top: 0px; margin-bottom: 55px; letter-spacing: 0.1em;">Congratulations! You've finished the game.<br/> Play again?</h2>
+   <img src="images/play.png" alt="play" class="dialog-button" onclick="return startGame();">
 </div>
 <footer>
-   <img src="images/credits.png" style="margin-bottom: 25px;"/>
+   This exhibit was created by the Life on Earth Project with Northwestern University, Harvard University,
+   University of Michigan, and University of Nebraska State Museum. <br />
+   This work is supported by the National Science Foundation under grant DRL-1010889.
+   Any opinions, findings and conclusions or recommendations expressed in this material <br />
+   are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
 </footer>
 </body>
 </html>
