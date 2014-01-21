@@ -27,7 +27,7 @@ function SolutionBox(solution) {
    this.delta = { x : 0, y : 0 };
    this.tw = 55 + 30 * solution.getTipCount();
    this.th = 75 + solution.getRoot().getDepth() * 17;
-   this.w = Math.max(380, this.tw);
+   this.w = Math.max(500, this.tw);
    this.h = 80 + this.th;
    this.x = canvas.width / 2 - this.w / 2;
    this.y = 30 - this.h;
@@ -40,7 +40,6 @@ function SolutionBox(solution) {
    
    
    this.draw = function(g) {
-      this.x = canvas.width / 2 - this.w / 2;
       var sx = this.x;
       var sy = this.y;
       var sw = this.w;
@@ -71,11 +70,11 @@ function SolutionBox(solution) {
       solution.drawSmallTree(g, tx, ty, this.tw, this.th);
       g.textAlign = "center";
       g.textBaseline = "bottom";
-      g.font = "12pt 'Helvetica Neue', Arial, sans-serif";
+      g.font = "12pt Tahoma, Arial, sans-serif";
       g.beginPath(); 
-      g.fillText("Hint", sx + sw/2, sy + sh - 5);
+      g.fillText("Scientist Tree", sx + sw/2, sy + sh - 5);
       
-      g.font = "11pt 'Helvetica Neue', Arial, sans-serif";
+      g.font = "11pt Tahoma, Arial, sans-serif";
       g.beginPath(); 
       g.textBaseline = "top";
       g.fillText("Here's what scientists think. Can you build your", sx + sw/2, sy + 2);
@@ -107,25 +106,24 @@ function SolutionBox(solution) {
    }
    
    this.openBox = function() {
-      if (!this.open && !this.tween.isRunning()) {
+      if (!this.open) {
          this.tween.clearControlPoints();
          this.tween.setStart(this.y);
          this.tween.setEnd(0);
-         var s = this;
-         this.tween.onend = function() { s.open = true; }
-         this.tween.delay = 5;
+         this.open = true;
          this.tween.play();
+         log("show", "Solution");
       }
    }
    
    this.closeBox = function() {
-      if (this.open && !this.tween.isRunning()) {
+      if (this.open) {
          this.tween.clearControlPoints();
          this.tween.setStart(this.y);
          this.tween.setEnd(30 - this.h);
-         var s = this;
-         this.tween.onend = function() { s.open = false; }
+         this.open = false;
          this.tween.play();
+         log("hide", "Solution");
       }
    }
 
